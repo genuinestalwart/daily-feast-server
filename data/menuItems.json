@@ -1,0 +1,1013 @@
+[
+	{ "restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515" },
+	{ "restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d" },
+	{ "restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5" },
+	{ "restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b" },
+	{ "restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b" },
+	{ "restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd" },
+	{ "restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056" },
+	{ "restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4" },
+	{ "restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5" },
+	{ "restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f" },
+
+	{
+		"category": "DISH",
+		"description": "Tender grilled chicken served with aromatic basmati rice and a side of mint yogurt sauce.",
+		"image": "https://niammy.com/img/public/922/201702/1486559441_91000.jpg",
+		"name": "Grilled Chicken Rice",
+		"prep_time": 25,
+		"price": 320.5,
+		"restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515",
+		"tags": ["chicken", "rice", "grilled", "main", "spicy"]
+	},
+	{
+		"category": "DISH",
+		"description": "Creamy pasta tossed in a rich white sauce with mushrooms, garlic, and parmesan cheese.",
+		"image": "https://cdn.foodfanatic.com/uploads/2019/11/creamy-mushroom-pasta-photo.jpg",
+		"name": "Creamy Mushroom Pasta",
+		"prep_time": 20,
+		"price": 280.0,
+		"restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515",
+		"tags": ["pasta", "creamy", "vegetarian", "italian"]
+	},
+	{
+		"category": "DISH",
+		"description": "Slow-cooked beef curry with traditional spices, served with steamed white rice.",
+		"image": "https://www.justonecookbook.com/wp-content/uploads/2024/11/Japanese-Beef-Curry-7596-I.jpg",
+		"name": "Beef Curry with Rice",
+		"prep_time": 30,
+		"price": 390.0,
+		"restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515",
+		"tags": ["beef", "curry", "rice", "spicy"]
+	},
+	{
+		"category": "DISH",
+		"description": "Crispy fried prawns coated in tempura batter, served with a tangy chili dip.",
+		"image": "https://asianinspirations.com.au/wp-content/uploads/2019/05/R02288_Prawn_Tempura.jpg",
+		"name": "Tempura Prawns",
+		"prep_time": 18,
+		"price": 420.0,
+		"restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515",
+		"tags": ["seafood", "fried", "starter"]
+	},
+	{
+		"category": "DISH",
+		"description": "Aromatic biryani made with long-grain basmati rice, chicken, and secret house spices.",
+		"image": "https://burmawalakitchen.com/wp-content/uploads/2024/10/Karachi-biryani-1-1024x576.jpg",
+		"name": "Chicken Biryani",
+		"prep_time": 35,
+		"price": 350.0,
+		"restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515",
+		"tags": ["biryani", "chicken", "rice", "traditional"]
+	},
+	{
+		"category": "DISH",
+		"description": "Homestyle vegetable curry with seasonal veggies simmered in coconut milk.",
+		"image": "https://img.taste.com.au/7XkPqB0r/w1200-h630-cfill/taste/2016/11/indian-style-vegetable-curry-59371-1.jpeg",
+		"name": "Mixed Vegetable Curry",
+		"prep_time": 22,
+		"price": 240.0,
+		"restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515",
+		"tags": ["vegetarian", "curry", "mild"]
+	},
+	{
+		"category": "DISH",
+		"description": "Oven-baked lasagna layered with minced beef, tomato sauce, and melted mozzarella.",
+		"image": "https://asset.slimmingworld.co.uk/content/media/21057/lasagne-campaign-recipe.jpg",
+		"name": "Beef Lasagna",
+		"prep_time": 28,
+		"price": 360.0,
+		"restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515",
+		"tags": ["lasagna", "cheese", "italian", "baked"]
+	},
+	{
+		"category": "DISH",
+		"description": "Crispy chicken pieces tossed in a tangy-sweet honey garlic glaze.",
+		"image": "https://img.tastelife.tv/assets/uploads/2022/08/Honey_Garlic_Baked_Chicken_Thighs_Recipe_-_Easy_Chicken_Recipe_16x9-1200x675.jpg",
+		"name": "Honey Garlic Chicken",
+		"prep_time": 17,
+		"price": 310.0,
+		"restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515",
+		"tags": ["chicken", "sweet", "fried"]
+	},
+	{
+		"category": "DISH",
+		"description": "Soft naan bread stuffed with cheese, brushed with butter, and baked until golden.",
+		"image": "https://assets.afcdn.com/recipe/20250228/158591_w1024h768c1cx2035cy876cxt0cyt0cxb4096cyb2048.jpeg",
+		"name": "Cheese Naan",
+		"prep_time": 10,
+		"price": 120.0,
+		"restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515",
+		"tags": ["bread", "cheese", "side"]
+	},
+	{
+		"category": "DISH",
+		"description": "Tender grilled salmon fillet seasoned with herbs and served with sautéed vegetables.",
+		"image": "https://assets.wholefoodsmarket.com/recipes/2555/1024/768/2555-3.jpg",
+		"name": "Herb Grilled Salmon",
+		"prep_time": 26,
+		"price": 480.0,
+		"restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515",
+		"tags": ["fish", "grilled", "healthy", "dinner"]
+	},
+	{
+		"category": "DISH",
+		"description": "Tender grilled chicken served with aromatic basmati rice and a side of mint yogurt sauce.",
+		"image": "https://niammy.com/img/public/922/201702/1486559441_91000.jpg",
+		"name": "Grilled Chicken Rice",
+		"prep_time": 25,
+		"price": 320.5,
+		"restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d",
+		"tags": ["chicken", "rice", "grilled", "main", "spicy"]
+	},
+	{
+		"category": "DISH",
+		"description": "Creamy pasta tossed in a rich white sauce with mushrooms, garlic, and parmesan cheese.",
+		"image": "https://cdn.foodfanatic.com/uploads/2019/11/creamy-mushroom-pasta-photo.jpg",
+		"name": "Creamy Mushroom Pasta",
+		"prep_time": 20,
+		"price": 280,
+		"restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d",
+		"tags": ["pasta", "creamy", "vegetarian", "italian"]
+	},
+	{
+		"category": "DISH",
+		"description": "Slow-cooked beef curry with traditional spices, served with steamed white rice.",
+		"image": "https://www.justonecookbook.com/wp-content/uploads/2024/11/Japanese-Beef-Curry-7596-I.jpg",
+		"name": "Beef Curry with Rice",
+		"prep_time": 30,
+		"price": 390,
+		"restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d",
+		"tags": ["beef", "curry", "rice", "spicy"]
+	},
+	{
+		"category": "DISH",
+		"description": "Crispy fried prawns coated in tempura batter, served with a tangy chili dip.",
+		"image": "https://asianinspirations.com.au/wp-content/uploads/2019/05/R02288_Prawn_Tempura.jpg",
+		"name": "Tempura Prawns",
+		"prep_time": 18,
+		"price": 420,
+		"restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d",
+		"tags": ["seafood", "fried", "starter"]
+	},
+	{
+		"category": "DISH",
+		"description": "Aromatic biryani made with long-grain basmati rice, chicken, and secret house spices.",
+		"image": "https://burmawalakitchen.com/wp-content/uploads/2024/10/Karachi-biryani-1-1024x576.jpg",
+		"name": "Chicken Biryani",
+		"prep_time": 35,
+		"price": 350,
+		"restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d",
+		"tags": ["biryani", "chicken", "rice", "traditional"]
+	},
+	{
+		"category": "DISH",
+		"description": "Homestyle vegetable curry with seasonal veggies simmered in coconut milk.",
+		"image": "https://img.taste.com.au/7XkPqB0r/w1200-h630-cfill/taste/2016/11/indian-style-vegetable-curry-59371-1.jpeg",
+		"name": "Mixed Vegetable Curry",
+		"prep_time": 22,
+		"price": 240,
+		"restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d",
+		"tags": ["vegetarian", "curry", "mild"]
+	},
+	{
+		"category": "DISH",
+		"description": "Oven-baked lasagna layered with minced beef, tomato sauce, and melted mozzarella.",
+		"image": "https://asset.slimmingworld.co.uk/content/media/21057/lasagne-campaign-recipe.jpg",
+		"name": "Beef Lasagna",
+		"prep_time": 28,
+		"price": 360,
+		"restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d",
+		"tags": ["lasagna", "cheese", "italian", "baked"]
+	},
+	{
+		"category": "DISH",
+		"description": "Crispy chicken pieces tossed in a tangy-sweet honey garlic glaze.",
+		"image": "https://img.tastelife.tv/assets/uploads/2022/08/Honey_Garlic_Baked_Chicken_Thighs_Recipe_-_Easy_Chicken_Recipe_16x9-1200x675.jpg",
+		"name": "Honey Garlic Chicken",
+		"prep_time": 17,
+		"price": 310,
+		"restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d",
+		"tags": ["chicken", "sweet", "fried"]
+	},
+	{
+		"category": "DISH",
+		"description": "Soft naan bread stuffed with cheese, brushed with butter, and baked until golden.",
+		"image": "https://assets.afcdn.com/recipe/20250228/158591_w1024h768c1cx2035cy876cxt0cyt0cxb4096cyb2048.jpeg",
+		"name": "Cheese Naan",
+		"prep_time": 10,
+		"price": 120,
+		"restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d",
+		"tags": ["bread", "cheese", "side"]
+	},
+	{
+		"category": "DISH",
+		"description": "Tender grilled salmon fillet seasoned with herbs and served with sautéed vegetables.",
+		"image": "https://assets.wholefoodsmarket.com/recipes/2555/1024/768/2555-3.jpg",
+		"name": "Herb Grilled Salmon",
+		"prep_time": 26,
+		"price": 480,
+		"restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d",
+		"tags": ["fish", "grilled", "healthy", "dinner"]
+	},
+	{
+		"category": "DISH",
+		"description": "Tender grilled chicken served with aromatic basmati rice and a side of mint yogurt sauce.",
+		"image": "https://niammy.com/img/public/922/201702/1486559441_91000.jpg",
+		"name": "Grilled Chicken Rice",
+		"prep_time": 25,
+		"price": 320.5,
+		"restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5",
+		"tags": ["chicken", "rice", "grilled", "main", "spicy"]
+	},
+	{
+		"category": "DISH",
+		"description": "Creamy pasta tossed in a rich white sauce with mushrooms, garlic, and parmesan cheese.",
+		"image": "https://cdn.foodfanatic.com/uploads/2019/11/creamy-mushroom-pasta-photo.jpg",
+		"name": "Creamy Mushroom Pasta",
+		"prep_time": 20,
+		"price": 280,
+		"restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5",
+		"tags": ["pasta", "creamy", "vegetarian", "italian"]
+	},
+	{
+		"category": "DISH",
+		"description": "Slow-cooked beef curry with traditional spices, served with steamed white rice.",
+		"image": "https://www.justonecookbook.com/wp-content/uploads/2024/11/Japanese-Beef-Curry-7596-I.jpg",
+		"name": "Beef Curry with Rice",
+		"prep_time": 30,
+		"price": 390,
+		"restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5",
+		"tags": ["beef", "curry", "rice", "spicy"]
+	},
+	{
+		"category": "DISH",
+		"description": "Crispy fried prawns coated in tempura batter, served with a tangy chili dip.",
+		"image": "https://asianinspirations.com.au/wp-content/uploads/2019/05/R02288_Prawn_Tempura.jpg",
+		"name": "Tempura Prawns",
+		"prep_time": 18,
+		"price": 420,
+		"restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5",
+		"tags": ["seafood", "fried", "starter"]
+	},
+	{
+		"category": "DISH",
+		"description": "Aromatic biryani made with long-grain basmati rice, chicken, and secret house spices.",
+		"image": "https://burmawalakitchen.com/wp-content/uploads/2024/10/Karachi-biryani-1-1024x576.jpg",
+		"name": "Chicken Biryani",
+		"prep_time": 35,
+		"price": 350,
+		"restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5",
+		"tags": ["biryani", "chicken", "rice", "traditional"]
+	},
+	{
+		"category": "DISH",
+		"description": "Homestyle vegetable curry with seasonal veggies simmered in coconut milk.",
+		"image": "https://img.taste.com.au/7XkPqB0r/w1200-h630-cfill/taste/2016/11/indian-style-vegetable-curry-59371-1.jpeg",
+		"name": "Mixed Vegetable Curry",
+		"prep_time": 22,
+		"price": 240,
+		"restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5",
+		"tags": ["vegetarian", "curry", "mild"]
+	},
+	{
+		"category": "DISH",
+		"description": "Oven-baked lasagna layered with minced beef, tomato sauce, and melted mozzarella.",
+		"image": "https://asset.slimmingworld.co.uk/content/media/21057/lasagne-campaign-recipe.jpg",
+		"name": "Beef Lasagna",
+		"prep_time": 28,
+		"price": 360,
+		"restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5",
+		"tags": ["lasagna", "cheese", "italian", "baked"]
+	},
+	{
+		"category": "DISH",
+		"description": "Crispy chicken pieces tossed in a tangy-sweet honey garlic glaze.",
+		"image": "https://img.tastelife.tv/assets/uploads/2022/08/Honey_Garlic_Baked_Chicken_Thighs_Recipe_-_Easy_Chicken_Recipe_16x9-1200x675.jpg",
+		"name": "Honey Garlic Chicken",
+		"prep_time": 17,
+		"price": 310,
+		"restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5",
+		"tags": ["chicken", "sweet", "fried"]
+	},
+	{
+		"category": "DISH",
+		"description": "Soft naan bread stuffed with cheese, brushed with butter, and baked until golden.",
+		"image": "https://assets.afcdn.com/recipe/20250228/158591_w1024h768c1cx2035cy876cxt0cyt0cxb4096cyb2048.jpeg",
+		"name": "Cheese Naan",
+		"prep_time": 10,
+		"price": 120,
+		"restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5",
+		"tags": ["bread", "cheese", "side"]
+	},
+	{
+		"category": "DISH",
+		"description": "Tender grilled salmon fillet seasoned with herbs and served with sautéed vegetables.",
+		"image": "https://assets.wholefoodsmarket.com/recipes/2555/1024/768/2555-3.jpg",
+		"name": "Herb Grilled Salmon",
+		"prep_time": 26,
+		"price": 480,
+		"restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5",
+		"tags": ["fish", "grilled", "healthy", "dinner"]
+	},
+	{
+		"category": "DISH",
+		"description": "Tender grilled chicken served with aromatic basmati rice and a side of mint yogurt sauce.",
+		"image": "https://niammy.com/img/public/922/201702/1486559441_91000.jpg",
+		"name": "Grilled Chicken Rice",
+		"prep_time": 25,
+		"price": 320.5,
+		"restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b",
+		"tags": ["chicken", "rice", "grilled", "main", "spicy"]
+	},
+	{
+		"category": "DISH",
+		"description": "Creamy pasta tossed in a rich white sauce with mushrooms, garlic, and parmesan cheese.",
+		"image": "https://cdn.foodfanatic.com/uploads/2019/11/creamy-mushroom-pasta-photo.jpg",
+		"name": "Creamy Mushroom Pasta",
+		"prep_time": 20,
+		"price": 280,
+		"restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b",
+		"tags": ["pasta", "creamy", "vegetarian", "italian"]
+	},
+	{
+		"category": "DISH",
+		"description": "Slow-cooked beef curry with traditional spices, served with steamed white rice.",
+		"image": "https://www.justonecookbook.com/wp-content/uploads/2024/11/Japanese-Beef-Curry-7596-I.jpg",
+		"name": "Beef Curry with Rice",
+		"prep_time": 30,
+		"price": 390,
+		"restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b",
+		"tags": ["beef", "curry", "rice", "spicy"]
+	},
+	{
+		"category": "DISH",
+		"description": "Crispy fried prawns coated in tempura batter, served with a tangy chili dip.",
+		"image": "https://asianinspirations.com.au/wp-content/uploads/2019/05/R02288_Prawn_Tempura.jpg",
+		"name": "Tempura Prawns",
+		"prep_time": 18,
+		"price": 420,
+		"restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b",
+		"tags": ["seafood", "fried", "starter"]
+	},
+	{
+		"category": "DISH",
+		"description": "Aromatic biryani made with long-grain basmati rice, chicken, and secret house spices.",
+		"image": "https://burmawalakitchen.com/wp-content/uploads/2024/10/Karachi-biryani-1-1024x576.jpg",
+		"name": "Chicken Biryani",
+		"prep_time": 35,
+		"price": 350,
+		"restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b",
+		"tags": ["biryani", "chicken", "rice", "traditional"]
+	},
+	{
+		"category": "DISH",
+		"description": "Homestyle vegetable curry with seasonal veggies simmered in coconut milk.",
+		"image": "https://img.taste.com.au/7XkPqB0r/w1200-h630-cfill/taste/2016/11/indian-style-vegetable-curry-59371-1.jpeg",
+		"name": "Mixed Vegetable Curry",
+		"prep_time": 22,
+		"price": 240,
+		"restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b",
+		"tags": ["vegetarian", "curry", "mild"]
+	},
+	{
+		"category": "DISH",
+		"description": "Oven-baked lasagna layered with minced beef, tomato sauce, and melted mozzarella.",
+		"image": "https://asset.slimmingworld.co.uk/content/media/21057/lasagne-campaign-recipe.jpg",
+		"name": "Beef Lasagna",
+		"prep_time": 28,
+		"price": 360,
+		"restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b",
+		"tags": ["lasagna", "cheese", "italian", "baked"]
+	},
+	{
+		"category": "DISH",
+		"description": "Crispy chicken pieces tossed in a tangy-sweet honey garlic glaze.",
+		"image": "https://img.tastelife.tv/assets/uploads/2022/08/Honey_Garlic_Baked_Chicken_Thighs_Recipe_-_Easy_Chicken_Recipe_16x9-1200x675.jpg",
+		"name": "Honey Garlic Chicken",
+		"prep_time": 17,
+		"price": 310,
+		"restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b",
+		"tags": ["chicken", "sweet", "fried"]
+	},
+	{
+		"category": "DISH",
+		"description": "Soft naan bread stuffed with cheese, brushed with butter, and baked until golden.",
+		"image": "https://assets.afcdn.com/recipe/20250228/158591_w1024h768c1cx2035cy876cxt0cyt0cxb4096cyb2048.jpeg",
+		"name": "Cheese Naan",
+		"prep_time": 10,
+		"price": 120,
+		"restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b",
+		"tags": ["bread", "cheese", "side"]
+	},
+	{
+		"category": "DISH",
+		"description": "Tender grilled salmon fillet seasoned with herbs and served with sautéed vegetables.",
+		"image": "https://assets.wholefoodsmarket.com/recipes/2555/1024/768/2555-3.jpg",
+		"name": "Herb Grilled Salmon",
+		"prep_time": 26,
+		"price": 480,
+		"restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b",
+		"tags": ["fish", "grilled", "healthy", "dinner"]
+	},
+	{
+		"category": "DISH",
+		"description": "Tender grilled chicken served with aromatic basmati rice and a side of mint yogurt sauce.",
+		"image": "https://niammy.com/img/public/922/201702/1486559441_91000.jpg",
+		"name": "Grilled Chicken Rice",
+		"prep_time": 25,
+		"price": 320.5,
+		"restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b",
+		"tags": ["chicken", "rice", "grilled", "main", "spicy"]
+	},
+	{
+		"category": "DISH",
+		"description": "Creamy pasta tossed in a rich white sauce with mushrooms, garlic, and parmesan cheese.",
+		"image": "https://cdn.foodfanatic.com/uploads/2019/11/creamy-mushroom-pasta-photo.jpg",
+		"name": "Creamy Mushroom Pasta",
+		"prep_time": 20,
+		"price": 280,
+		"restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b",
+		"tags": ["pasta", "creamy", "vegetarian", "italian"]
+	},
+	{
+		"category": "DISH",
+		"description": "Slow-cooked beef curry with traditional spices, served with steamed white rice.",
+		"image": "https://www.justonecookbook.com/wp-content/uploads/2024/11/Japanese-Beef-Curry-7596-I.jpg",
+		"name": "Beef Curry with Rice",
+		"prep_time": 30,
+		"price": 390,
+		"restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b",
+		"tags": ["beef", "curry", "rice", "spicy"]
+	},
+	{
+		"category": "DISH",
+		"description": "Crispy fried prawns coated in tempura batter, served with a tangy chili dip.",
+		"image": "https://asianinspirations.com.au/wp-content/uploads/2019/05/R02288_Prawn_Tempura.jpg",
+		"name": "Tempura Prawns",
+		"prep_time": 18,
+		"price": 420,
+		"restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b",
+		"tags": ["seafood", "fried", "starter"]
+	},
+	{
+		"category": "DISH",
+		"description": "Aromatic biryani made with long-grain basmati rice, chicken, and secret house spices.",
+		"image": "https://burmawalakitchen.com/wp-content/uploads/2024/10/Karachi-biryani-1-1024x576.jpg",
+		"name": "Chicken Biryani",
+		"prep_time": 35,
+		"price": 350,
+		"restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b",
+		"tags": ["biryani", "chicken", "rice", "traditional"]
+	},
+	{
+		"category": "DISH",
+		"description": "Homestyle vegetable curry with seasonal veggies simmered in coconut milk.",
+		"image": "https://img.taste.com.au/7XkPqB0r/w1200-h630-cfill/taste/2016/11/indian-style-vegetable-curry-59371-1.jpeg",
+		"name": "Mixed Vegetable Curry",
+		"prep_time": 22,
+		"price": 240,
+		"restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b",
+		"tags": ["vegetarian", "curry", "mild"]
+	},
+	{
+		"category": "DISH",
+		"description": "Oven-baked lasagna layered with minced beef, tomato sauce, and melted mozzarella.",
+		"image": "https://asset.slimmingworld.co.uk/content/media/21057/lasagne-campaign-recipe.jpg",
+		"name": "Beef Lasagna",
+		"prep_time": 28,
+		"price": 360,
+		"restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b",
+		"tags": ["lasagna", "cheese", "italian", "baked"]
+	},
+	{
+		"category": "DISH",
+		"description": "Crispy chicken pieces tossed in a tangy-sweet honey garlic glaze.",
+		"image": "https://img.tastelife.tv/assets/uploads/2022/08/Honey_Garlic_Baked_Chicken_Thighs_Recipe_-_Easy_Chicken_Recipe_16x9-1200x675.jpg",
+		"name": "Honey Garlic Chicken",
+		"prep_time": 17,
+		"price": 310,
+		"restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b",
+		"tags": ["chicken", "sweet", "fried"]
+	},
+	{
+		"category": "DISH",
+		"description": "Soft naan bread stuffed with cheese, brushed with butter, and baked until golden.",
+		"image": "https://assets.afcdn.com/recipe/20250228/158591_w1024h768c1cx2035cy876cxt0cyt0cxb4096cyb2048.jpeg",
+		"name": "Cheese Naan",
+		"prep_time": 10,
+		"price": 120,
+		"restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b",
+		"tags": ["bread", "cheese", "side"]
+	},
+	{
+		"category": "DISH",
+		"description": "Tender grilled salmon fillet seasoned with herbs and served with sautéed vegetables.",
+		"image": "https://assets.wholefoodsmarket.com/recipes/2555/1024/768/2555-3.jpg",
+		"name": "Herb Grilled Salmon",
+		"prep_time": 26,
+		"price": 480,
+		"restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b",
+		"tags": ["fish", "grilled", "healthy", "dinner"]
+	},
+	{
+		"category": "DISH",
+		"description": "Tender grilled chicken served with aromatic basmati rice and a side of mint yogurt sauce.",
+		"image": "https://niammy.com/img/public/922/201702/1486559441_91000.jpg",
+		"name": "Grilled Chicken Rice",
+		"prep_time": 25,
+		"price": 320.5,
+		"restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd",
+		"tags": ["chicken", "rice", "grilled", "main", "spicy"]
+	},
+	{
+		"category": "DISH",
+		"description": "Creamy pasta tossed in a rich white sauce with mushrooms, garlic, and parmesan cheese.",
+		"image": "https://cdn.foodfanatic.com/uploads/2019/11/creamy-mushroom-pasta-photo.jpg",
+		"name": "Creamy Mushroom Pasta",
+		"prep_time": 20,
+		"price": 280,
+		"restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd",
+		"tags": ["pasta", "creamy", "vegetarian", "italian"]
+	},
+	{
+		"category": "DISH",
+		"description": "Slow-cooked beef curry with traditional spices, served with steamed white rice.",
+		"image": "https://www.justonecookbook.com/wp-content/uploads/2024/11/Japanese-Beef-Curry-7596-I.jpg",
+		"name": "Beef Curry with Rice",
+		"prep_time": 30,
+		"price": 390,
+		"restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd",
+		"tags": ["beef", "curry", "rice", "spicy"]
+	},
+	{
+		"category": "DISH",
+		"description": "Crispy fried prawns coated in tempura batter, served with a tangy chili dip.",
+		"image": "https://asianinspirations.com.au/wp-content/uploads/2019/05/R02288_Prawn_Tempura.jpg",
+		"name": "Tempura Prawns",
+		"prep_time": 18,
+		"price": 420,
+		"restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd",
+		"tags": ["seafood", "fried", "starter"]
+	},
+	{
+		"category": "DISH",
+		"description": "Aromatic biryani made with long-grain basmati rice, chicken, and secret house spices.",
+		"image": "https://burmawalakitchen.com/wp-content/uploads/2024/10/Karachi-biryani-1-1024x576.jpg",
+		"name": "Chicken Biryani",
+		"prep_time": 35,
+		"price": 350,
+		"restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd",
+		"tags": ["biryani", "chicken", "rice", "traditional"]
+	},
+	{
+		"category": "DISH",
+		"description": "Homestyle vegetable curry with seasonal veggies simmered in coconut milk.",
+		"image": "https://img.taste.com.au/7XkPqB0r/w1200-h630-cfill/taste/2016/11/indian-style-vegetable-curry-59371-1.jpeg",
+		"name": "Mixed Vegetable Curry",
+		"prep_time": 22,
+		"price": 240,
+		"restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd",
+		"tags": ["vegetarian", "curry", "mild"]
+	},
+	{
+		"category": "DISH",
+		"description": "Oven-baked lasagna layered with minced beef, tomato sauce, and melted mozzarella.",
+		"image": "https://asset.slimmingworld.co.uk/content/media/21057/lasagne-campaign-recipe.jpg",
+		"name": "Beef Lasagna",
+		"prep_time": 28,
+		"price": 360,
+		"restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd",
+		"tags": ["lasagna", "cheese", "italian", "baked"]
+	},
+	{
+		"category": "DISH",
+		"description": "Crispy chicken pieces tossed in a tangy-sweet honey garlic glaze.",
+		"image": "https://img.tastelife.tv/assets/uploads/2022/08/Honey_Garlic_Baked_Chicken_Thighs_Recipe_-_Easy_Chicken_Recipe_16x9-1200x675.jpg",
+		"name": "Honey Garlic Chicken",
+		"prep_time": 17,
+		"price": 310,
+		"restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd",
+		"tags": ["chicken", "sweet", "fried"]
+	},
+	{
+		"category": "DISH",
+		"description": "Soft naan bread stuffed with cheese, brushed with butter, and baked until golden.",
+		"image": "https://assets.afcdn.com/recipe/20250228/158591_w1024h768c1cx2035cy876cxt0cyt0cxb4096cyb2048.jpeg",
+		"name": "Cheese Naan",
+		"prep_time": 10,
+		"price": 120,
+		"restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd",
+		"tags": ["bread", "cheese", "side"]
+	},
+	{
+		"category": "DISH",
+		"description": "Tender grilled salmon fillet seasoned with herbs and served with sautéed vegetables.",
+		"image": "https://assets.wholefoodsmarket.com/recipes/2555/1024/768/2555-3.jpg",
+		"name": "Herb Grilled Salmon",
+		"prep_time": 26,
+		"price": 480,
+		"restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd",
+		"tags": ["fish", "grilled", "healthy", "dinner"]
+	},
+	{
+		"category": "DISH",
+		"description": "Tender grilled chicken served with aromatic basmati rice and a side of mint yogurt sauce.",
+		"image": "https://niammy.com/img/public/922/201702/1486559441_91000.jpg",
+		"name": "Grilled Chicken Rice",
+		"prep_time": 25,
+		"price": 320.5,
+		"restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056",
+		"tags": ["chicken", "rice", "grilled", "main", "spicy"]
+	},
+	{
+		"category": "DISH",
+		"description": "Creamy pasta tossed in a rich white sauce with mushrooms, garlic, and parmesan cheese.",
+		"image": "https://cdn.foodfanatic.com/uploads/2019/11/creamy-mushroom-pasta-photo.jpg",
+		"name": "Creamy Mushroom Pasta",
+		"prep_time": 20,
+		"price": 280,
+		"restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056",
+		"tags": ["pasta", "creamy", "vegetarian", "italian"]
+	},
+	{
+		"category": "DISH",
+		"description": "Slow-cooked beef curry with traditional spices, served with steamed white rice.",
+		"image": "https://www.justonecookbook.com/wp-content/uploads/2024/11/Japanese-Beef-Curry-7596-I.jpg",
+		"name": "Beef Curry with Rice",
+		"prep_time": 30,
+		"price": 390,
+		"restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056",
+		"tags": ["beef", "curry", "rice", "spicy"]
+	},
+	{
+		"category": "DISH",
+		"description": "Crispy fried prawns coated in tempura batter, served with a tangy chili dip.",
+		"image": "https://asianinspirations.com.au/wp-content/uploads/2019/05/R02288_Prawn_Tempura.jpg",
+		"name": "Tempura Prawns",
+		"prep_time": 18,
+		"price": 420,
+		"restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056",
+		"tags": ["seafood", "fried", "starter"]
+	},
+	{
+		"category": "DISH",
+		"description": "Aromatic biryani made with long-grain basmati rice, chicken, and secret house spices.",
+		"image": "https://burmawalakitchen.com/wp-content/uploads/2024/10/Karachi-biryani-1-1024x576.jpg",
+		"name": "Chicken Biryani",
+		"prep_time": 35,
+		"price": 350,
+		"restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056",
+		"tags": ["biryani", "chicken", "rice", "traditional"]
+	},
+	{
+		"category": "DISH",
+		"description": "Homestyle vegetable curry with seasonal veggies simmered in coconut milk.",
+		"image": "https://img.taste.com.au/7XkPqB0r/w1200-h630-cfill/taste/2016/11/indian-style-vegetable-curry-59371-1.jpeg",
+		"name": "Mixed Vegetable Curry",
+		"prep_time": 22,
+		"price": 240,
+		"restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056",
+		"tags": ["vegetarian", "curry", "mild"]
+	},
+	{
+		"category": "DISH",
+		"description": "Oven-baked lasagna layered with minced beef, tomato sauce, and melted mozzarella.",
+		"image": "https://asset.slimmingworld.co.uk/content/media/21057/lasagne-campaign-recipe.jpg",
+		"name": "Beef Lasagna",
+		"prep_time": 28,
+		"price": 360,
+		"restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056",
+		"tags": ["lasagna", "cheese", "italian", "baked"]
+	},
+	{
+		"category": "DISH",
+		"description": "Crispy chicken pieces tossed in a tangy-sweet honey garlic glaze.",
+		"image": "https://img.tastelife.tv/assets/uploads/2022/08/Honey_Garlic_Baked_Chicken_Thighs_Recipe_-_Easy_Chicken_Recipe_16x9-1200x675.jpg",
+		"name": "Honey Garlic Chicken",
+		"prep_time": 17,
+		"price": 310,
+		"restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056",
+		"tags": ["chicken", "sweet", "fried"]
+	},
+	{
+		"category": "DISH",
+		"description": "Soft naan bread stuffed with cheese, brushed with butter, and baked until golden.",
+		"image": "https://assets.afcdn.com/recipe/20250228/158591_w1024h768c1cx2035cy876cxt0cyt0cxb4096cyb2048.jpeg",
+		"name": "Cheese Naan",
+		"prep_time": 10,
+		"price": 120,
+		"restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056",
+		"tags": ["bread", "cheese", "side"]
+	},
+	{
+		"category": "DISH",
+		"description": "Tender grilled salmon fillet seasoned with herbs and served with sautéed vegetables.",
+		"image": "https://assets.wholefoodsmarket.com/recipes/2555/1024/768/2555-3.jpg",
+		"name": "Herb Grilled Salmon",
+		"prep_time": 26,
+		"price": 480,
+		"restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056",
+		"tags": ["fish", "grilled", "healthy", "dinner"]
+	},
+	{
+		"category": "DISH",
+		"description": "Tender grilled chicken served with aromatic basmati rice and a side of mint yogurt sauce.",
+		"image": "https://niammy.com/img/public/922/201702/1486559441_91000.jpg",
+		"name": "Grilled Chicken Rice",
+		"prep_time": 25,
+		"price": 320.5,
+		"restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4",
+		"tags": ["chicken", "rice", "grilled", "main", "spicy"]
+	},
+	{
+		"category": "DISH",
+		"description": "Creamy pasta tossed in a rich white sauce with mushrooms, garlic, and parmesan cheese.",
+		"image": "https://cdn.foodfanatic.com/uploads/2019/11/creamy-mushroom-pasta-photo.jpg",
+		"name": "Creamy Mushroom Pasta",
+		"prep_time": 20,
+		"price": 280,
+		"restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4",
+		"tags": ["pasta", "creamy", "vegetarian", "italian"]
+	},
+	{
+		"category": "DISH",
+		"description": "Slow-cooked beef curry with traditional spices, served with steamed white rice.",
+		"image": "https://www.justonecookbook.com/wp-content/uploads/2024/11/Japanese-Beef-Curry-7596-I.jpg",
+		"name": "Beef Curry with Rice",
+		"prep_time": 30,
+		"price": 390,
+		"restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4",
+		"tags": ["beef", "curry", "rice", "spicy"]
+	},
+	{
+		"category": "DISH",
+		"description": "Crispy fried prawns coated in tempura batter, served with a tangy chili dip.",
+		"image": "https://asianinspirations.com.au/wp-content/uploads/2019/05/R02288_Prawn_Tempura.jpg",
+		"name": "Tempura Prawns",
+		"prep_time": 18,
+		"price": 420,
+		"restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4",
+		"tags": ["seafood", "fried", "starter"]
+	},
+	{
+		"category": "DISH",
+		"description": "Aromatic biryani made with long-grain basmati rice, chicken, and secret house spices.",
+		"image": "https://burmawalakitchen.com/wp-content/uploads/2024/10/Karachi-biryani-1-1024x576.jpg",
+		"name": "Chicken Biryani",
+		"prep_time": 35,
+		"price": 350,
+		"restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4",
+		"tags": ["biryani", "chicken", "rice", "traditional"]
+	},
+	{
+		"category": "DISH",
+		"description": "Homestyle vegetable curry with seasonal veggies simmered in coconut milk.",
+		"image": "https://img.taste.com.au/7XkPqB0r/w1200-h630-cfill/taste/2016/11/indian-style-vegetable-curry-59371-1.jpeg",
+		"name": "Mixed Vegetable Curry",
+		"prep_time": 22,
+		"price": 240,
+		"restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4",
+		"tags": ["vegetarian", "curry", "mild"]
+	},
+	{
+		"category": "DISH",
+		"description": "Oven-baked lasagna layered with minced beef, tomato sauce, and melted mozzarella.",
+		"image": "https://asset.slimmingworld.co.uk/content/media/21057/lasagne-campaign-recipe.jpg",
+		"name": "Beef Lasagna",
+		"prep_time": 28,
+		"price": 360,
+		"restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4",
+		"tags": ["lasagna", "cheese", "italian", "baked"]
+	},
+	{
+		"category": "DISH",
+		"description": "Crispy chicken pieces tossed in a tangy-sweet honey garlic glaze.",
+		"image": "https://img.tastelife.tv/assets/uploads/2022/08/Honey_Garlic_Baked_Chicken_Thighs_Recipe_-_Easy_Chicken_Recipe_16x9-1200x675.jpg",
+		"name": "Honey Garlic Chicken",
+		"prep_time": 17,
+		"price": 310,
+		"restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4",
+		"tags": ["chicken", "sweet", "fried"]
+	},
+	{
+		"category": "DISH",
+		"description": "Soft naan bread stuffed with cheese, brushed with butter, and baked until golden.",
+		"image": "https://assets.afcdn.com/recipe/20250228/158591_w1024h768c1cx2035cy876cxt0cyt0cxb4096cyb2048.jpeg",
+		"name": "Cheese Naan",
+		"prep_time": 10,
+		"price": 120,
+		"restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4",
+		"tags": ["bread", "cheese", "side"]
+	},
+	{
+		"category": "DISH",
+		"description": "Tender grilled salmon fillet seasoned with herbs and served with sautéed vegetables.",
+		"image": "https://assets.wholefoodsmarket.com/recipes/2555/1024/768/2555-3.jpg",
+		"name": "Herb Grilled Salmon",
+		"prep_time": 26,
+		"price": 480,
+		"restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4",
+		"tags": ["fish", "grilled", "healthy", "dinner"]
+	},
+	{
+		"category": "DISH",
+		"description": "Tender grilled chicken served with aromatic basmati rice and a side of mint yogurt sauce.",
+		"image": "https://niammy.com/img/public/922/201702/1486559441_91000.jpg",
+		"name": "Grilled Chicken Rice",
+		"prep_time": 25,
+		"price": 320.5,
+		"restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5",
+		"tags": ["chicken", "rice", "grilled", "main", "spicy"]
+	},
+	{
+		"category": "DISH",
+		"description": "Creamy pasta tossed in a rich white sauce with mushrooms, garlic, and parmesan cheese.",
+		"image": "https://cdn.foodfanatic.com/uploads/2019/11/creamy-mushroom-pasta-photo.jpg",
+		"name": "Creamy Mushroom Pasta",
+		"prep_time": 20,
+		"price": 280,
+		"restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5",
+		"tags": ["pasta", "creamy", "vegetarian", "italian"]
+	},
+	{
+		"category": "DISH",
+		"description": "Slow-cooked beef curry with traditional spices, served with steamed white rice.",
+		"image": "https://www.justonecookbook.com/wp-content/uploads/2024/11/Japanese-Beef-Curry-7596-I.jpg",
+		"name": "Beef Curry with Rice",
+		"prep_time": 30,
+		"price": 390,
+		"restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5",
+		"tags": ["beef", "curry", "rice", "spicy"]
+	},
+	{
+		"category": "DISH",
+		"description": "Crispy fried prawns coated in tempura batter, served with a tangy chili dip.",
+		"image": "https://asianinspirations.com.au/wp-content/uploads/2019/05/R02288_Prawn_Tempura.jpg",
+		"name": "Tempura Prawns",
+		"prep_time": 18,
+		"price": 420,
+		"restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5",
+		"tags": ["seafood", "fried", "starter"]
+	},
+	{
+		"category": "DISH",
+		"description": "Aromatic biryani made with long-grain basmati rice, chicken, and secret house spices.",
+		"image": "https://burmawalakitchen.com/wp-content/uploads/2024/10/Karachi-biryani-1-1024x576.jpg",
+		"name": "Chicken Biryani",
+		"prep_time": 35,
+		"price": 350,
+		"restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5",
+		"tags": ["biryani", "chicken", "rice", "traditional"]
+	},
+	{
+		"category": "DISH",
+		"description": "Homestyle vegetable curry with seasonal veggies simmered in coconut milk.",
+		"image": "https://img.taste.com.au/7XkPqB0r/w1200-h630-cfill/taste/2016/11/indian-style-vegetable-curry-59371-1.jpeg",
+		"name": "Mixed Vegetable Curry",
+		"prep_time": 22,
+		"price": 240,
+		"restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5",
+		"tags": ["vegetarian", "curry", "mild"]
+	},
+	{
+		"category": "DISH",
+		"description": "Oven-baked lasagna layered with minced beef, tomato sauce, and melted mozzarella.",
+		"image": "https://asset.slimmingworld.co.uk/content/media/21057/lasagne-campaign-recipe.jpg",
+		"name": "Beef Lasagna",
+		"prep_time": 28,
+		"price": 360,
+		"restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5",
+		"tags": ["lasagna", "cheese", "italian", "baked"]
+	},
+	{
+		"category": "DISH",
+		"description": "Crispy chicken pieces tossed in a tangy-sweet honey garlic glaze.",
+		"image": "https://img.tastelife.tv/assets/uploads/2022/08/Honey_Garlic_Baked_Chicken_Thighs_Recipe_-_Easy_Chicken_Recipe_16x9-1200x675.jpg",
+		"name": "Honey Garlic Chicken",
+		"prep_time": 17,
+		"price": 310,
+		"restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5",
+		"tags": ["chicken", "sweet", "fried"]
+	},
+	{
+		"category": "DISH",
+		"description": "Soft naan bread stuffed with cheese, brushed with butter, and baked until golden.",
+		"image": "https://assets.afcdn.com/recipe/20250228/158591_w1024h768c1cx2035cy876cxt0cyt0cxb4096cyb2048.jpeg",
+		"name": "Cheese Naan",
+		"prep_time": 10,
+		"price": 120,
+		"restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5",
+		"tags": ["bread", "cheese", "side"]
+	},
+	{
+		"category": "DISH",
+		"description": "Tender grilled salmon fillet seasoned with herbs and served with sautéed vegetables.",
+		"image": "https://assets.wholefoodsmarket.com/recipes/2555/1024/768/2555-3.jpg",
+		"name": "Herb Grilled Salmon",
+		"prep_time": 26,
+		"price": 480,
+		"restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5",
+		"tags": ["fish", "grilled", "healthy", "dinner"]
+	},
+	{
+		"category": "DISH",
+		"description": "Tender grilled chicken served with aromatic basmati rice and a side of mint yogurt sauce.",
+		"image": "https://niammy.com/img/public/922/201702/1486559441_91000.jpg",
+		"name": "Grilled Chicken Rice",
+		"prep_time": 25,
+		"price": 320.5,
+		"restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f",
+		"tags": ["chicken", "rice", "grilled", "main", "spicy"]
+	},
+	{
+		"category": "DISH",
+		"description": "Creamy pasta tossed in a rich white sauce with mushrooms, garlic, and parmesan cheese.",
+		"image": "https://cdn.foodfanatic.com/uploads/2019/11/creamy-mushroom-pasta-photo.jpg",
+		"name": "Creamy Mushroom Pasta",
+		"prep_time": 20,
+		"price": 280,
+		"restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f",
+		"tags": ["pasta", "creamy", "vegetarian", "italian"]
+	},
+	{
+		"category": "DISH",
+		"description": "Slow-cooked beef curry with traditional spices, served with steamed white rice.",
+		"image": "https://www.justonecookbook.com/wp-content/uploads/2024/11/Japanese-Beef-Curry-7596-I.jpg",
+		"name": "Beef Curry with Rice",
+		"prep_time": 30,
+		"price": 390,
+		"restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f",
+		"tags": ["beef", "curry", "rice", "spicy"]
+	},
+	{
+		"category": "DISH",
+		"description": "Crispy fried prawns coated in tempura batter, served with a tangy chili dip.",
+		"image": "https://asianinspirations.com.au/wp-content/uploads/2019/05/R02288_Prawn_Tempura.jpg",
+		"name": "Tempura Prawns",
+		"prep_time": 18,
+		"price": 420,
+		"restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f",
+		"tags": ["seafood", "fried", "starter"]
+	},
+	{
+		"category": "DISH",
+		"description": "Aromatic biryani made with long-grain basmati rice, chicken, and secret house spices.",
+		"image": "https://burmawalakitchen.com/wp-content/uploads/2024/10/Karachi-biryani-1-1024x576.jpg",
+		"name": "Chicken Biryani",
+		"prep_time": 35,
+		"price": 350,
+		"restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f",
+		"tags": ["biryani", "chicken", "rice", "traditional"]
+	},
+	{
+		"category": "DISH",
+		"description": "Homestyle vegetable curry with seasonal veggies simmered in coconut milk.",
+		"image": "https://img.taste.com.au/7XkPqB0r/w1200-h630-cfill/taste/2016/11/indian-style-vegetable-curry-59371-1.jpeg",
+		"name": "Mixed Vegetable Curry",
+		"prep_time": 22,
+		"price": 240,
+		"restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f",
+		"tags": ["vegetarian", "curry", "mild"]
+	},
+	{
+		"category": "DISH",
+		"description": "Oven-baked lasagna layered with minced beef, tomato sauce, and melted mozzarella.",
+		"image": "https://asset.slimmingworld.co.uk/content/media/21057/lasagne-campaign-recipe.jpg",
+		"name": "Beef Lasagna",
+		"prep_time": 28,
+		"price": 360,
+		"restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f",
+		"tags": ["lasagna", "cheese", "italian", "baked"]
+	},
+	{
+		"category": "DISH",
+		"description": "Crispy chicken pieces tossed in a tangy-sweet honey garlic glaze.",
+		"image": "https://img.tastelife.tv/assets/uploads/2022/08/Honey_Garlic_Baked_Chicken_Thighs_Recipe_-_Easy_Chicken_Recipe_16x9-1200x675.jpg",
+		"name": "Honey Garlic Chicken",
+		"prep_time": 17,
+		"price": 310,
+		"restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f",
+		"tags": ["chicken", "sweet", "fried"]
+	},
+	{
+		"category": "DISH",
+		"description": "Soft naan bread stuffed with cheese, brushed with butter, and baked until golden.",
+		"image": "https://assets.afcdn.com/recipe/20250228/158591_w1024h768c1cx2035cy876cxt0cyt0cxb4096cyb2048.jpeg",
+		"name": "Cheese Naan",
+		"prep_time": 10,
+		"price": 120,
+		"restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f",
+		"tags": ["bread", "cheese", "side"]
+	},
+	{
+		"category": "DISH",
+		"description": "Tender grilled salmon fillet seasoned with herbs and served with sautéed vegetables.",
+		"image": "https://assets.wholefoodsmarket.com/recipes/2555/1024/768/2555-3.jpg",
+		"name": "Herb Grilled Salmon",
+		"prep_time": 26,
+		"price": 480,
+		"restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f",
+		"tags": ["fish", "grilled", "healthy", "dinner"]
+	}
+]

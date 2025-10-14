@@ -1,0 +1,127 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model MenuItem {
+    id         String   @id @default(uuid())
+    category   Category
+    created_at DateTime @default(now())
+    price      Float
+
+    // Mutable fields
+    available   Boolean        @default(true)
+    description String         @db.VarChar(500)
+    image       String         @db.Text
+    name        String         @db.VarChar(50)
+    prep_time   Int
+    status      MenuItemStatus @default(PENDING)
+    tags        String[]
+    updated_at  DateTime       @updatedAt
+
+    // Foreign keys
+    restaurant_id String
+
+    // Front relation fields
+    ordered_items OrderedItem[]
+
+    // Back relation fields
+    restaurant User @relation(fields: [restaurant_id], references: [id])
+}
+
+model Order {
+    id          String   @id @default(uuid())
+    created_at  DateTime @default(now())
+    total_price Float
+
+    // Mutable fields
+    status     OrderStatus @default(PENDING)
+    updated_at DateTime    @updatedAt
+
+    // Foreign keys
+    customer_id   String
+    restaurant_id String
+    rider_id      String?
+
+    // Front relation fields
+    ordered_items OrderedItem[]
+
+    // Back relation fields
+    customer   User  @relation("customer_orders", fields: [customer_id], references: [id])
+    restaurant User  @relation("restaurant_orders", fields: [restaurant_id], references: [id])
+    rider      User? @relation("rider_orders", fields: [rider_id], references: [id])
+}
+
+model OrderedItem {
+    id             String @id @default(uuid())
+    amount         Int
+    price_per_item Float
+
+    // Foreign keys
+    menu_item_id String
+    order_id     String
+
+    // Back relation fields
+    menu_item MenuItem @relation(fields: [menu_item_id], references: [id])
+    order     Order    @relation(fields: [order_id], references: [id])
+}
+
+model User {
+    id         String   @id @default(uuid())
+    created_at DateTime @default(now())
+    email      String   @unique
+
+    // Mutable fields
+    avatar String @db.Text
+    name   String @db.VarChar(30)
+    role   Role
+
+    // Front relation fields
+    customer_orders   Order[]    @relation("customer_orders")
+    menu_items        MenuItem[]
+    restaurant_orders Order[]    @relation("restaurant_orders")
+    rider_orders      Order[]    @relation("rider_orders")
+}
+
+enum Category {
+    DISH
+    DRINK
+}
+
+enum MenuItemStatus {
+    APPROVED
+    PENDING
+    REJECTED
+}
+
+enum OrderStatus {
+    ACCEPTED
+    CANCELLED
+    DELIVERED
+    FAILED
+    IN_TRANSIT
+    PENDING
+    PICKED_UP
+    PREPARING
+    READY_FOR_PICKUP
+    REJECTED
+}
+
+enum Role {
+    ADMIN
+    CUSTOMER
+    DEVELOPER
+    RESTAURANT
+    RIDER
+    STAFF
+}
