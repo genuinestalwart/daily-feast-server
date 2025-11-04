@@ -8,6 +8,7 @@
 - TypeScript
 - Prisma
 - PostgreSQL
+- Auth0
 
 ## Important Commands
 
@@ -17,7 +18,7 @@
     npx prettier . --write
     ```
 
-- Install npm-check-updates and use its commands to update the node packages:
+- Install _npm-check-updates_ and use its commands to update the node packages:
 
     ```bash
     npm i -g npm-check-updates
@@ -30,4 +31,10 @@
 
     ```bash
     npx prisma migrate dev --name [name_given_by_you]
+    ```
+
+- Add dummy data to database:
+
+    ```bash
+    npx prisma db seed
     ```

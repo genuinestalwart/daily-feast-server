@@ -6,11 +6,8 @@ import { CreateMenuItemDTO } from './dto/create-menu-item.dto';
 export class MenuItemsController {
 	constructor(private readonly menuItemsService: MenuItemsService) {}
 
-	@Post()
-	create(@Body() createMenuItemDTO: CreateMenuItemDTO) {
-		return this.menuItemsService.create({
-			...createMenuItemDTO,
-			restaurant: { connect: { id: createMenuItemDTO.restaurant_id } },
-		});
-	}
+	// @Post()
+	// create(@Body() createMenuItemDTO: CreateMenuItemDTO) {
+	// 	return this.menuItemsService.create(createMenuItemDTO);
+	// }
 }

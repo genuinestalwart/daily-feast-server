@@ -1,15 +1,4 @@
 [
-	{ "restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515" },
-	{ "restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d" },
-	{ "restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5" },
-	{ "restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b" },
-	{ "restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b" },
-	{ "restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd" },
-	{ "restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056" },
-	{ "restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4" },
-	{ "restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5" },
-	{ "restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f" },
-
 	{
 		"category": "DISH",
 		"description": "Tender grilled chicken served with aromatic basmati rice and a side of mint yogurt sauce.",
@@ -17,7 +6,7 @@
 		"name": "Grilled Chicken Rice",
 		"prep_time": 25,
 		"price": 320.5,
-		"restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515",
+		"restaurant_id": "auth0|6904ce7bc6b65790cfe2d4ad",
 		"tags": ["chicken", "rice", "grilled", "main", "spicy"]
 	},
 	{
@@ -27,7 +16,7 @@
 		"name": "Creamy Mushroom Pasta",
 		"prep_time": 20,
 		"price": 280.0,
-		"restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515",
+		"restaurant_id": "auth0|6904ce7bc6b65790cfe2d4ad",
 		"tags": ["pasta", "creamy", "vegetarian", "italian"]
 	},
 	{
@@ -37,7 +26,7 @@
 		"name": "Beef Curry with Rice",
 		"prep_time": 30,
 		"price": 390.0,
-		"restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515",
+		"restaurant_id": "auth0|6904ce7bc6b65790cfe2d4ad",
 		"tags": ["beef", "curry", "rice", "spicy"]
 	},
 	{
@@ -47,7 +36,7 @@
 		"name": "Tempura Prawns",
 		"prep_time": 18,
 		"price": 420.0,
-		"restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515",
+		"restaurant_id": "auth0|6904ce7bc6b65790cfe2d4ad",
 		"tags": ["seafood", "fried", "starter"]
 	},
 	{
@@ -57,7 +46,7 @@
 		"name": "Chicken Biryani",
 		"prep_time": 35,
 		"price": 350.0,
-		"restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515",
+		"restaurant_id": "auth0|6904ce7bc6b65790cfe2d4ad",
 		"tags": ["biryani", "chicken", "rice", "traditional"]
 	},
 	{
@@ -67,7 +56,7 @@
 		"name": "Mixed Vegetable Curry",
 		"prep_time": 22,
 		"price": 240.0,
-		"restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515",
+		"restaurant_id": "auth0|6904ce7bc6b65790cfe2d4ad",
 		"tags": ["vegetarian", "curry", "mild"]
 	},
 	{
@@ -77,7 +66,7 @@
 		"name": "Beef Lasagna",
 		"prep_time": 28,
 		"price": 360.0,
-		"restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515",
+		"restaurant_id": "auth0|6904ce7bc6b65790cfe2d4ad",
 		"tags": ["lasagna", "cheese", "italian", "baked"]
 	},
 	{
@@ -87,7 +76,7 @@
 		"name": "Honey Garlic Chicken",
 		"prep_time": 17,
 		"price": 310.0,
-		"restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515",
+		"restaurant_id": "auth0|6904ce7bc6b65790cfe2d4ad",
 		"tags": ["chicken", "sweet", "fried"]
 	},
 	{
@@ -97,7 +86,7 @@
 		"name": "Cheese Naan",
 		"prep_time": 10,
 		"price": 120.0,
-		"restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515",
+		"restaurant_id": "auth0|6904ce7bc6b65790cfe2d4ad",
 		"tags": ["bread", "cheese", "side"]
 	},
 	{
@@ -107,7 +96,7 @@
 		"name": "Herb Grilled Salmon",
 		"prep_time": 26,
 		"price": 480.0,
-		"restaurant_id": "0cadb41d-0f55-41b6-87f3-841ace24a515",
+		"restaurant_id": "auth0|6904ce7bc6b65790cfe2d4ad",
 		"tags": ["fish", "grilled", "healthy", "dinner"]
 	},
 	{
@@ -117,7 +106,7 @@
 		"name": "Grilled Chicken Rice",
 		"prep_time": 25,
 		"price": 320.5,
-		"restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d",
+		"restaurant_id": "auth0|6904cec522250796abd8803b",
 		"tags": ["chicken", "rice", "grilled", "main", "spicy"]
 	},
 	{
@@ -127,7 +116,7 @@
 		"name": "Creamy Mushroom Pasta",
 		"prep_time": 20,
 		"price": 280,
-		"restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d",
+		"restaurant_id": "auth0|6904cec522250796abd8803b",
 		"tags": ["pasta", "creamy", "vegetarian", "italian"]
 	},
 	{
@@ -137,7 +126,7 @@
 		"name": "Beef Curry with Rice",
 		"prep_time": 30,
 		"price": 390,
-		"restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d",
+		"restaurant_id": "auth0|6904cec522250796abd8803b",
 		"tags": ["beef", "curry", "rice", "spicy"]
 	},
 	{
@@ -147,7 +136,7 @@
 		"name": "Tempura Prawns",
 		"prep_time": 18,
 		"price": 420,
-		"restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d",
+		"restaurant_id": "auth0|6904cec522250796abd8803b",
 		"tags": ["seafood", "fried", "starter"]
 	},
 	{
@@ -157,7 +146,7 @@
 		"name": "Chicken Biryani",
 		"prep_time": 35,
 		"price": 350,
-		"restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d",
+		"restaurant_id": "auth0|6904cec522250796abd8803b",
 		"tags": ["biryani", "chicken", "rice", "traditional"]
 	},
 	{
@@ -167,7 +156,7 @@
 		"name": "Mixed Vegetable Curry",
 		"prep_time": 22,
 		"price": 240,
-		"restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d",
+		"restaurant_id": "auth0|6904cec522250796abd8803b",
 		"tags": ["vegetarian", "curry", "mild"]
 	},
 	{
@@ -177,7 +166,7 @@
 		"name": "Beef Lasagna",
 		"prep_time": 28,
 		"price": 360,
-		"restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d",
+		"restaurant_id": "auth0|6904cec522250796abd8803b",
 		"tags": ["lasagna", "cheese", "italian", "baked"]
 	},
 	{
@@ -187,7 +176,7 @@
 		"name": "Honey Garlic Chicken",
 		"prep_time": 17,
 		"price": 310,
-		"restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d",
+		"restaurant_id": "auth0|6904cec522250796abd8803b",
 		"tags": ["chicken", "sweet", "fried"]
 	},
 	{
@@ -197,7 +186,7 @@
 		"name": "Cheese Naan",
 		"prep_time": 10,
 		"price": 120,
-		"restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d",
+		"restaurant_id": "auth0|6904cec522250796abd8803b",
 		"tags": ["bread", "cheese", "side"]
 	},
 	{
@@ -207,7 +196,7 @@
 		"name": "Herb Grilled Salmon",
 		"prep_time": 26,
 		"price": 480,
-		"restaurant_id": "34e4efbe-da1b-43fc-a0d2-1f167066f60d",
+		"restaurant_id": "auth0|6904cec522250796abd8803b",
 		"tags": ["fish", "grilled", "healthy", "dinner"]
 	},
 	{
@@ -217,7 +206,7 @@
 		"name": "Grilled Chicken Rice",
 		"prep_time": 25,
 		"price": 320.5,
-		"restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5",
+		"restaurant_id": "auth0|6904ced7d3844cabd9dfd5d0",
 		"tags": ["chicken", "rice", "grilled", "main", "spicy"]
 	},
 	{
@@ -227,7 +216,7 @@
 		"name": "Creamy Mushroom Pasta",
 		"prep_time": 20,
 		"price": 280,
-		"restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5",
+		"restaurant_id": "auth0|6904ced7d3844cabd9dfd5d0",
 		"tags": ["pasta", "creamy", "vegetarian", "italian"]
 	},
 	{
@@ -237,7 +226,7 @@
 		"name": "Beef Curry with Rice",
 		"prep_time": 30,
 		"price": 390,
-		"restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5",
+		"restaurant_id": "auth0|6904ced7d3844cabd9dfd5d0",
 		"tags": ["beef", "curry", "rice", "spicy"]
 	},
 	{
@@ -247,7 +236,7 @@
 		"name": "Tempura Prawns",
 		"prep_time": 18,
 		"price": 420,
-		"restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5",
+		"restaurant_id": "auth0|6904ced7d3844cabd9dfd5d0",
 		"tags": ["seafood", "fried", "starter"]
 	},
 	{
@@ -257,7 +246,7 @@
 		"name": "Chicken Biryani",
 		"prep_time": 35,
 		"price": 350,
-		"restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5",
+		"restaurant_id": "auth0|6904ced7d3844cabd9dfd5d0",
 		"tags": ["biryani", "chicken", "rice", "traditional"]
 	},
 	{
@@ -267,7 +256,7 @@
 		"name": "Mixed Vegetable Curry",
 		"prep_time": 22,
 		"price": 240,
-		"restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5",
+		"restaurant_id": "auth0|6904ced7d3844cabd9dfd5d0",
 		"tags": ["vegetarian", "curry", "mild"]
 	},
 	{
@@ -277,7 +266,7 @@
 		"name": "Beef Lasagna",
 		"prep_time": 28,
 		"price": 360,
-		"restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5",
+		"restaurant_id": "auth0|6904ced7d3844cabd9dfd5d0",
 		"tags": ["lasagna", "cheese", "italian", "baked"]
 	},
 	{
@@ -287,7 +276,7 @@
 		"name": "Honey Garlic Chicken",
 		"prep_time": 17,
 		"price": 310,
-		"restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5",
+		"restaurant_id": "auth0|6904ced7d3844cabd9dfd5d0",
 		"tags": ["chicken", "sweet", "fried"]
 	},
 	{
@@ -297,7 +286,7 @@
 		"name": "Cheese Naan",
 		"prep_time": 10,
 		"price": 120,
-		"restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5",
+		"restaurant_id": "auth0|6904ced7d3844cabd9dfd5d0",
 		"tags": ["bread", "cheese", "side"]
 	},
 	{
@@ -307,7 +296,7 @@
 		"name": "Herb Grilled Salmon",
 		"prep_time": 26,
 		"price": 480,
-		"restaurant_id": "f6356648-f0cb-478b-a175-3cb9043e2de5",
+		"restaurant_id": "auth0|6904ced7d3844cabd9dfd5d0",
 		"tags": ["fish", "grilled", "healthy", "dinner"]
 	},
 	{
@@ -317,7 +306,7 @@
 		"name": "Grilled Chicken Rice",
 		"prep_time": 25,
 		"price": 320.5,
-		"restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b",
+		"restaurant_id": "auth0|6904ceedad65c7e6e419fe60",
 		"tags": ["chicken", "rice", "grilled", "main", "spicy"]
 	},
 	{
@@ -327,7 +316,7 @@
 		"name": "Creamy Mushroom Pasta",
 		"prep_time": 20,
 		"price": 280,
-		"restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b",
+		"restaurant_id": "auth0|6904ceedad65c7e6e419fe60",
 		"tags": ["pasta", "creamy", "vegetarian", "italian"]
 	},
 	{
@@ -337,7 +326,7 @@
 		"name": "Beef Curry with Rice",
 		"prep_time": 30,
 		"price": 390,
-		"restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b",
+		"restaurant_id": "auth0|6904ceedad65c7e6e419fe60",
 		"tags": ["beef", "curry", "rice", "spicy"]
 	},
 	{
@@ -347,7 +336,7 @@
 		"name": "Tempura Prawns",
 		"prep_time": 18,
 		"price": 420,
-		"restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b",
+		"restaurant_id": "auth0|6904ceedad65c7e6e419fe60",
 		"tags": ["seafood", "fried", "starter"]
 	},
 	{
@@ -357,7 +346,7 @@
 		"name": "Chicken Biryani",
 		"prep_time": 35,
 		"price": 350,
-		"restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b",
+		"restaurant_id": "auth0|6904ceedad65c7e6e419fe60",
 		"tags": ["biryani", "chicken", "rice", "traditional"]
 	},
 	{
@@ -367,7 +356,7 @@
 		"name": "Mixed Vegetable Curry",
 		"prep_time": 22,
 		"price": 240,
-		"restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b",
+		"restaurant_id": "auth0|6904ceedad65c7e6e419fe60",
 		"tags": ["vegetarian", "curry", "mild"]
 	},
 	{
@@ -377,7 +366,7 @@
 		"name": "Beef Lasagna",
 		"prep_time": 28,
 		"price": 360,
-		"restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b",
+		"restaurant_id": "auth0|6904ceedad65c7e6e419fe60",
 		"tags": ["lasagna", "cheese", "italian", "baked"]
 	},
 	{
@@ -387,7 +376,7 @@
 		"name": "Honey Garlic Chicken",
 		"prep_time": 17,
 		"price": 310,
-		"restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b",
+		"restaurant_id": "auth0|6904ceedad65c7e6e419fe60",
 		"tags": ["chicken", "sweet", "fried"]
 	},
 	{
@@ -397,7 +386,7 @@
 		"name": "Cheese Naan",
 		"prep_time": 10,
 		"price": 120,
-		"restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b",
+		"restaurant_id": "auth0|6904ceedad65c7e6e419fe60",
 		"tags": ["bread", "cheese", "side"]
 	},
 	{
@@ -407,7 +396,7 @@
 		"name": "Herb Grilled Salmon",
 		"prep_time": 26,
 		"price": 480,
-		"restaurant_id": "f6bddfd6-95ae-471c-bcc9-eeb1dc14e77b",
+		"restaurant_id": "auth0|6904ceedad65c7e6e419fe60",
 		"tags": ["fish", "grilled", "healthy", "dinner"]
 	},
 	{
@@ -417,7 +406,7 @@
 		"name": "Grilled Chicken Rice",
 		"prep_time": 25,
 		"price": 320.5,
-		"restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b",
+		"restaurant_id": "auth0|6904cf10ad65c7e6e419fe7c",
 		"tags": ["chicken", "rice", "grilled", "main", "spicy"]
 	},
 	{
@@ -427,7 +416,7 @@
 		"name": "Creamy Mushroom Pasta",
 		"prep_time": 20,
 		"price": 280,
-		"restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b",
+		"restaurant_id": "auth0|6904cf10ad65c7e6e419fe7c",
 		"tags": ["pasta", "creamy", "vegetarian", "italian"]
 	},
 	{
@@ -437,7 +426,7 @@
 		"name": "Beef Curry with Rice",
 		"prep_time": 30,
 		"price": 390,
-		"restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b",
+		"restaurant_id": "auth0|6904cf10ad65c7e6e419fe7c",
 		"tags": ["beef", "curry", "rice", "spicy"]
 	},
 	{
@@ -447,7 +436,7 @@
 		"name": "Tempura Prawns",
 		"prep_time": 18,
 		"price": 420,
-		"restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b",
+		"restaurant_id": "auth0|6904cf10ad65c7e6e419fe7c",
 		"tags": ["seafood", "fried", "starter"]
 	},
 	{
@@ -457,7 +446,7 @@
 		"name": "Chicken Biryani",
 		"prep_time": 35,
 		"price": 350,
-		"restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b",
+		"restaurant_id": "auth0|6904cf10ad65c7e6e419fe7c",
 		"tags": ["biryani", "chicken", "rice", "traditional"]
 	},
 	{
@@ -467,7 +456,7 @@
 		"name": "Mixed Vegetable Curry",
 		"prep_time": 22,
 		"price": 240,
-		"restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b",
+		"restaurant_id": "auth0|6904cf10ad65c7e6e419fe7c",
 		"tags": ["vegetarian", "curry", "mild"]
 	},
 	{
@@ -477,7 +466,7 @@
 		"name": "Beef Lasagna",
 		"prep_time": 28,
 		"price": 360,
-		"restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b",
+		"restaurant_id": "auth0|6904cf10ad65c7e6e419fe7c",
 		"tags": ["lasagna", "cheese", "italian", "baked"]
 	},
 	{
@@ -487,7 +476,7 @@
 		"name": "Honey Garlic Chicken",
 		"prep_time": 17,
 		"price": 310,
-		"restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b",
+		"restaurant_id": "auth0|6904cf10ad65c7e6e419fe7c",
 		"tags": ["chicken", "sweet", "fried"]
 	},
 	{
@@ -497,7 +486,7 @@
 		"name": "Cheese Naan",
 		"prep_time": 10,
 		"price": 120,
-		"restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b",
+		"restaurant_id": "auth0|6904cf10ad65c7e6e419fe7c",
 		"tags": ["bread", "cheese", "side"]
 	},
 	{
@@ -507,7 +496,7 @@
 		"name": "Herb Grilled Salmon",
 		"prep_time": 26,
 		"price": 480,
-		"restaurant_id": "587b4cf4-402d-4c36-b5b1-6c7c8b33e81b",
+		"restaurant_id": "auth0|6904cf10ad65c7e6e419fe7c",
 		"tags": ["fish", "grilled", "healthy", "dinner"]
 	},
 	{
@@ -517,7 +506,7 @@
 		"name": "Grilled Chicken Rice",
 		"prep_time": 25,
 		"price": 320.5,
-		"restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd",
+		"restaurant_id": "auth0|6904cf23ad65c7e6e419fe88",
 		"tags": ["chicken", "rice", "grilled", "main", "spicy"]
 	},
 	{
@@ -527,7 +516,7 @@
 		"name": "Creamy Mushroom Pasta",
 		"prep_time": 20,
 		"price": 280,
-		"restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd",
+		"restaurant_id": "auth0|6904cf23ad65c7e6e419fe88",
 		"tags": ["pasta", "creamy", "vegetarian", "italian"]
 	},
 	{
@@ -537,7 +526,7 @@
 		"name": "Beef Curry with Rice",
 		"prep_time": 30,
 		"price": 390,
-		"restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd",
+		"restaurant_id": "auth0|6904cf23ad65c7e6e419fe88",
 		"tags": ["beef", "curry", "rice", "spicy"]
 	},
 	{
@@ -547,7 +536,7 @@
 		"name": "Tempura Prawns",
 		"prep_time": 18,
 		"price": 420,
-		"restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd",
+		"restaurant_id": "auth0|6904cf23ad65c7e6e419fe88",
 		"tags": ["seafood", "fried", "starter"]
 	},
 	{
@@ -557,7 +546,7 @@
 		"name": "Chicken Biryani",
 		"prep_time": 35,
 		"price": 350,
-		"restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd",
+		"restaurant_id": "auth0|6904cf23ad65c7e6e419fe88",
 		"tags": ["biryani", "chicken", "rice", "traditional"]
 	},
 	{
@@ -567,7 +556,7 @@
 		"name": "Mixed Vegetable Curry",
 		"prep_time": 22,
 		"price": 240,
-		"restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd",
+		"restaurant_id": "auth0|6904cf23ad65c7e6e419fe88",
 		"tags": ["vegetarian", "curry", "mild"]
 	},
 	{
@@ -577,7 +566,7 @@
 		"name": "Beef Lasagna",
 		"prep_time": 28,
 		"price": 360,
-		"restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd",
+		"restaurant_id": "auth0|6904cf23ad65c7e6e419fe88",
 		"tags": ["lasagna", "cheese", "italian", "baked"]
 	},
 	{
@@ -587,7 +576,7 @@
 		"name": "Honey Garlic Chicken",
 		"prep_time": 17,
 		"price": 310,
-		"restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd",
+		"restaurant_id": "auth0|6904cf23ad65c7e6e419fe88",
 		"tags": ["chicken", "sweet", "fried"]
 	},
 	{
@@ -597,7 +586,7 @@
 		"name": "Cheese Naan",
 		"prep_time": 10,
 		"price": 120,
-		"restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd",
+		"restaurant_id": "auth0|6904cf23ad65c7e6e419fe88",
 		"tags": ["bread", "cheese", "side"]
 	},
 	{
@@ -607,7 +596,7 @@
 		"name": "Herb Grilled Salmon",
 		"prep_time": 26,
 		"price": 480,
-		"restaurant_id": "beda0615-631f-46c9-8e3a-1f234109bcbd",
+		"restaurant_id": "auth0|6904cf23ad65c7e6e419fe88",
 		"tags": ["fish", "grilled", "healthy", "dinner"]
 	},
 	{
@@ -617,7 +606,7 @@
 		"name": "Grilled Chicken Rice",
 		"prep_time": 25,
 		"price": 320.5,
-		"restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056",
+		"restaurant_id": "auth0|6904cf41c6b65790cfe2d4f6",
 		"tags": ["chicken", "rice", "grilled", "main", "spicy"]
 	},
 	{
@@ -627,7 +616,7 @@
 		"name": "Creamy Mushroom Pasta",
 		"prep_time": 20,
 		"price": 280,
-		"restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056",
+		"restaurant_id": "auth0|6904cf41c6b65790cfe2d4f6",
 		"tags": ["pasta", "creamy", "vegetarian", "italian"]
 	},
 	{
@@ -637,7 +626,7 @@
 		"name": "Beef Curry with Rice",
 		"prep_time": 30,
 		"price": 390,
-		"restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056",
+		"restaurant_id": "auth0|6904cf41c6b65790cfe2d4f6",
 		"tags": ["beef", "curry", "rice", "spicy"]
 	},
 	{
@@ -647,7 +636,7 @@
 		"name": "Tempura Prawns",
 		"prep_time": 18,
 		"price": 420,
-		"restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056",
+		"restaurant_id": "auth0|6904cf41c6b65790cfe2d4f6",
 		"tags": ["seafood", "fried", "starter"]
 	},
 	{
@@ -657,7 +646,7 @@
 		"name": "Chicken Biryani",
 		"prep_time": 35,
 		"price": 350,
-		"restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056",
+		"restaurant_id": "auth0|6904cf41c6b65790cfe2d4f6",
 		"tags": ["biryani", "chicken", "rice", "traditional"]
 	},
 	{
@@ -667,7 +656,7 @@
 		"name": "Mixed Vegetable Curry",
 		"prep_time": 22,
 		"price": 240,
-		"restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056",
+		"restaurant_id": "auth0|6904cf41c6b65790cfe2d4f6",
 		"tags": ["vegetarian", "curry", "mild"]
 	},
 	{
@@ -677,7 +666,7 @@
 		"name": "Beef Lasagna",
 		"prep_time": 28,
 		"price": 360,
-		"restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056",
+		"restaurant_id": "auth0|6904cf41c6b65790cfe2d4f6",
 		"tags": ["lasagna", "cheese", "italian", "baked"]
 	},
 	{
@@ -687,7 +676,7 @@
 		"name": "Honey Garlic Chicken",
 		"prep_time": 17,
 		"price": 310,
-		"restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056",
+		"restaurant_id": "auth0|6904cf41c6b65790cfe2d4f6",
 		"tags": ["chicken", "sweet", "fried"]
 	},
 	{
@@ -697,7 +686,7 @@
 		"name": "Cheese Naan",
 		"prep_time": 10,
 		"price": 120,
-		"restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056",
+		"restaurant_id": "auth0|6904cf41c6b65790cfe2d4f6",
 		"tags": ["bread", "cheese", "side"]
 	},
 	{
@@ -707,7 +696,7 @@
 		"name": "Herb Grilled Salmon",
 		"prep_time": 26,
 		"price": 480,
-		"restaurant_id": "2137518f-95be-4ca0-bd24-c1051353c056",
+		"restaurant_id": "auth0|6904cf41c6b65790cfe2d4f6",
 		"tags": ["fish", "grilled", "healthy", "dinner"]
 	},
 	{
@@ -717,7 +706,7 @@
 		"name": "Grilled Chicken Rice",
 		"prep_time": 25,
 		"price": 320.5,
-		"restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4",
+		"restaurant_id": "auth0|6904cf54d3844cabd9dfd610",
 		"tags": ["chicken", "rice", "grilled", "main", "spicy"]
 	},
 	{
@@ -727,7 +716,7 @@
 		"name": "Creamy Mushroom Pasta",
 		"prep_time": 20,
 		"price": 280,
-		"restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4",
+		"restaurant_id": "auth0|6904cf54d3844cabd9dfd610",
 		"tags": ["pasta", "creamy", "vegetarian", "italian"]
 	},
 	{
@@ -737,7 +726,7 @@
 		"name": "Beef Curry with Rice",
 		"prep_time": 30,
 		"price": 390,
-		"restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4",
+		"restaurant_id": "auth0|6904cf54d3844cabd9dfd610",
 		"tags": ["beef", "curry", "rice", "spicy"]
 	},
 	{
@@ -747,7 +736,7 @@
 		"name": "Tempura Prawns",
 		"prep_time": 18,
 		"price": 420,
-		"restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4",
+		"restaurant_id": "auth0|6904cf54d3844cabd9dfd610",
 		"tags": ["seafood", "fried", "starter"]
 	},
 	{
@@ -757,7 +746,7 @@
 		"name": "Chicken Biryani",
 		"prep_time": 35,
 		"price": 350,
-		"restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4",
+		"restaurant_id": "auth0|6904cf54d3844cabd9dfd610",
 		"tags": ["biryani", "chicken", "rice", "traditional"]
 	},
 	{
@@ -767,7 +756,7 @@
 		"name": "Mixed Vegetable Curry",
 		"prep_time": 22,
 		"price": 240,
-		"restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4",
+		"restaurant_id": "auth0|6904cf54d3844cabd9dfd610",
 		"tags": ["vegetarian", "curry", "mild"]
 	},
 	{
@@ -777,7 +766,7 @@
 		"name": "Beef Lasagna",
 		"prep_time": 28,
 		"price": 360,
-		"restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4",
+		"restaurant_id": "auth0|6904cf54d3844cabd9dfd610",
 		"tags": ["lasagna", "cheese", "italian", "baked"]
 	},
 	{
@@ -787,7 +776,7 @@
 		"name": "Honey Garlic Chicken",
 		"prep_time": 17,
 		"price": 310,
-		"restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4",
+		"restaurant_id": "auth0|6904cf54d3844cabd9dfd610",
 		"tags": ["chicken", "sweet", "fried"]
 	},
 	{
@@ -797,7 +786,7 @@
 		"name": "Cheese Naan",
 		"prep_time": 10,
 		"price": 120,
-		"restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4",
+		"restaurant_id": "auth0|6904cf54d3844cabd9dfd610",
 		"tags": ["bread", "cheese", "side"]
 	},
 	{
@@ -807,7 +796,7 @@
 		"name": "Herb Grilled Salmon",
 		"prep_time": 26,
 		"price": 480,
-		"restaurant_id": "d5dccc37-ced1-4976-852f-3da959dbaaa4",
+		"restaurant_id": "auth0|6904cf54d3844cabd9dfd610",
 		"tags": ["fish", "grilled", "healthy", "dinner"]
 	},
 	{
@@ -817,7 +806,7 @@
 		"name": "Grilled Chicken Rice",
 		"prep_time": 25,
 		"price": 320.5,
-		"restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5",
+		"restaurant_id": "auth0|6904cf68ad65c7e6e419fea5",
 		"tags": ["chicken", "rice", "grilled", "main", "spicy"]
 	},
 	{
@@ -827,7 +816,7 @@
 		"name": "Creamy Mushroom Pasta",
 		"prep_time": 20,
 		"price": 280,
-		"restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5",
+		"restaurant_id": "auth0|6904cf68ad65c7e6e419fea5",
 		"tags": ["pasta", "creamy", "vegetarian", "italian"]
 	},
 	{
@@ -837,7 +826,7 @@
 		"name": "Beef Curry with Rice",
 		"prep_time": 30,
 		"price": 390,
-		"restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5",
+		"restaurant_id": "auth0|6904cf68ad65c7e6e419fea5",
 		"tags": ["beef", "curry", "rice", "spicy"]
 	},
 	{
@@ -847,7 +836,7 @@
 		"name": "Tempura Prawns",
 		"prep_time": 18,
 		"price": 420,
-		"restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5",
+		"restaurant_id": "auth0|6904cf68ad65c7e6e419fea5",
 		"tags": ["seafood", "fried", "starter"]
 	},
 	{
@@ -857,7 +846,7 @@
 		"name": "Chicken Biryani",
 		"prep_time": 35,
 		"price": 350,
-		"restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5",
+		"restaurant_id": "auth0|6904cf68ad65c7e6e419fea5",
 		"tags": ["biryani", "chicken", "rice", "traditional"]
 	},
 	{
@@ -867,7 +856,7 @@
 		"name": "Mixed Vegetable Curry",
 		"prep_time": 22,
 		"price": 240,
-		"restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5",
+		"restaurant_id": "auth0|6904cf68ad65c7e6e419fea5",
 		"tags": ["vegetarian", "curry", "mild"]
 	},
 	{
@@ -877,7 +866,7 @@
 		"name": "Beef Lasagna",
 		"prep_time": 28,
 		"price": 360,
-		"restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5",
+		"restaurant_id": "auth0|6904cf68ad65c7e6e419fea5",
 		"tags": ["lasagna", "cheese", "italian", "baked"]
 	},
 	{
@@ -887,7 +876,7 @@
 		"name": "Honey Garlic Chicken",
 		"prep_time": 17,
 		"price": 310,
-		"restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5",
+		"restaurant_id": "auth0|6904cf68ad65c7e6e419fea5",
 		"tags": ["chicken", "sweet", "fried"]
 	},
 	{
@@ -897,7 +886,7 @@
 		"name": "Cheese Naan",
 		"prep_time": 10,
 		"price": 120,
-		"restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5",
+		"restaurant_id": "auth0|6904cf68ad65c7e6e419fea5",
 		"tags": ["bread", "cheese", "side"]
 	},
 	{
@@ -907,7 +896,7 @@
 		"name": "Herb Grilled Salmon",
 		"prep_time": 26,
 		"price": 480,
-		"restaurant_id": "54b66360-5176-4397-9475-4eeb07d0deb5",
+		"restaurant_id": "auth0|6904cf68ad65c7e6e419fea5",
 		"tags": ["fish", "grilled", "healthy", "dinner"]
 	},
 	{
@@ -917,7 +906,7 @@
 		"name": "Grilled Chicken Rice",
 		"prep_time": 25,
 		"price": 320.5,
-		"restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f",
+		"restaurant_id": "auth0|6904cf7a22250796abd8809c",
 		"tags": ["chicken", "rice", "grilled", "main", "spicy"]
 	},
 	{
@@ -927,7 +916,7 @@
 		"name": "Creamy Mushroom Pasta",
 		"prep_time": 20,
 		"price": 280,
-		"restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f",
+		"restaurant_id": "auth0|6904cf7a22250796abd8809c",
 		"tags": ["pasta", "creamy", "vegetarian", "italian"]
 	},
 	{
@@ -937,7 +926,7 @@
 		"name": "Beef Curry with Rice",
 		"prep_time": 30,
 		"price": 390,
-		"restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f",
+		"restaurant_id": "auth0|6904cf7a22250796abd8809c",
 		"tags": ["beef", "curry", "rice", "spicy"]
 	},
 	{
@@ -947,7 +936,7 @@
 		"name": "Tempura Prawns",
 		"prep_time": 18,
 		"price": 420,
-		"restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f",
+		"restaurant_id": "auth0|6904cf7a22250796abd8809c",
 		"tags": ["seafood", "fried", "starter"]
 	},
 	{
@@ -957,7 +946,7 @@
 		"name": "Chicken Biryani",
 		"prep_time": 35,
 		"price": 350,
-		"restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f",
+		"restaurant_id": "auth0|6904cf7a22250796abd8809c",
 		"tags": ["biryani", "chicken", "rice", "traditional"]
 	},
 	{
@@ -967,7 +956,7 @@
 		"name": "Mixed Vegetable Curry",
 		"prep_time": 22,
 		"price": 240,
-		"restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f",
+		"restaurant_id": "auth0|6904cf7a22250796abd8809c",
 		"tags": ["vegetarian", "curry", "mild"]
 	},
 	{
@@ -977,7 +966,7 @@
 		"name": "Beef Lasagna",
 		"prep_time": 28,
 		"price": 360,
-		"restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f",
+		"restaurant_id": "auth0|6904cf7a22250796abd8809c",
 		"tags": ["lasagna", "cheese", "italian", "baked"]
 	},
 	{
@@ -987,7 +976,7 @@
 		"name": "Honey Garlic Chicken",
 		"prep_time": 17,
 		"price": 310,
-		"restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f",
+		"restaurant_id": "auth0|6904cf7a22250796abd8809c",
 		"tags": ["chicken", "sweet", "fried"]
 	},
 	{
@@ -997,7 +986,7 @@
 		"name": "Cheese Naan",
 		"prep_time": 10,
 		"price": 120,
-		"restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f",
+		"restaurant_id": "auth0|6904cf7a22250796abd8809c",
 		"tags": ["bread", "cheese", "side"]
 	},
 	{
@@ -1007,7 +996,7 @@
 		"name": "Herb Grilled Salmon",
 		"prep_time": 26,
 		"price": 480,
-		"restaurant_id": "2a2027c0-8f5b-4a98-9a7d-c682e7212b2f",
+		"restaurant_id": "auth0|6904cf7a22250796abd8809c",
 		"tags": ["fish", "grilled", "healthy", "dinner"]
 	}
 ]

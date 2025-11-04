@@ -6,9 +6,9 @@ import { Prisma } from '@prisma/client';
 export class MenuItemsService {
 	constructor(private readonly prismaService: PrismaService) {}
 
-	async create(menuItemCreateInput: Prisma.MenuItemCreateInput) {
-		return this.prismaService.menuItem.create({
-			data: menuItemCreateInput,
-		});
-	}
+	// async create(menuItemCreateInput: Prisma.MenuItemCreateInput) {
+	// 	return this.prismaService.menuItem.create({
+	// 		data: menuItemCreateInput,
+	// 	});
+	// }
 }
