@@ -1,14 +1,14 @@
 # Daily Feast | Server
 
-> Production-ready backend for a modern food delivery platform; built with NestJS, Prisma, and PostgreSQL. Designed for scalability, clean API design, and smooth integration with modern web frontends.
+> Production-ready backend for a modern food delivery platform; built with NestJS, Auth0, Prisma, and PostgreSQL. Designed for scalability, clean API design, and smooth integration with modern web frontends.
 
 ## Technologies Used
 
 - NestJS
 - TypeScript
+- Auth0
 - Prisma
 - PostgreSQL
-- Auth0
 
 ## Important Commands
 

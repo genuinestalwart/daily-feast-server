@@ -19,7 +19,7 @@ model CartItem {
     menu_item_id String @db.Uuid
 
     // Back relation fields
-    menu_item MenuItem @relation(fields: [menu_item_id], references: [id])
+    menu_item MenuItem @relation(fields: [menu_item_id], onDelete: Cascade, references: [id])
 }
 
 model MenuItem {
@@ -47,8 +47,8 @@ model MenuItem {
 model Order {
     id            String    @id @default(uuid()) @db.Uuid
     created_at    DateTime  @default(now())
-    customer_id   String    @db.Text
-    restaurant_id String    @db.Text
+    customer_id   String?   @db.Text
+    restaurant_id String?   @db.Text
     rider_id      String?   @db.Text
     type          OrderType
     total_price   Float     @db.DoublePrecision
@@ -67,12 +67,12 @@ model OrderedItem {
     price_per_item Float  @db.DoublePrecision
 
     // Foreign keys
-    menu_item_id String @db.Uuid
-    order_id     String @db.Uuid
+    menu_item_id String? @db.Uuid
+    order_id     String  @db.Uuid
 
     // Back relation fields
-    menu_item MenuItem @relation(fields: [menu_item_id], references: [id])
-    order     Order    @relation(fields: [order_id], references: [id])
+    menu_item MenuItem? @relation(fields: [menu_item_id], onDelete: SetNull, references: [id])
+    order     Order     @relation(fields: [order_id], references: [id])
 }
 
 enum Category {
@@ -93,15 +93,15 @@ enum MenuItemStatus {
 }
 
 enum OrderStatus {
-    ACCEPTED // restaurant
-    CANCELLED // customer
-    DELIVERED // rider
-    FAILED
-    IN_TRANSIT // rider
+    CANCELLED // customer - before pickup
     PENDING
-    PICKED_UP // customer
+    REJECTED // restaurant
+    ACCEPTED // restaurant
     PREPARING // restaurant
     READY_FOR_PICKUP // restaurant
-    REJECTED // restaurant
+    PICKED_UP // rider
     RETURNED // rider
+    IN_TRANSIT // rider
+    FAILED
+    DELIVERED // rider
 }

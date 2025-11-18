@@ -5,15 +5,18 @@ import {
 	Get,
 	Param,
 	Patch,
-	UseGuards,
 	BadRequestException,
+	Req,
 } from '@nestjs/common';
 import { CustomersService } from './customers.service';
 import { UpdateCustomerDTO } from './dto/update-customer.dto';
-import { RolesGuard } from 'src/shared/guards/roles.guard';
+import { CheckRoles } from 'src/shared/decorators/check-roles.decorator';
+import { ROLES } from 'src/shared/constants/roles';
+import type { Request } from 'express';
+import { ensureAccountOwnership } from 'src/shared/utils/ensureAccountOwnership';
 
 @Controller('customers')
-@UseGuards(RolesGuard)
+@CheckRoles(ROLES.CUSTOMER)
 export class CustomersController {
 	constructor(private readonly customersService: CustomersService) {}
 
@@ -26,7 +29,10 @@ export class CustomersController {
 	updateCustomer(
 		@Param('id') id: string,
 		@Body() updateCustomerDTO: UpdateCustomerDTO,
+		@Req() request: Request,
 	) {
+		ensureAccountOwnership(request, ROLES.CUSTOMER, id);
+
 		if (!updateCustomerDTO.name && !updateCustomerDTO.picture) {
 			throw new BadRequestException();
 		}
@@ -35,7 +41,8 @@ export class CustomersController {
 	}
 
 	@Delete(':id')
-	async deleteCustomer(@Param('id') id: string) {
+	deleteCustomer(@Param('id') id: string, @Req() request: Request) {
+		ensureAccountOwnership(request, ROLES.CUSTOMER, id);
 		return this.customersService.deleteCustomer(id);
 	}
 }

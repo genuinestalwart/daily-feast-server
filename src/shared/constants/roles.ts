@@ -1,8 +1,8 @@
 export const ROLES = {
-	ADMIN: process.env.DF_ADMIN || '',
-	CUSTOMER: process.env.DF_CUSTOMER || '',
-	DEVELOPER: process.env.DF_DEVELOPER || '',
-	RESTAURANT: process.env.DF_RESTAURANT || '',
-	RIDER: process.env.DF_RIDER || '',
-	STAFF: process.env.DF_STAFF || '',
+	ADMIN: 'DF_ADMIN',
+	CUSTOMER: 'DF_CUSTOMER',
+	DEVELOPER: 'DF_DEVELOPER',
+	RESTAURANT: 'DF_RESTAURANT',
+	RIDER: 'DF_RIDER',
+	STAFF: 'DF_STAFF',
 };

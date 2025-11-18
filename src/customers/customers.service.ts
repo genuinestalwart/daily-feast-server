@@ -17,10 +17,10 @@ export class CustomersService {
 
 	async getCustomer(id: string) {
 		const customer = await this.auth0Service.client.users.get(id);
-		const roles = await this.auth0Service.client.users.roles.list(id);
+		const { data } = await this.auth0Service.client.users.roles.list(id);
 
 		// Not having the CUSTOMER role means the user doesn't exist as a customer
-		if (!roles.data.map((role) => role.id).includes(ROLES['CUSTOMER'])) {
+		if (!data.map((role) => role.name).includes(ROLES.CUSTOMER)) {
 			throw new NotFoundException();
 		}
 
@@ -56,21 +56,26 @@ export class CustomersService {
 			throw new ConflictException();
 		}
 
-		await this.auth0Service.client.users.delete(id);
+		const orders = await this.prismaService.$transaction(async (tx) => {
+			await tx.cartItem.deleteMany({ where: { customer_id: id } });
 
-		const orders = await this.prismaService.order.updateManyAndReturn({
-			data: { customer_id: 'DELETED' },
-			select: { status: true, total_price: true },
-			where: { customer_id: id },
+			const updated = await tx.order.updateManyAndReturn({
+				data: { customer_id: null },
+				select: { status: true, total_price: true },
+				where: { customer_id: id },
+			});
+
+			return updated;
 		});
+
+		await this.auth0Service.client.users.delete(id);
 
 		return {
 			cancelledOrders: orders.filter(
 				(order) => order.status === 'CANCELLED',
 			).length,
-			failedOrders: orders.filter((order) =>
-				['FAILED', 'REJECTED'].includes(order.status),
-			).length,
+			failedOrders: orders.filter((order) => order.status === 'FAILED')
+				.length,
 			grandTotalPrice: orders
 				.filter((order) => order.status === 'DELIVERED')
 				.reduce((sum, order) => sum + order.total_price, 0),
