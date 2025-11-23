@@ -13,7 +13,7 @@ import { UpdateCustomerDTO } from './dto/update-customer.dto';
 import { CheckRoles } from 'src/shared/decorators/check-roles.decorator';
 import { ROLES } from 'src/shared/constants/roles';
 import type { Request } from 'express';
-import { ensureAccountOwnership } from 'src/shared/utils/ensureAccountOwnership';
+import { ensureOwnership } from 'src/shared/utils/ensureOwnership';
 
 @Controller('customers')
 @CheckRoles(ROLES.CUSTOMER)
@@ -28,21 +28,21 @@ export class CustomersController {
 	@Patch(':id')
 	updateCustomer(
 		@Param('id') id: string,
-		@Body() updateCustomerDTO: UpdateCustomerDTO,
+		@Body() dto: UpdateCustomerDTO,
 		@Req() request: Request,
 	) {
-		ensureAccountOwnership(request, ROLES.CUSTOMER, id);
+		ensureOwnership(request, ROLES.CUSTOMER, id);
 
-		if (!updateCustomerDTO.name && !updateCustomerDTO.picture) {
+		if (!dto.name && !dto.picture) {
 			throw new BadRequestException();
 		}
 
-		return this.customersService.updateCustomer(id, updateCustomerDTO);
+		return this.customersService.updateCustomer(id, dto);
 	}
 
 	@Delete(':id')
 	deleteCustomer(@Param('id') id: string, @Req() request: Request) {
-		ensureAccountOwnership(request, ROLES.CUSTOMER, id);
+		ensureOwnership(request, ROLES.CUSTOMER, id);
 		return this.customersService.deleteCustomer(id);
 	}
 }

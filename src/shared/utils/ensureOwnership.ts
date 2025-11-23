@@ -1,11 +1,7 @@
 import { ForbiddenException } from '@nestjs/common';
 import type { Request } from 'express';
 
-export const ensureAccountOwnership = (
-	request: Request,
-	role: string,
-	id: string,
-) => {
+export const ensureOwnership = (request: Request, role: string, id: string) => {
 	const userID = request.auth?.payload.sub as string;
 
 	const userRoles = request.auth?.payload[

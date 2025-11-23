@@ -11,13 +11,13 @@ import { ROLES } from 'src/shared/constants/roles';
 @Injectable()
 export class CustomersService {
 	constructor(
-		private readonly prismaService: PrismaService,
 		private readonly auth0Service: Auth0Service,
+		private readonly prismaService: PrismaService,
 	) {}
 
 	async getCustomer(id: string) {
-		const customer = await this.auth0Service.client.users.get(id);
-		const { data } = await this.auth0Service.client.users.roles.list(id);
+		const customer = await this.auth0Service.users.get(id);
+		const { data } = await this.auth0Service.users.roles.list(id);
 
 		// Not having the CUSTOMER role means the user doesn't exist as a customer
 		if (!data.map((role) => role.name).includes(ROLES.CUSTOMER)) {
@@ -37,8 +37,8 @@ export class CustomersService {
 		};
 	}
 
-	async updateCustomer(id: string, updateCustomerDTO: UpdateCustomerDTO) {
-		return this.auth0Service.client.users.update(id, updateCustomerDTO);
+	async updateCustomer(id: string, dto: UpdateCustomerDTO) {
+		return this.auth0Service.users.update(id, dto);
 	}
 
 	async deleteCustomer(id: string) {
@@ -68,7 +68,7 @@ export class CustomersService {
 			return updated;
 		});
 
-		await this.auth0Service.client.users.delete(id);
+		await this.auth0Service.users.delete(id);
 
 		return {
 			cancelledOrders: orders.filter(

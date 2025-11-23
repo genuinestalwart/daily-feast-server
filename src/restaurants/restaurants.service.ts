@@ -7,17 +7,19 @@ import { Auth0Service } from 'src/auth0/auth0.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ROLES } from 'src/shared/constants/roles';
 import { UpdateRestaurantDTO } from './dto/update-restaurant.dto';
+import { GetManyMenuItemsDTO } from './dto/get-many-menu-items.dto';
+import { Prisma } from 'prisma/generated/client';
 
 @Injectable()
 export class RestaurantsService {
 	constructor(
-		private readonly prismaService: PrismaService,
 		private readonly auth0Service: Auth0Service,
+		private readonly prismaService: PrismaService,
 	) {}
 
 	async getRestaurant(id: string) {
-		const restaurant = await this.auth0Service.client.users.get(id);
-		const { data } = await this.auth0Service.client.users.roles.list(id);
+		const restaurant = await this.auth0Service.users.get(id);
+		const { data } = await this.auth0Service.users.roles.list(id);
 
 		// Not having the RESTAURANT role means the user doesn't exist as a restaurant
 		if (!data.map((role) => role.name).includes(ROLES.RESTAURANT)) {
@@ -36,11 +38,8 @@ export class RestaurantsService {
 		};
 	}
 
-	async updateRestaurant(
-		id: string,
-		updateRestaurantDTO: UpdateRestaurantDTO,
-	) {
-		return this.auth0Service.client.users.update(id, updateRestaurantDTO);
+	async updateRestaurant(id: string, dto: UpdateRestaurantDTO) {
+		return this.auth0Service.users.update(id, dto);
 	}
 
 	async deleteRestaurant(id: string) {
@@ -80,7 +79,7 @@ export class RestaurantsService {
 			},
 		);
 
-		await this.auth0Service.client.users.delete(id);
+		await this.auth0Service.users.delete(id);
 
 		return {
 			failedOrders: orders.filter((order) => order.status === 'FAILED')
@@ -97,5 +96,35 @@ export class RestaurantsService {
 			).length,
 			totalOrders: orders.length,
 		};
+	}
+
+	async getMenuItem(restaurant_id: string, id: string) {
+		return this.prismaService.menuItem.findUniqueOrThrow({
+			where: { id, restaurant_id },
+		});
+	}
+
+	async getManyMenuItems(restaurant_id: string, query: GetManyMenuItemsDTO) {
+		const mode = 'insensitive';
+
+		const where: Prisma.MenuItemWhereInput = {
+			available: query.available,
+			category: query.category,
+			restaurant_id,
+			status: query.status,
+			...(query.tags?.length ? { tags: { hasEvery: query.tags } } : {}),
+			OR: query.name
+				? [
+						{ description: { contains: query.name, mode } },
+						{ name: { contains: query.name, mode } },
+					]
+				: undefined,
+		};
+
+		return this.prismaService.menuItem.findMany({
+			skip: query.skip ?? 0,
+			take: Math.min(query.take ?? 20, 100),
+			where,
+		});
 	}
 }

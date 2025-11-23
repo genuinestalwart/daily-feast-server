@@ -1,9 +1,8 @@
-import { Category } from 'prisma/generated/enums';
 import {
 	ArrayMaxSize,
 	ArrayNotEmpty,
 	IsArray,
-	IsEnum,
+	IsBoolean,
 	IsInt,
 	IsNotEmpty,
 	IsNumber,
@@ -13,41 +12,36 @@ import {
 	MaxLength,
 	Min,
 } from 'class-validator';
-import { TrimString } from 'src/shared/decorators/trim-string.decorator';
 import { TrimArray } from 'src/shared/decorators/trim-array.decorator';
+import { TrimString } from 'src/shared/decorators/trim-string.decorator';
 
-export class CreateMenuItemDTO {
-	@IsEnum(Category)
-	category: 'DISH' | 'DRINK';
+export class UpdateMenuItemDTO {
+	@IsBoolean()
+	available?: boolean;
 
 	@IsNotEmpty()
 	@IsString()
 	@MaxLength(500)
 	@TrimString()
-	description: string;
+	description?: string;
 
 	@IsUrl()
 	@TrimString()
-	image: string;
+	image?: string;
 
 	@IsNotEmpty()
 	@IsString()
 	@MaxLength(50)
 	@TrimString()
-	name: string;
+	name?: string;
 
 	@IsInt()
 	@Min(5)
-	prep_time: number;
+	prep_time?: number;
 
 	@IsNumber()
 	@IsPositive()
-	price: number;
-
-	@IsNotEmpty()
-	@IsString()
-	@TrimString()
-	restaurant_id: string;
+	price?: number;
 
 	@ArrayMaxSize(10)
 	@ArrayNotEmpty()
@@ -55,5 +49,5 @@ export class CreateMenuItemDTO {
 	@IsString({ each: true })
 	@MaxLength(15, { each: true })
 	@TrimArray()
-	tags: string[];
+	tags?: string[];
 }

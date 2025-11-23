@@ -1,5 +1,5 @@
+import { PrismaClient } from 'src/shared/utils/prisma';
 import menuItems from '../data/menuItems.json';
-import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 const main = async () => {

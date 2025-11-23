@@ -1,4 +1,9 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import {
+	MiddlewareConsumer,
+	Module,
+	NestModule,
+	RequestMethod,
+} from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
@@ -8,11 +13,12 @@ import { PrismaModule } from './prisma/prisma.module';
 import { RestaurantsModule } from './restaurants/restaurants.module';
 import { auth } from 'express-oauth2-jwt-bearer';
 import { Auth0Module } from './auth0/auth0.module';
+import { RidersModule } from './riders/riders.module';
 
 // Auth0 middleware for token validation
 const checkJWT = auth({
-	audience: process.env.AUTH0_IDENTIFIER,
-	issuerBaseURL: process.env.AUTH0_TENANT,
+	audience: `${process.env.AUTH0_IDENTIFIER}`,
+	issuerBaseURL: `${process.env.AUTH0_TENANT}`,
 });
 
 @Module({
@@ -23,12 +29,19 @@ const checkJWT = auth({
 		MenuItemsModule,
 		PrismaModule,
 		RestaurantsModule,
+		RidersModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],
 })
 export class AppModule implements NestModule {
 	configure(consumer: MiddlewareConsumer) {
-		consumer.apply(checkJWT).forRoutes('*');
+		consumer
+			.apply(checkJWT)
+			.exclude(
+				{ path: 'menu-items', method: RequestMethod.GET },
+				{ path: 'menu-items/:id', method: RequestMethod.GET },
+			)
+			.forRoutes('*');
 	}
 }
