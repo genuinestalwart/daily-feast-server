@@ -24,10 +24,9 @@ model CartItem {
 }
 
 model MenuItem {
-    id            String   @id @default(uuid()) @db.Uuid
-    category      Category
-    created_at    DateTime @default(now())
-    restaurant_id String   @db.Text
+    id         String   @id @default(uuid()) @db.Uuid
+    category   Category
+    created_at DateTime @default(now())
 
     // Mutable fields
     available   Boolean        @default(true)
@@ -37,29 +36,39 @@ model MenuItem {
     prep_time   Int            @db.Integer
     price       Float          @db.DoublePrecision
     status      MenuItemStatus @default(KEPT_AS_DRAFT)
-    tags        String[]
     updated_at  DateTime       @updatedAt
+
+    // Foreign keys
+    restaurant_id String @db.Text
 
     // Front relation fields
     cart_items    CartItem[]
     ordered_items OrderedItem[]
+
+    // Back relation fields
+    restaurant Restaurant @relation(fields: [restaurant_id], onDelete: Cascade, references: [id])
 }
 
 model Order {
-    id            String    @id @default(uuid()) @db.Uuid
-    created_at    DateTime  @default(now())
-    customer_id   String?   @db.Text
-    restaurant_id String?   @db.Text
-    rider_id      String?   @db.Text
-    type          OrderType
-    total_price   Float     @db.DoublePrecision
+    id          String    @id @default(uuid()) @db.Uuid
+    created_at  DateTime  @default(now())
+    customer_id String?   @db.Text
+    rider_id    String?   @db.Text
+    type        OrderType
+    total_price Float     @db.DoublePrecision
 
     // Mutable fields
     status     OrderStatus @default(PENDING)
     updated_at DateTime    @updatedAt
 
+    // Foreign keys
+    restaurant_id String? @db.Text
+
     // Front relation fields
     ordered_items OrderedItem[]
+
+    // Back relation fields
+    restaurant Restaurant? @relation(fields: [restaurant_id], onDelete: SetNull, references: [id])
 }
 
 model OrderedItem {
@@ -74,6 +83,18 @@ model OrderedItem {
     // Back relation fields
     menu_item MenuItem? @relation(fields: [menu_item_id], onDelete: SetNull, references: [id])
     order     Order     @relation(fields: [order_id], references: [id])
+}
+
+model Restaurant {
+    id String @id @db.Text
+
+    // Mutable fields
+    name String   @db.Text
+    tags String[] @default([])
+
+    // Front relation fields
+    menuItems MenuItem[]
+    orders    Order[]
 }
 
 enum Category {

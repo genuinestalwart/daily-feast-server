@@ -4,69 +4,79 @@
 		"avatar": "https://cdn-icons-png.flaticon.com/128/948/948036.png",
 		"email": "spicegarden@gmail.com",
 		"name": "Spice Garden",
-		"password": ";@J(lT[n3Q!^&$||kDdl(y.R_"
+		"password": ";@J(lT[n3Q!^&$||kDdl(y.R_",
+		"tags": ["spicy", "indian", "biryani", "tandoori", "halal"]
 	},
 	{
 		"id": "auth0|6904cec522250796abd8803b",
 		"avatar": "https://cdn-icons-png.flaticon.com/128/8503/8503956.png",
 		"email": "oceanbreeze@gmail.com",
 		"name": "Ocean Breeze Diner",
-		"password": "R1/;,.1Gl|H"
+		"password": "R1/;,.1Gl|H",
+		"tags": ["seafood", "grill", "casual", "fishmeal", "family"]
 	},
 	{
 		"id": "auth0|6904ced7d3844cabd9dfd5d0",
 		"avatar": "https://cdn-icons-png.flaticon.com/128/3170/3170733.png",
 		"email": "curryhouse@gmail.com",
 		"name": "The Curry House",
-		"password": "R7{@~mjX_z$^k"
+		"password": "R7{@~mjX_z$^k",
+		"tags": ["curry", "spicy", "indian", "masala", "ricebowl"]
 	},
 	{
 		"id": "auth0|6904ceedad65c7e6e419fe60",
 		"avatar": "https://cdn-icons-png.flaticon.com/128/1376/1376387.png",
 		"email": "bamboobite@gmail.com",
 		"name": "Bamboo Bite",
-		"password": "`B#'kH%1e0p%2-zs~zU2"
+		"password": "`B#'kH%1e0p%2-zs~zU2",
+		"tags": ["asian", "noodles", "dumpling", "fusion", "wokdish"]
 	},
 	{
 		"id": "auth0|6904cf10ad65c7e6e419fe7c",
 		"avatar": "https://cdn-icons-png.flaticon.com/128/209/209116.png",
 		"email": "streetgrill@gmail.com",
 		"name": "StreetGrill Express",
-		"password": "CU;cw(ugnY1HD>4N`ZmblhTu~81et+K'"
+		"password": "CU;cw(ugnY1HD>4N`ZmblhTu~81et+K'",
+		"tags": ["grill", "fastfood", "bbq", "quickbite", "snacks"]
 	},
 	{
 		"id": "auth0|6904cf23ad65c7e6e419fe88",
 		"avatar": "https://cdn-icons-png.flaticon.com/128/1205/1205774.png",
 		"email": "goldenfork@gmail.com",
 		"name": "Golden Fork",
-		"password": "4)I=lUjs<"
+		"password": "4)I=lUjs<",
+		"tags": ["bengali", "riceplate", "halal", "family", "traditional"]
 	},
 	{
 		"id": "auth0|6904cf41c6b65790cfe2d4f6",
 		"avatar": "https://cdn-icons-png.flaticon.com/128/5545/5545198.png",
 		"email": "chillngrill@gmail.com",
 		"name": "Chill & Grill",
-		"password": "*^5L(@PtTjDDGC;je^SkcuKErhc!zcZl"
+		"password": "*^5L(@PtTjDDGC;je^SkcuKErhc!zcZl",
+		"tags": ["grill", "casual", "bbq", "burgers", "combo"]
 	},
 	{
 		"id": "auth0|6904cf54d3844cabd9dfd610",
 		"avatar": "https://cdn-icons-png.flaticon.com/128/7703/7703525.png",
 		"email": "dhakadelights@gmail.com",
 		"name": "Dhaka Delights",
-		"password": "j42jCUrMw>R4p-}R"
+		"password": "j42jCUrMw>R4p-}R",
+		"tags": ["bengali", "local", "snacks", "halal", "ricebowl"]
 	},
 	{
 		"id": "auth0|6904cf68ad65c7e6e419fea5",
 		"avatar": "https://cdn-icons-png.flaticon.com/128/3908/3908368.png",
 		"email": "rusticplate@gmail.com",
 		"name": "The Rustic Plate",
-		"password": "*0W>]LfY<2.>Q%x&{l`m5rP"
+		"password": "*0W>]LfY<2.>Q%x&{l`m5rP",
+		"tags": ["homestyle", "comfort", "grill", "rustic", "fresh"]
 	},
 	{
 		"id": "auth0|6904cf7a22250796abd8809c",
 		"avatar": "https://cdn-icons-png.flaticon.com/128/3125/3125071.png",
 		"email": "flavorsofbengal@gmail.com",
 		"name": "Flavors of Bengal",
-		"password": "vq1~,oTw@#Ql/x[,4UXF'5cj"
+		"password": "vq1~,oTw@#Ql/x[,4UXF'5cj",
+		"tags": ["bengali", "fishcurry", "riceplate", "local", "traditional"]
 	}
 ]

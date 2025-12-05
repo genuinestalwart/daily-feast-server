@@ -3,7 +3,6 @@ import {
 	Body,
 	Delete,
 	Get,
-	Param,
 	Patch,
 	BadRequestException,
 	Req,
@@ -13,36 +12,31 @@ import { UpdateCustomerDTO } from './dto/update-customer.dto';
 import { CheckRoles } from 'src/shared/decorators/check-roles.decorator';
 import { ROLES } from 'src/shared/constants/roles';
 import type { Request } from 'express';
-import { ensureOwnership } from 'src/shared/utils/ensureOwnership';
 
 @Controller('customers')
 @CheckRoles(ROLES.CUSTOMER)
 export class CustomersController {
 	constructor(private readonly customersService: CustomersService) {}
 
-	@Get(':id')
-	getCustomer(@Param('id') id: string) {
-		return this.customersService.getCustomer(id);
+	@Get('me')
+	getCustomer(@Req() request: Request) {
+		const userID = request.auth?.payload.sub as string;
+		return this.customersService.getCustomer(userID);
 	}
 
-	@Patch(':id')
-	updateCustomer(
-		@Param('id') id: string,
-		@Body() dto: UpdateCustomerDTO,
-		@Req() request: Request,
-	) {
-		ensureOwnership(request, ROLES.CUSTOMER, id);
-
+	@Patch('me')
+	updateCustomer(@Body() dto: UpdateCustomerDTO, @Req() request: Request) {
 		if (!dto.name && !dto.picture) {
 			throw new BadRequestException();
 		}
 
-		return this.customersService.updateCustomer(id, dto);
+		const userID = request.auth?.payload.sub as string;
+		return this.customersService.updateCustomer(userID, dto);
 	}
 
-	@Delete(':id')
-	deleteCustomer(@Param('id') id: string, @Req() request: Request) {
-		ensureOwnership(request, ROLES.CUSTOMER, id);
-		return this.customersService.deleteCustomer(id);
+	@Delete('me')
+	deleteCustomer(@Req() request: Request) {
+		const userID = request.auth?.payload.sub as string;
+		return this.customersService.deleteCustomer(userID);
 	}
 }

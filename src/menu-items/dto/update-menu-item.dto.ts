@@ -1,7 +1,4 @@
 import {
-	ArrayMaxSize,
-	ArrayNotEmpty,
-	IsArray,
 	IsBoolean,
 	IsInt,
 	IsNotEmpty,
@@ -12,7 +9,6 @@ import {
 	MaxLength,
 	Min,
 } from 'class-validator';
-import { TrimArray } from 'src/shared/decorators/trim-array.decorator';
 import { TrimString } from 'src/shared/decorators/trim-string.decorator';
 
 export class UpdateMenuItemDTO {
@@ -42,12 +38,4 @@ export class UpdateMenuItemDTO {
 	@IsNumber()
 	@IsPositive()
 	price?: number;
-
-	@ArrayMaxSize(10)
-	@ArrayNotEmpty()
-	@IsArray()
-	@IsString({ each: true })
-	@MaxLength(15, { each: true })
-	@TrimArray()
-	tags?: string[];
 }

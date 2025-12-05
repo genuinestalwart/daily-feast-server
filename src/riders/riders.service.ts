@@ -63,10 +63,10 @@ export class RidersService {
 		await this.auth0Service.users.delete(id);
 
 		return {
-			failedOrders: orders.filter((order) => order.status === 'FAILED')
+			failedOrders: orders.filter(({ status }) => status === 'FAILED')
 				.length,
 			successfulOrders: orders.filter(
-				(order) => order.status === 'DELIVERED',
+				({ status }) => status === 'DELIVERED',
 			).length,
 			totalOrders: orders.length,
 		};

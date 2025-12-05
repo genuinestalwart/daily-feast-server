@@ -3,7 +3,6 @@ import {
 	Get,
 	Body,
 	Patch,
-	Param,
 	Delete,
 	Req,
 	BadRequestException,
@@ -12,7 +11,6 @@ import { RidersService } from './riders.service';
 import { UpdateRiderDTO } from './dto/update-rider.dto';
 import { CheckRoles } from 'src/shared/decorators/check-roles.decorator';
 import { ROLES } from 'src/shared/constants/roles';
-import { ensureOwnership } from 'src/shared/utils/ensureOwnership';
 import type { Request } from 'express';
 
 @Controller('riders')
@@ -20,29 +18,25 @@ import type { Request } from 'express';
 export class RidersController {
 	constructor(private readonly ridersService: RidersService) {}
 
-	@Get(':id')
-	getRider(@Param('id') id: string) {
-		return this.ridersService.getRider(id);
+	@Get('me')
+	getRider(@Req() request: Request) {
+		const userID = request.auth?.payload.sub as string;
+		return this.ridersService.getRider(userID);
 	}
 
-	@Patch(':id')
-	updateRider(
-		@Param('id') id: string,
-		@Body() dto: UpdateRiderDTO,
-		@Req() request: Request,
-	) {
-		ensureOwnership(request, ROLES.RIDER, id);
-
+	@Patch('me')
+	updateRider(@Body() dto: UpdateRiderDTO, @Req() request: Request) {
 		if (!dto.name && !dto.picture) {
 			throw new BadRequestException();
 		}
 
-		return this.ridersService.updateRider(id, dto);
+		const userID = request.auth?.payload.sub as string;
+		return this.ridersService.updateRider(userID, dto);
 	}
 
-	@Delete(':id')
-	deleteRider(@Param('id') id: string, @Req() request: Request) {
-		ensureOwnership(request, ROLES.RIDER, id);
-		return this.ridersService.deleteRider(id);
+	@Delete('me')
+	deleteRider(@Req() request: Request) {
+		const userID = request.auth?.payload.sub as string;
+		return this.ridersService.deleteRider(userID);
 	}
 }

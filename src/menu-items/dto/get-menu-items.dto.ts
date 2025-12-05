@@ -1,19 +1,26 @@
 import { Transform, Type } from 'class-transformer';
 import {
-	ArrayMaxSize,
-	IsArray,
 	IsEnum,
 	IsInt,
 	IsNumber,
 	IsOptional,
 	IsPositive,
 	IsString,
-	MaxLength,
 	Min,
 } from 'class-validator';
 import { Category } from 'prisma/generated/enums';
 
-export class GetManyMenuItemsDTO {
+enum SortBy {
+	created_at,
+	price,
+}
+
+enum SortOrder {
+	asc,
+	desc,
+}
+
+export class GetMenuItemsDTO {
 	@IsEnum(Category)
 	@IsOptional()
 	category?: 'DISH' | 'DRINK';
@@ -45,11 +52,7 @@ export class GetManyMenuItemsDTO {
 
 	@IsOptional()
 	@IsString()
-	name?: string;
-
-	@IsOptional()
-	@IsString()
-	restaurant_id?: string;
+	search?: string;
 
 	@IsInt()
 	@IsOptional()
@@ -57,15 +60,15 @@ export class GetManyMenuItemsDTO {
 	@Type(() => Number)
 	skip?: number;
 
-	@ArrayMaxSize(10)
-	@IsArray()
-	@IsOptional({ each: true })
-	@IsString({ each: true })
-	@MaxLength(15, { each: true })
-	@Transform(({ value }) =>
-		typeof value === 'string' ? value.toLowerCase().split(',') : value,
-	)
-	tags?: string[];
+	@IsEnum(SortBy)
+	@IsOptional()
+	@Transform(({ value }) => value ?? SortBy.created_at)
+	sort_by?: SortBy;
+
+	@IsEnum(SortOrder)
+	@IsOptional()
+	@Transform(({ value }) => value ?? SortOrder.desc)
+	sort_order?: SortOrder;
 
 	@IsInt()
 	@IsOptional()

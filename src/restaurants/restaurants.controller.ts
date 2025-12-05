@@ -6,6 +6,7 @@ import {
 	Get,
 	Param,
 	Patch,
+	Post,
 	Query,
 	Req,
 } from '@nestjs/common';
@@ -13,54 +14,78 @@ import { RestaurantsService } from './restaurants.service';
 import { ROLES } from 'src/shared/constants/roles';
 import { CheckRoles } from 'src/shared/decorators/check-roles.decorator';
 import type { Request } from 'express';
-import { ensureOwnership } from 'src/shared/utils/ensureOwnership';
 import { UpdateRestaurantDTO } from './dto/update-restaurant.dto';
-import { GetManyMenuItemsDTO } from './dto/get-many-menu-items.dto';
+import { GetMyMenuItemsDTO } from '../menu-items/dto/get-my-menu-items.dto';
+import { MenuItemsService } from 'src/menu-items/menu-items.service';
+import { CreateRestaurantDTO } from './dto/create-restaurant.dto';
+import { GetRestaurantsDTO } from './dto/get-restaurants.dto';
 
 @Controller('restaurants')
-@CheckRoles(ROLES.RESTAURANT)
 export class RestaurantsController {
-	constructor(private readonly restaurantsService: RestaurantsService) {}
+	constructor(
+		private readonly restaurantsService: RestaurantsService,
+		private readonly menuItemsService: MenuItemsService,
+	) {}
 
-	@Get(':id')
-	getRestaurant(@Param('id') id: string) {
-		return this.restaurantsService.getRestaurant(id);
+	@Post()
+	@CheckRoles(ROLES.RESTAURANT)
+	createRestaurant(
+		@Body() dto: CreateRestaurantDTO,
+		@Req() request: Request,
+	) {
+		const userID = request.auth?.payload.sub as string;
+		return this.restaurantsService.createRestaurant(userID, dto.name);
 	}
 
-	@Patch(':id')
+	@Get()
+	getRestaurants(@Query() query: GetRestaurantsDTO) {
+		return this.restaurantsService.getRestaurants(query);
+	}
+
+	@Get('me')
+	@CheckRoles(ROLES.RESTAURANT)
+	getMyRestaurant(@Req() request: Request) {
+		const userID = request.auth?.payload.sub as string;
+		return this.restaurantsService.getMyRestaurant(userID);
+	}
+
+	@Get(':id')
+	getRestaurantByID(@Param('id') id: string) {
+		return this.restaurantsService.getRestaurantByID(id);
+	}
+
+	@Patch('me')
+	@CheckRoles(ROLES.RESTAURANT)
 	updateRestaurant(
-		@Param('id') id: string,
 		@Body() dto: UpdateRestaurantDTO,
 		@Req() request: Request,
 	) {
-		ensureOwnership(request, ROLES.RESTAURANT, id);
-
-		if (!dto.name && !dto.picture) {
+		if (!dto.name && !dto.picture && !dto.tags) {
 			throw new BadRequestException();
 		}
 
-		return this.restaurantsService.updateRestaurant(id, dto);
+		const userID = request.auth?.payload.sub as string;
+		return this.restaurantsService.updateRestaurant(userID, dto);
 	}
 
-	@Delete(':id')
-	deleteRestaurant(@Param('id') id: string, @Req() request: Request) {
-		ensureOwnership(request, ROLES.RESTAURANT, id);
-		return this.restaurantsService.deleteRestaurant(id);
+	@Delete('me')
+	@CheckRoles(ROLES.RESTAURANT)
+	deleteRestaurant(@Req() request: Request) {
+		const userID = request.auth?.payload.sub as string;
+		return this.restaurantsService.deleteRestaurant(userID);
 	}
 
-	@Get(':restaurant_id/menu-items/:menu_item_id')
-	getMenuItem(
-		@Param('restaurant_id') restaurant_id: string,
-		@Param('menu_item_id') menu_item_id: string,
-	) {
-		return this.restaurantsService.getMenuItem(restaurant_id, menu_item_id);
+	@Get('me/menu-items')
+	@CheckRoles(ROLES.RESTAURANT)
+	getMyMenuItems(@Query() query: GetMyMenuItemsDTO, @Req() request: Request) {
+		const userID = request.auth?.payload.sub as string;
+		return this.menuItemsService.getMyMenuItems(userID, query);
 	}
 
-	@Get(':id/menu-items')
-	getManyMenuItems(
-		@Param('id') id: string,
-		@Query() query: GetManyMenuItemsDTO,
-	) {
-		return this.restaurantsService.getManyMenuItems(id, query);
+	@Get('me/menu-items/:id')
+	@CheckRoles(ROLES.RESTAURANT)
+	getMyMenuItemByID(@Param('id') id: string, @Req() request: Request) {
+		const userID = request.auth?.payload.sub as string;
+		return this.menuItemsService.getMyMenuItemByID(userID, id);
 	}
 }

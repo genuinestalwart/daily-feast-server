@@ -72,15 +72,15 @@ export class CustomersService {
 
 		return {
 			cancelledOrders: orders.filter(
-				(order) => order.status === 'CANCELLED',
+				({ status }) => status === 'CANCELLED',
 			).length,
-			failedOrders: orders.filter((order) => order.status === 'FAILED')
+			failedOrders: orders.filter(({ status }) => status === 'FAILED')
 				.length,
 			grandTotalPrice: orders
-				.filter((order) => order.status === 'DELIVERED')
-				.reduce((sum, order) => sum + order.total_price, 0),
+				.filter(({ status }) => status === 'DELIVERED')
+				.reduce((sum, { total_price }) => sum + total_price, 0),
 			successfulOrders: orders.filter(
-				(order) => order.status === 'DELIVERED',
+				({ status }) => status === 'DELIVERED',
 			).length,
 			totalOrders: orders.length,
 		};
