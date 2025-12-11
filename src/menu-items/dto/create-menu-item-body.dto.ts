@@ -10,11 +10,13 @@ import {
 	MaxLength,
 	Min,
 } from 'class-validator';
-import { TrimString } from 'src/shared/decorators/trim-string.decorator';
+import { TrimString } from 'src/common/decorators/trim-string.decorator';
+import { ApiProperty } from '@nestjs/swagger';
 
-export class CreateMenuItemDTO {
+export class CreateMenuItemBody {
+	@ApiProperty({ enum: Category })
 	@IsEnum(Category)
-	category: 'DISH' | 'DRINK';
+	category: Category;
 
 	@IsNotEmpty()
 	@IsString()

@@ -1,27 +1,28 @@
-import {
-	ConflictException,
-	Injectable,
-	NotFoundException,
-} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Auth0Service } from 'src/auth0/auth0.service';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { ROLES } from 'src/shared/constants/roles';
-import { UpdateRestaurantDTO } from './dto/update-restaurant.dto';
-import { GetRestaurantsDTO } from './dto/get-restaurants.dto';
+import { ROLES } from 'src/common/constants/roles';
+import { UpdateRestaurantBody } from './dto/update-restaurant-body.dto';
+import { GetRestaurantsQuery } from './dto/get-restaurants-query.dto';
 import { Prisma } from 'prisma/generated/client';
+import { UsersService } from 'src/common/services/users.service';
 
 @Injectable()
 export class RestaurantsService {
 	constructor(
 		private readonly auth0Service: Auth0Service,
 		private readonly prismaService: PrismaService,
+		private readonly usersService: UsersService,
 	) {}
 
-	async createRestaurant(id: string, name: string) {
-		return this.prismaService.restaurant.create({ data: { id, name } });
+	async createRestaurant(id: string) {
+		const user = await this.auth0Service.users.get(id);
+		const data = { id, name: user.name as string };
+		await this.prismaService.restaurant.create({ data });
+		return this.getMyRestaurant(id);
 	}
 
-	async getRestaurants(query: GetRestaurantsDTO) {
+	async getRestaurants(query: GetRestaurantsQuery) {
 		const mode: Prisma.QueryMode = 'insensitive';
 		const name = { contains: query.search as string, mode };
 		const tags = { has: query.search as string };
@@ -43,7 +44,7 @@ export class RestaurantsService {
 			search_engine: 'v3',
 		});
 
-		// merge two arrays of restaurants into one array based on id===user_id
+		// merge two arrays of restaurants into one array based on id === user_id
 		const userMap = new Map(data.map((user) => [user.user_id, user]));
 
 		const result = restaurants.map(({ id, tags }) => ({
@@ -59,74 +60,64 @@ export class RestaurantsService {
 	}
 
 	async getMyRestaurant(id: string) {
-		const restaurant = await this.auth0Service.users.get(id);
-		const { data } = await this.auth0Service.users.roles.list(id);
-
-		// Not having the RESTAURANT role means the user doesn't exist as a restaurant
-		if (!data.map((role) => role.name).includes(ROLES.RESTAURANT)) {
-			throw new NotFoundException();
-		}
-
-		const { tags } = await this.prismaService.restaurant.findUniqueOrThrow({
-			select: { tags: true },
-			where: { id },
-		});
-
-		return {
-			created_at: restaurant.created_at,
-			email: restaurant.email,
-			email_verified: restaurant.email_verified,
-			id,
-			name: restaurant.name,
-			picture: restaurant.picture,
-			role: 'RESTAURANT',
-			tags,
-			updated_at: restaurant.updated_at,
-		};
+		return this.usersService.getUser(id, ROLES.RESTAURANT, { byID: false });
 	}
 
 	async getRestaurantByID(id: string) {
-		const restaurant = await this.auth0Service.users.get(id);
-		const { data } = await this.auth0Service.users.roles.list(id);
-		const { created_at, name, picture } = restaurant;
-
-		// Not having the RESTAURANT role means the user doesn't exist as a restaurant
-		if (!data.map((role) => role.name).includes(ROLES.RESTAURANT)) {
-			throw new NotFoundException();
-		}
-
-		const { tags } = await this.prismaService.restaurant.findUniqueOrThrow({
-			select: { tags: true },
-			where: { id },
-		});
-
-		return { created_at, id, name, picture, role: 'RESTAURANT', tags };
+		return this.usersService.getUser(id, ROLES.RESTAURANT, { byID: true });
 	}
 
-	async updateRestaurant(id: string, dto: UpdateRestaurantDTO) {
+	async updateRestaurant(id: string, dto: UpdateRestaurantBody) {
 		const { name, picture, tags } = dto;
-		const updateInAuth0 = () =>
+
+		const updateInAuth0 = async () =>
 			this.auth0Service.users.update(id, { name, picture });
-		const updateInPrisma = () =>
+
+		const updateInPrisma = async () =>
 			this.prismaService.restaurant.update({
-				data: { tags },
+				data: { name, tags },
 				where: { id },
 			});
 
 		if ((name || picture) && tags) {
 			await updateInPrisma();
-			return updateInAuth0();
+			await updateInAuth0();
 		} else if (tags) {
-			return updateInPrisma();
+			await updateInPrisma();
 		} else {
-			return updateInAuth0();
+			await updateInAuth0();
 		}
+
+		return this.getMyRestaurant(id);
 	}
 
 	async deleteRestaurant(id: string) {
-		// Restaurant can't be deleted if an order is still ongoing
-		const activeOrders = await this.prismaService.order.count({
-			where: {
+		const cleanUp = async () => {
+			const menuItems = await this.prismaService.menuItem.count({
+				where: { restaurant_id: id },
+			});
+
+			const orders = await this.prismaService.order.findMany({
+				orderBy: { total_price: 'asc' },
+				select: { status: true, total_price: true },
+				where: { restaurant_id: id },
+			});
+
+			const grandTotalPrice = orders
+				.filter(({ status }) => status === 'DELIVERED')
+				.reduce((sum, { total_price }) => sum + total_price, 0);
+
+			const rejectedOrders = orders.filter(
+				({ status }) => status === 'REJECTED',
+			).length;
+
+			await this.prismaService.restaurant.delete({ where: { id } });
+			return { grandTotalPrice, menuItems, orders, rejectedOrders };
+		};
+
+		return this.usersService.deleteUser(
+			id,
+			{
 				restaurant_id: id,
 				status: {
 					notIn: [
@@ -138,38 +129,7 @@ export class RestaurantsService {
 					],
 				},
 			},
-		});
-
-		if (activeOrders) {
-			throw new ConflictException();
-		}
-
-		const menuItems = await this.prismaService.menuItem.count({
-			where: { restaurant_id: id },
-		});
-
-		const orders = await this.prismaService.order.findMany({
-			orderBy: { total_price: 'asc' },
-			select: { status: true, total_price: true },
-			where: { restaurant_id: id },
-		});
-
-		await this.prismaService.restaurant.delete({ where: { id } });
-		await this.auth0Service.users.delete(id);
-
-		return {
-			failedOrders: orders.filter(({ status }) => status === 'FAILED')
-				.length,
-			grandTotalPrice: orders
-				.filter(({ status }) => status === 'DELIVERED')
-				.reduce((sum, { total_price }) => sum + total_price, 0),
-			menuItems,
-			rejectedOrders: orders.filter(({ status }) => status === 'REJECTED')
-				.length,
-			successfulOrders: orders.filter(
-				({ status }) => status === 'DELIVERED',
-			).length,
-			totalOrders: orders.length,
-		};
+			cleanUp,
+		);
 	}
 }

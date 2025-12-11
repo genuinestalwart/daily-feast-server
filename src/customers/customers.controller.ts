@@ -5,38 +5,45 @@ import {
 	Get,
 	Patch,
 	BadRequestException,
-	Req,
 } from '@nestjs/common';
 import { CustomersService } from './customers.service';
-import { UpdateCustomerDTO } from './dto/update-customer.dto';
-import { CheckRoles } from 'src/shared/decorators/check-roles.decorator';
-import { ROLES } from 'src/shared/constants/roles';
-import type { Request } from 'express';
+import { UpdateCustomerBody } from './dto/update-customer-body.dto';
+import { CheckRoles } from 'src/common/decorators/check-roles.decorator';
+import { ROLES } from 'src/common/constants/roles';
+import { UserID } from 'src/common/decorators/user-id.decorator';
+import {
+	ApiDeleteCustomerResponses,
+	ApiGetCustomerResponses,
+	ApiUpdateCustomerResponses,
+} from 'src/common/decorators/api/customer.decorator';
 
-@Controller('customers')
 @CheckRoles(ROLES.CUSTOMER)
+@Controller('customers')
 export class CustomersController {
 	constructor(private readonly customersService: CustomersService) {}
 
+	@ApiGetCustomerResponses()
 	@Get('me')
-	getCustomer(@Req() request: Request) {
-		const userID = request.auth?.payload.sub as string;
+	async getCustomer(@UserID() userID: string) {
 		return this.customersService.getCustomer(userID);
 	}
 
+	@ApiUpdateCustomerResponses()
 	@Patch('me')
-	updateCustomer(@Body() dto: UpdateCustomerDTO, @Req() request: Request) {
+	async updateCustomer(
+		@Body() dto: UpdateCustomerBody,
+		@UserID() userID: string,
+	) {
 		if (!dto.name && !dto.picture) {
 			throw new BadRequestException();
 		}
 
-		const userID = request.auth?.payload.sub as string;
 		return this.customersService.updateCustomer(userID, dto);
 	}
 
+	@ApiDeleteCustomerResponses() // will be updated in the future
 	@Delete('me')
-	deleteCustomer(@Req() request: Request) {
-		const userID = request.auth?.payload.sub as string;
+	async deleteCustomer(@UserID() userID: string) {
 		return this.customersService.deleteCustomer(userID);
 	}
 }

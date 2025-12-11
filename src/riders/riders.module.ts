@@ -3,10 +3,11 @@ import { RidersService } from './riders.service';
 import { RidersController } from './riders.controller';
 import { Auth0Module } from 'src/auth0/auth0.module';
 import { PrismaModule } from 'src/prisma/prisma.module';
+import { CommonModule } from 'src/common/common.module';
 
 @Module({
 	controllers: [RidersController],
-	imports: [Auth0Module, PrismaModule],
+	imports: [Auth0Module, CommonModule, PrismaModule],
 	providers: [RidersService],
 })
 export class RidersModule {}

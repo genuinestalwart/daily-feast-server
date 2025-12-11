@@ -4,59 +4,89 @@ import {
 	Body,
 	Delete,
 	Param,
-	Req,
 	Get,
 	Query,
 	Patch,
+	HttpCode,
 } from '@nestjs/common';
 import { MenuItemsService } from './menu-items.service';
-import { CreateMenuItemDTO } from './dto/create-menu-item.dto';
-import { CheckRoles } from 'src/shared/decorators/check-roles.decorator';
-import { ROLES } from 'src/shared/constants/roles';
-import type { Request } from 'express';
-import { GetMenuItemsDTO } from './dto/get-menu-items.dto';
-import { UpdateMenuItemDTO } from './dto/update-menu-item.dto';
+import { CreateMenuItemBody } from './dto/create-menu-item-body.dto';
+import { CheckRoles } from 'src/common/decorators/check-roles.decorator';
+import { ROLES } from 'src/common/constants/roles';
+import { GetMenuItemsQuery } from './dto/get-menu-items-query.dto';
+import { UpdateMenuItemBody } from './dto/update-menu-item-body.dto';
+import { UserID } from 'src/common/decorators/user-id.decorator';
+import { HasRole } from 'src/common/decorators/has-role.decorator';
+import {
+	ApiCreateMenuItemResponses,
+	ApiDeleteMenuItemResponses,
+	ApiGetMenuItemByIDResponses,
+	ApiGetMenuItemsResponses,
+	ApiSubmitMenuItemResponses,
+	ApiUpdateMenuItemResponses,
+} from 'src/common/decorators/api/menu-item.decorator';
 
 @Controller('menu-items')
 export class MenuItemsController {
 	constructor(private readonly menuItemsService: MenuItemsService) {}
 
-	@Post()
+	@ApiCreateMenuItemResponses()
 	@CheckRoles(ROLES.RESTAURANT)
-	createMenuItem(@Body() dto: CreateMenuItemDTO, @Req() request: Request) {
-		const userID = request.auth?.payload.sub as string;
+	@Post()
+	async createMenuItem(
+		@Body() dto: CreateMenuItemBody,
+		@UserID() userID: string,
+	) {
 		return this.menuItemsService.createMenuItem(userID, dto);
 	}
 
+	@ApiGetMenuItemsResponses()
 	@Get()
-	getMenuItems(@Query() query: GetMenuItemsDTO) {
+	async getMenuItems(@Query() query: GetMenuItemsQuery) {
 		return this.menuItemsService.getMenuItems(query);
 	}
 
+	@ApiGetMenuItemByIDResponses()
 	@Get(':id')
-	getMenuItemByID(@Param('id') id: string) {
+	async getMenuItemByID(@Param('id') id: string) {
 		return this.menuItemsService.getMenuItemByID(id);
 	}
 
+	@ApiUpdateMenuItemResponses()
+	@CheckRoles(ROLES.RESTAURANT)
 	@Patch(':id')
-	@CheckRoles(ROLES.RESTAURANT)
-	updateMenuItem(
+	async updateMenuItem(
 		@Param('id') id: string,
-		@Body() dto: UpdateMenuItemDTO,
-		@Req() request: Request,
+		@Body() dto: UpdateMenuItemBody,
+		@UserID() userID: string,
+		@HasRole(ROLES.RESTAURANT) hasRole: boolean,
 	) {
-		return this.menuItemsService.updateMenuItem(id, dto, request);
+		const user = { userID, hasRole };
+		return this.menuItemsService.updateMenuItem(id, dto, user);
 	}
 
+	@ApiSubmitMenuItemResponses()
+	@CheckRoles(ROLES.RESTAURANT)
 	@Patch(':id/submit')
-	@CheckRoles(ROLES.RESTAURANT)
-	submitMenuItem(@Param('id') id: string, @Req() request: Request) {
-		return this.menuItemsService.submitMenuItem(id, request);
+	async submitMenuItem(
+		@Param('id') id: string,
+		@UserID() userID: string,
+		@HasRole(ROLES.RESTAURANT) hasRole: boolean,
+	) {
+		const user = { userID, hasRole };
+		return this.menuItemsService.submitMenuItem(id, user);
 	}
 
-	@Delete(':id')
+	@ApiDeleteMenuItemResponses()
 	@CheckRoles(ROLES.RESTAURANT)
-	deleteMenuItem(@Param('id') id: string, @Req() request: Request) {
-		return this.menuItemsService.deleteMenuItem(id, request);
+	@Delete(':id')
+	@HttpCode(204)
+	async deleteMenuItem(
+		@Param('id') id: string,
+		@UserID() userID: string,
+		@HasRole(ROLES.RESTAURANT) hasRole: boolean,
+	) {
+		const user = { userID, hasRole };
+		return this.menuItemsService.deleteMenuItem(id, user);
 	}
 }

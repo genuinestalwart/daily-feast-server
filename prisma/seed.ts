@@ -1,4 +1,4 @@
-import { PrismaClient } from 'src/shared/utils/prisma';
+import { PrismaClient } from 'src/common/utils/prisma';
 import menuItems from '../data/menuItems.json';
 import restaurants from '../data/restaurants.json';
 const prisma = new PrismaClient();

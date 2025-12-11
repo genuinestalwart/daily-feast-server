@@ -4,39 +4,43 @@ import {
 	Body,
 	Patch,
 	Delete,
-	Req,
 	BadRequestException,
 } from '@nestjs/common';
 import { RidersService } from './riders.service';
-import { UpdateRiderDTO } from './dto/update-rider.dto';
-import { CheckRoles } from 'src/shared/decorators/check-roles.decorator';
-import { ROLES } from 'src/shared/constants/roles';
-import type { Request } from 'express';
+import { UpdateRiderBody } from './dto/update-rider-body.dto';
+import { CheckRoles } from 'src/common/decorators/check-roles.decorator';
+import { ROLES } from 'src/common/constants/roles';
+import { UserID } from 'src/common/decorators/user-id.decorator';
+import {
+	ApiDeleteRiderResponses,
+	ApiGetRiderResponses,
+	ApiUpdateRiderResponses,
+} from 'src/common/decorators/api/rider.decorator';
 
-@Controller('riders')
 @CheckRoles(ROLES.RIDER)
+@Controller('riders')
 export class RidersController {
 	constructor(private readonly ridersService: RidersService) {}
 
+	@ApiGetRiderResponses()
 	@Get('me')
-	getRider(@Req() request: Request) {
-		const userID = request.auth?.payload.sub as string;
+	async getRider(@UserID() userID: string) {
 		return this.ridersService.getRider(userID);
 	}
 
+	@ApiUpdateRiderResponses()
 	@Patch('me')
-	updateRider(@Body() dto: UpdateRiderDTO, @Req() request: Request) {
+	async updateRider(@Body() dto: UpdateRiderBody, @UserID() userID: string) {
 		if (!dto.name && !dto.picture) {
 			throw new BadRequestException();
 		}
 
-		const userID = request.auth?.payload.sub as string;
 		return this.ridersService.updateRider(userID, dto);
 	}
 
+	@ApiDeleteRiderResponses() // will be updated in the future
 	@Delete('me')
-	deleteRider(@Req() request: Request) {
-		const userID = request.auth?.payload.sub as string;
+	async deleteRider(@UserID() userID: string) {
 		return this.ridersService.deleteRider(userID);
 	}
 }

@@ -1,74 +1,42 @@
-import {
-	ConflictException,
-	Injectable,
-	NotFoundException,
-} from '@nestjs/common';
-import { UpdateRiderDTO } from './dto/update-rider.dto';
+import { Injectable } from '@nestjs/common';
+import { UpdateRiderBody } from './dto/update-rider-body.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Auth0Service } from 'src/auth0/auth0.service';
-import { ROLES } from 'src/shared/constants/roles';
+import { ROLES } from 'src/common/constants/roles';
+import { UsersService } from 'src/common/services/users.service';
 
 @Injectable()
 export class RidersService {
 	constructor(
 		private readonly auth0Service: Auth0Service,
 		private readonly prismaService: PrismaService,
+		private readonly usersService: UsersService,
 	) {}
 
 	async getRider(id: string) {
-		const rider = await this.auth0Service.users.get(id);
-		const { data } = await this.auth0Service.users.roles.list(id);
-
-		// Not having the RIDER role means the user doesn't exist as a rider
-		if (!data.map((role) => role.name).includes(ROLES.RIDER)) {
-			throw new NotFoundException();
-		}
-
-		return {
-			created_at: rider.created_at,
-			email: rider.email,
-			email_verified: rider.email_verified,
-			id: rider.user_id,
-			identities: rider.identities,
-			name: rider.name,
-			picture: rider.picture,
-			role: 'RIDER',
-			updated_at: rider.updated_at,
-		};
+		return this.usersService.getUser(id, ROLES.RIDER);
 	}
 
-	async updateRider(id: string, dto: UpdateRiderDTO) {
-		return this.auth0Service.users.update(id, dto);
+	async updateRider(id: string, dto: UpdateRiderBody) {
+		await this.auth0Service.users.update(id, dto);
+		return this.getRider(id);
 	}
 
 	async deleteRider(id: string) {
-		// Rider can't be deleted if an order is still ongoing
-		const activeOrders = await this.prismaService.order.count({
-			where: {
-				rider_id: id,
-				status: { in: ['PICKED_UP', 'IN_TRANSIT'] },
-			},
-		});
+		const cleanUp = async () => {
+			const orders = await this.prismaService.order.updateManyAndReturn({
+				data: { rider_id: null },
+				select: { status: true, total_price: true },
+				where: { rider_id: id },
+			});
 
-		if (activeOrders) {
-			throw new ConflictException();
-		}
-
-		const orders = await this.prismaService.order.updateManyAndReturn({
-			data: { rider_id: null },
-			select: { status: true },
-			where: { rider_id: id },
-		});
-
-		await this.auth0Service.users.delete(id);
-
-		return {
-			failedOrders: orders.filter(({ status }) => status === 'FAILED')
-				.length,
-			successfulOrders: orders.filter(
-				({ status }) => status === 'DELIVERED',
-			).length,
-			totalOrders: orders.length,
+			return { orders };
 		};
+
+		return this.usersService.deleteUser(
+			id,
+			{ rider_id: id, status: { in: ['PICKED_UP', 'IN_TRANSIT'] } },
+			cleanUp,
+		);
 	}
 }

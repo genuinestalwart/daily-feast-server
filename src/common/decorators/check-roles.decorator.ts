@@ -1,6 +1,11 @@
 import { applyDecorators, SetMetadata, UseGuards } from '@nestjs/common';
 import { RolesGuard } from '../guards/roles.guard';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 export const CheckRoles = (...roles: string[]) => {
-	return applyDecorators(SetMetadata('roles', roles), UseGuards(RolesGuard));
+	return applyDecorators(
+		ApiBearerAuth(),
+		SetMetadata('roles', roles),
+		UseGuards(RolesGuard),
+	);
 };

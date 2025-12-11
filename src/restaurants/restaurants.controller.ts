@@ -8,17 +8,25 @@ import {
 	Patch,
 	Post,
 	Query,
-	Req,
 } from '@nestjs/common';
 import { RestaurantsService } from './restaurants.service';
-import { ROLES } from 'src/shared/constants/roles';
-import { CheckRoles } from 'src/shared/decorators/check-roles.decorator';
-import type { Request } from 'express';
-import { UpdateRestaurantDTO } from './dto/update-restaurant.dto';
-import { GetMyMenuItemsDTO } from '../menu-items/dto/get-my-menu-items.dto';
+import { ROLES } from 'src/common/constants/roles';
+import { CheckRoles } from 'src/common/decorators/check-roles.decorator';
+import { UpdateRestaurantBody } from './dto/update-restaurant-body.dto';
+import { GetMyMenuItemsQuery } from '../menu-items/dto/get-my-menu-items-query.dto';
 import { MenuItemsService } from 'src/menu-items/menu-items.service';
-import { CreateRestaurantDTO } from './dto/create-restaurant.dto';
-import { GetRestaurantsDTO } from './dto/get-restaurants.dto';
+import { GetRestaurantsQuery } from './dto/get-restaurants-query.dto';
+import { UserID } from 'src/common/decorators/user-id.decorator';
+import {
+	ApiCreateRestaurantResponses,
+	ApiDeleteRestaurantResponses,
+	ApiGetMyMenuItemByIDResponses,
+	ApiGetMyMenuItemsResponses,
+	ApiGetMyRestaurantResponses,
+	ApiGetRestaurantByIDResponses,
+	ApiGetRestaurantsResponses,
+	ApiUpdateRestaurantResponses,
+} from 'src/common/decorators/api/restaurant.decorator';
 
 @Controller('restaurants')
 export class RestaurantsController {
@@ -27,65 +35,67 @@ export class RestaurantsController {
 		private readonly menuItemsService: MenuItemsService,
 	) {}
 
-	@Post()
+	@ApiCreateRestaurantResponses()
 	@CheckRoles(ROLES.RESTAURANT)
-	createRestaurant(
-		@Body() dto: CreateRestaurantDTO,
-		@Req() request: Request,
-	) {
-		const userID = request.auth?.payload.sub as string;
-		return this.restaurantsService.createRestaurant(userID, dto.name);
+	@Post()
+	async createRestaurant(@UserID() userID: string) {
+		return this.restaurantsService.createRestaurant(userID);
 	}
 
+	@ApiGetRestaurantsResponses()
 	@Get()
-	getRestaurants(@Query() query: GetRestaurantsDTO) {
+	async getRestaurants(@Query() query: GetRestaurantsQuery) {
 		return this.restaurantsService.getRestaurants(query);
 	}
 
-	@Get('me')
+	@ApiGetMyRestaurantResponses()
 	@CheckRoles(ROLES.RESTAURANT)
-	getMyRestaurant(@Req() request: Request) {
-		const userID = request.auth?.payload.sub as string;
+	@Get('me')
+	async getMyRestaurant(@UserID() userID: string) {
 		return this.restaurantsService.getMyRestaurant(userID);
 	}
 
+	@ApiGetRestaurantByIDResponses()
 	@Get(':id')
-	getRestaurantByID(@Param('id') id: string) {
+	async getRestaurantByID(@Param('id') id: string) {
 		return this.restaurantsService.getRestaurantByID(id);
 	}
 
-	@Patch('me')
+	@ApiUpdateRestaurantResponses()
 	@CheckRoles(ROLES.RESTAURANT)
-	updateRestaurant(
-		@Body() dto: UpdateRestaurantDTO,
-		@Req() request: Request,
+	@Patch('me')
+	async updateRestaurant(
+		@Body() dto: UpdateRestaurantBody,
+		@UserID() userID: string,
 	) {
 		if (!dto.name && !dto.picture && !dto.tags) {
 			throw new BadRequestException();
 		}
 
-		const userID = request.auth?.payload.sub as string;
 		return this.restaurantsService.updateRestaurant(userID, dto);
 	}
 
-	@Delete('me')
+	@ApiDeleteRestaurantResponses() // will be updated in the future
 	@CheckRoles(ROLES.RESTAURANT)
-	deleteRestaurant(@Req() request: Request) {
-		const userID = request.auth?.payload.sub as string;
+	@Delete('me')
+	async deleteRestaurant(@UserID() userID: string) {
 		return this.restaurantsService.deleteRestaurant(userID);
 	}
 
-	@Get('me/menu-items')
+	@ApiGetMyMenuItemsResponses()
 	@CheckRoles(ROLES.RESTAURANT)
-	getMyMenuItems(@Query() query: GetMyMenuItemsDTO, @Req() request: Request) {
-		const userID = request.auth?.payload.sub as string;
+	@Get('me/menu-items')
+	async getMyMenuItems(
+		@Query() query: GetMyMenuItemsQuery,
+		@UserID() userID: string,
+	) {
 		return this.menuItemsService.getMyMenuItems(userID, query);
 	}
 
-	@Get('me/menu-items/:id')
+	@ApiGetMyMenuItemByIDResponses()
 	@CheckRoles(ROLES.RESTAURANT)
-	getMyMenuItemByID(@Param('id') id: string, @Req() request: Request) {
-		const userID = request.auth?.payload.sub as string;
+	@Get('me/menu-items/:id')
+	async getMyMenuItemByID(@Param('id') id: string, @UserID() userID: string) {
 		return this.menuItemsService.getMyMenuItemByID(userID, id);
 	}
 }
