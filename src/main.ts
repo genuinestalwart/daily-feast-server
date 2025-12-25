@@ -8,10 +8,16 @@ import {
 	SwaggerModule,
 } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
+import { PrismaExceptionFilter } from './common/filters/prisma-exception.filter';
+import { Auth0ExceptionFilter } from './common/filters/auth0-exception.filter';
 
 const bootstrap = async () => {
 	const app = await NestFactory.create(AppModule);
 	app.enableCors();
+	app.useGlobalFilters(
+		new PrismaExceptionFilter(),
+		new Auth0ExceptionFilter(),
+	);
 
 	app.useGlobalPipes(
 		new ValidationPipe({ transform: true, whitelist: true }),

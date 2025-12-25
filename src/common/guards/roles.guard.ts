@@ -21,25 +21,22 @@ export class RolesGuard implements CanActivate {
 			[context.getHandler(), context.getClass()],
 		);
 
-		// If no roles are specified on @CheckRoles(), allow any authenticated user
-		if (!requiredRoles.length) {
-			return true;
-		}
-
 		const request: Request = context.switchToHttp().getRequest();
+		const payload = request.auth?.payload;
 
-		if (!request.auth) {
+		if (!payload) {
 			throw new UnauthorizedException();
 		}
 
-		const userRoles = request.auth?.payload[
+		const userRoles = payload[
 			`${process.env.AUTH0_IDENTIFIER}/roles`
 		] as string[];
 
-		if (
-			!userRoles.length ||
-			!requiredRoles.some((role) => userRoles.includes(role))
-		) {
+		if (!userRoles || !userRoles.length) {
+			throw new UnauthorizedException();
+		}
+
+		if (!requiredRoles.some((role) => userRoles.includes(role))) {
 			throw new ForbiddenException();
 		}
 

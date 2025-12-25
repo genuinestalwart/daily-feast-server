@@ -5,6 +5,7 @@ import {
 	Delete,
 	Get,
 	Param,
+	ParseUUIDPipe,
 	Patch,
 	Post,
 	Query,
@@ -84,7 +85,7 @@ export class RestaurantsController {
 
 	@ApiGetMyMenuItemsResponses()
 	@CheckRoles(ROLES.RESTAURANT)
-	@Get('me/menu-items')
+	@Get('me/menu')
 	async getMyMenuItems(
 		@Query() query: GetMyMenuItemsQuery,
 		@UserID() userID: string,
@@ -94,8 +95,11 @@ export class RestaurantsController {
 
 	@ApiGetMyMenuItemByIDResponses()
 	@CheckRoles(ROLES.RESTAURANT)
-	@Get('me/menu-items/:id')
-	async getMyMenuItemByID(@Param('id') id: string, @UserID() userID: string) {
+	@Get('me/menu/:id')
+	async getMyMenuItemByID(
+		@Param('id', new ParseUUIDPipe()) id: string,
+		@UserID() userID: string,
+	) {
 		return this.menuItemsService.getMyMenuItemByID(userID, id);
 	}
 }

@@ -1,5 +1,6 @@
 import { applyDecorators } from '@nestjs/common';
 import {
+	ApiBadRequestResponse,
 	ApiConflictResponse,
 	ApiForbiddenResponse,
 	ApiNotFoundResponse,
@@ -13,6 +14,13 @@ import {
 	UpdateMenuItemResponse,
 } from 'src/menu-items/dto/menu-item-response.dto';
 
+export const ApiMenuItemResponses = () => {
+	return applyDecorators(
+		ApiBadRequestResponse({ description: 'invalid request' }),
+		ApiNotFoundResponse({ description: 'menu-item not found' }),
+	);
+};
+
 export const ApiCreateMenuItemResponses = () =>
 	ApiResponse({ status: 201, type: CreateMenuItemResponse });
 
@@ -21,7 +29,7 @@ export const ApiGetMenuItemsResponses = () =>
 
 export const ApiGetMenuItemByIDResponses = () => {
 	return applyDecorators(
-		ApiNotFoundResponse({ description: 'menu-item not found' }),
+		ApiMenuItemResponses(),
 		ApiOkResponse({ type: MenuItemResponse }),
 	);
 };
@@ -30,18 +38,18 @@ export const ApiUpdateMenuItemResponses = () => {
 	return applyDecorators(
 		ApiConflictResponse({ description: 'active orders ongoing' }),
 		ApiForbiddenResponse({ description: 'not owned by this restaurant' }),
-		ApiNotFoundResponse({ description: 'menu-item not found' }),
+		ApiMenuItemResponses(),
 		ApiOkResponse({ type: UpdateMenuItemResponse }),
 	);
 };
 
-export const ApiSubmitMenuItemResponses = () => {
+export const ApiSubmitForApprovalResponses = () => {
 	return applyDecorators(
 		ApiConflictResponse({
 			description: 'status cannot be "KEPT_AS_DRAFT"',
 		}),
 		ApiForbiddenResponse({ description: 'not owned by this restaurant' }),
-		ApiNotFoundResponse({ description: 'menu-item not found' }),
+		ApiMenuItemResponses(),
 		ApiOkResponse({ type: SubmitMenuItemResponse }),
 	);
 };
@@ -50,7 +58,7 @@ export const ApiDeleteMenuItemResponses = () => {
 	return applyDecorators(
 		ApiConflictResponse({ description: 'active orders ongoing' }),
 		ApiForbiddenResponse({ description: 'not owned by this restaurant' }),
-		ApiNotFoundResponse({ description: 'menu-item not found' }),
+		ApiMenuItemResponses(),
 		ApiResponse({ status: 204, description: 'deleted successfully' }),
 	);
 };

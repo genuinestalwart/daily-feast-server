@@ -57,7 +57,6 @@ export class MenuItemsService {
 	private async ensureOwnership(id: string, user: User) {
 		const { restaurant_id, status } =
 			await this.prismaService.menuItem.findUniqueOrThrow({
-				select: { restaurant_id: true, status: true },
 				where: { id },
 			});
 
@@ -131,7 +130,7 @@ export class MenuItemsService {
 		});
 	}
 
-	async submitMenuItem(id: string, user: User) {
+	async submitForApproval(id: string, user: User) {
 		const status = await this.ensureOwnership(id, user);
 
 		if (status !== 'KEPT_AS_DRAFT') {

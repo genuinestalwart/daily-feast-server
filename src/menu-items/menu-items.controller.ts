@@ -8,6 +8,7 @@ import {
 	Query,
 	Patch,
 	HttpCode,
+	ParseUUIDPipe,
 } from '@nestjs/common';
 import { MenuItemsService } from './menu-items.service';
 import { CreateMenuItemBody } from './dto/create-menu-item-body.dto';
@@ -22,11 +23,11 @@ import {
 	ApiDeleteMenuItemResponses,
 	ApiGetMenuItemByIDResponses,
 	ApiGetMenuItemsResponses,
-	ApiSubmitMenuItemResponses,
+	ApiSubmitForApprovalResponses,
 	ApiUpdateMenuItemResponses,
 } from 'src/common/decorators/api/menu-item.decorator';
 
-@Controller('menu-items')
+@Controller('menu')
 export class MenuItemsController {
 	constructor(private readonly menuItemsService: MenuItemsService) {}
 
@@ -48,7 +49,7 @@ export class MenuItemsController {
 
 	@ApiGetMenuItemByIDResponses()
 	@Get(':id')
-	async getMenuItemByID(@Param('id') id: string) {
+	async getMenuItemByID(@Param('id', new ParseUUIDPipe()) id: string) {
 		return this.menuItemsService.getMenuItemByID(id);
 	}
 
@@ -56,7 +57,7 @@ export class MenuItemsController {
 	@CheckRoles(ROLES.RESTAURANT)
 	@Patch(':id')
 	async updateMenuItem(
-		@Param('id') id: string,
+		@Param('id', new ParseUUIDPipe()) id: string,
 		@Body() dto: UpdateMenuItemBody,
 		@UserID() userID: string,
 		@HasRole(ROLES.RESTAURANT) hasRole: boolean,
@@ -65,16 +66,16 @@ export class MenuItemsController {
 		return this.menuItemsService.updateMenuItem(id, dto, user);
 	}
 
-	@ApiSubmitMenuItemResponses()
+	@ApiSubmitForApprovalResponses()
 	@CheckRoles(ROLES.RESTAURANT)
 	@Patch(':id/submit')
-	async submitMenuItem(
-		@Param('id') id: string,
+	async submitForApproval(
+		@Param('id', new ParseUUIDPipe()) id: string,
 		@UserID() userID: string,
 		@HasRole(ROLES.RESTAURANT) hasRole: boolean,
 	) {
 		const user = { userID, hasRole };
-		return this.menuItemsService.submitMenuItem(id, user);
+		return this.menuItemsService.submitForApproval(id, user);
 	}
 
 	@ApiDeleteMenuItemResponses()
@@ -82,7 +83,7 @@ export class MenuItemsController {
 	@Delete(':id')
 	@HttpCode(204)
 	async deleteMenuItem(
-		@Param('id') id: string,
+		@Param('id', new ParseUUIDPipe()) id: string,
 		@UserID() userID: string,
 		@HasRole(ROLES.RESTAURANT) hasRole: boolean,
 	) {
