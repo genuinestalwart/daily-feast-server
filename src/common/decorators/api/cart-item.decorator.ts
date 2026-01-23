@@ -1,6 +1,7 @@
 import { applyDecorators } from '@nestjs/common';
 import {
 	ApiBadRequestResponse,
+	ApiConflictResponse,
 	ApiForbiddenResponse,
 	ApiNotFoundResponse,
 	ApiOkResponse,
@@ -11,30 +12,35 @@ import {
 	UpdateAmountResponse,
 } from 'src/cart-items/dto/cart-item-response.dto';
 
-const ApiCartItemResponses = () => {
+const ApiCommonResponses = () => {
 	return applyDecorators(
+		ApiBadRequestResponse({ description: 'invalid request' }),
 		ApiForbiddenResponse({ description: 'not owned by this customer' }),
 		ApiNotFoundResponse({ description: 'cart-item not found' }),
 	);
 };
 
-export const ApiAddToCartResponses = () =>
-	ApiResponse({ status: 201, type: CartItemResponse });
+export const ApiAddToCartResponses = () => {
+	return applyDecorators(
+		ApiConflictResponse({ description: 'menu-item not available' }),
+		ApiResponse({ status: 201, type: CartItemResponse }),
+	);
+};
 
 export const ApiGetCartItemsResponses = () =>
 	ApiOkResponse({ type: [CartItemResponse] });
 
-export const ApiUpdateCartItemResponses = () => {
+export const ApiUpdateAmountResponses = () => {
 	return applyDecorators(
 		ApiBadRequestResponse({ description: 'invalid request' }),
-		ApiCartItemResponses(),
+		ApiCommonResponses(),
 		ApiOkResponse({ type: UpdateAmountResponse }),
 	);
 };
 
-export const ApiRemoveCartItemResponses = () => {
+export const ApiRemoveFromCartResponses = () => {
 	return applyDecorators(
-		ApiCartItemResponses(),
+		ApiCommonResponses(),
 		ApiResponse({ status: 204, description: 'deleted successfully' }),
 	);
 };

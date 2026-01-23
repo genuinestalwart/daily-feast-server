@@ -56,15 +56,6 @@
     npx prettier . --write
     ```
 
-- Install _npm-check-updates_ and use its commands to update the node packages:
-
-    ```bash
-    npm i -g npm-check-updates
-    ncu
-    ncu -u
-    npm i
-    ```
-
 - Run this after every schema changes:
 
     ```bash

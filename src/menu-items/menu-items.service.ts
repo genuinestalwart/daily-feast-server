@@ -12,8 +12,8 @@ import { IntersectionType, OmitType } from '@nestjs/swagger';
 import { UpdateMenuItemBody } from './dto/update-menu-item-body.dto';
 
 interface User {
+	isRestaurant: boolean;
 	userID: string;
-	hasRole: boolean;
 }
 
 // Combined DTO for internal use in `findMenuItems()`
@@ -60,7 +60,7 @@ export class MenuItemsService {
 				where: { id },
 			});
 
-		if (user.hasRole && user.userID !== restaurant_id) {
+		if (user.isRestaurant && user.userID !== restaurant_id) {
 			throw new ForbiddenException();
 		}
 

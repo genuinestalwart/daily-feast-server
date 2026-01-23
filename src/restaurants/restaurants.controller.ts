@@ -21,13 +21,15 @@ import { UserID } from 'src/common/decorators/user-id.decorator';
 import {
 	ApiCreateRestaurantResponses,
 	ApiDeleteRestaurantResponses,
-	ApiGetMyMenuItemByIDResponses,
-	ApiGetMyMenuItemsResponses,
 	ApiGetMyRestaurantResponses,
 	ApiGetRestaurantByIDResponses,
 	ApiGetRestaurantsResponses,
 	ApiUpdateRestaurantResponses,
 } from 'src/common/decorators/api/restaurant.decorator';
+import {
+	ApiGetMyMenuItemByIDResponses,
+	ApiGetMyMenuItemsResponses,
+} from 'src/common/decorators/api/menu-item.decorator';
 
 @Controller('restaurants')
 export class RestaurantsController {

@@ -1,11 +1,19 @@
 import {
 	BadRequestException,
+	ConflictException,
 	ForbiddenException,
 	Injectable,
 } from '@nestjs/common';
 import { AddToCartBody } from './dto/add-to-cart-body.dto';
 import { UpdateAmountBody } from './dto/update-amount-body.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { Prisma } from 'prisma/generated/client';
+
+const cart_item_include = {
+	menu_item: {
+		select: { category: true, image: true, name: true, price: true },
+	},
+} satisfies Prisma.CartItemInclude;
 
 @Injectable()
 export class CartItemsService {
@@ -26,15 +34,28 @@ export class CartItemsService {
 	async addToCart(customer_id: string, dto: AddToCartBody) {
 		const { menu_item_id } = dto;
 
+		const menuItem = await this.prismaService.menuItem.findUnique({
+			select: { status: true },
+			where: { id: menu_item_id, status: 'APPROVED' },
+		});
+
+		if (!menuItem) {
+			throw new ConflictException();
+		}
+
 		return this.prismaService.cartItem.upsert({
 			create: { customer_id, menu_item_id, amount: 1 },
+			include: cart_item_include,
 			update: { amount: { increment: 1 } },
 			where: { customer_id_menu_item_id: { customer_id, menu_item_id } },
 		});
 	}
 
 	async getCartItems(customer_id: string) {
-		return this.prismaService.cartItem.findMany({ where: { customer_id } });
+		return this.prismaService.cartItem.findMany({
+			include: cart_item_include,
+			where: { customer_id },
+		});
 	}
 
 	async updateAmount(customer_id: string, id: string, dto: UpdateAmountBody) {
@@ -46,8 +67,9 @@ export class CartItemsService {
 			}
 
 			const updatedCartItem = await tx.cartItem.update({
-				where: { id },
 				data: { amount: { [dto.action]: dto.amount } },
+				include: cart_item_include,
+				where: { id },
 			});
 
 			if (updatedCartItem.amount === 0) {

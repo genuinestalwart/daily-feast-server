@@ -19,8 +19,8 @@ import {
 	ApiAddToCartResponses,
 	ApiClearCartResponses,
 	ApiGetCartItemsResponses,
-	ApiRemoveCartItemResponses,
-	ApiUpdateCartItemResponses,
+	ApiRemoveFromCartResponses,
+	ApiUpdateAmountResponses,
 } from 'src/common/decorators/api/cart-item.decorator';
 
 @CheckRoles(ROLES.CUSTOMER)
@@ -40,7 +40,7 @@ export class CartItemsController {
 		return this.cartItemsService.getCartItems(userID);
 	}
 
-	@ApiUpdateCartItemResponses()
+	@ApiUpdateAmountResponses()
 	@Patch(':id')
 	async updateAmount(
 		@Param('id', new ParseUUIDPipe()) id: string,
@@ -50,7 +50,7 @@ export class CartItemsController {
 		return this.cartItemsService.updateAmount(userID, id, dto);
 	}
 
-	@ApiRemoveCartItemResponses()
+	@ApiRemoveFromCartResponses()
 	@Delete(':id')
 	@HttpCode(204)
 	async removeFromCart(

@@ -1,13 +1,11 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
 
-export const HasRole = createParamDecorator(
-	(role: string, ctx: ExecutionContext) => {
+export const GetRoles = createParamDecorator(
+	(data: unknown, ctx: ExecutionContext) => {
 		const request = ctx.switchToHttp().getRequest();
 
-		const userRoles = request.auth?.payload[
+		return request.auth?.payload[
 			`${process.env.AUTH0_IDENTIFIER}/roles`
 		] as string[];
-
-		return role && userRoles.includes(role);
 	},
 );

@@ -17,7 +17,7 @@ import { ROLES } from 'src/common/constants/roles';
 import { GetMenuItemsQuery } from './dto/get-menu-items-query.dto';
 import { UpdateMenuItemBody } from './dto/update-menu-item-body.dto';
 import { UserID } from 'src/common/decorators/user-id.decorator';
-import { HasRole } from 'src/common/decorators/has-role.decorator';
+import { GetRoles } from 'src/common/decorators/get-roles.decorator';
 import {
 	ApiCreateMenuItemResponses,
 	ApiDeleteMenuItemResponses,
@@ -60,9 +60,9 @@ export class MenuItemsController {
 		@Param('id', new ParseUUIDPipe()) id: string,
 		@Body() dto: UpdateMenuItemBody,
 		@UserID() userID: string,
-		@HasRole(ROLES.RESTAURANT) hasRole: boolean,
+		@GetRoles() roles: string[],
 	) {
-		const user = { userID, hasRole };
+		const user = { userID, isRestaurant: roles.includes(ROLES.RESTAURANT) };
 		return this.menuItemsService.updateMenuItem(id, dto, user);
 	}
 
@@ -72,9 +72,9 @@ export class MenuItemsController {
 	async submitForApproval(
 		@Param('id', new ParseUUIDPipe()) id: string,
 		@UserID() userID: string,
-		@HasRole(ROLES.RESTAURANT) hasRole: boolean,
+		@GetRoles() roles: string[],
 	) {
-		const user = { userID, hasRole };
+		const user = { userID, isRestaurant: roles.includes(ROLES.RESTAURANT) };
 		return this.menuItemsService.submitForApproval(id, user);
 	}
 
@@ -85,9 +85,9 @@ export class MenuItemsController {
 	async deleteMenuItem(
 		@Param('id', new ParseUUIDPipe()) id: string,
 		@UserID() userID: string,
-		@HasRole(ROLES.RESTAURANT) hasRole: boolean,
+		@GetRoles() roles: string[],
 	) {
-		const user = { userID, hasRole };
+		const user = { userID, isRestaurant: roles.includes(ROLES.RESTAURANT) };
 		return this.menuItemsService.deleteMenuItem(id, user);
 	}
 }

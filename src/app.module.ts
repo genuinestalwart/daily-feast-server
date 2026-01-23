@@ -7,6 +7,7 @@ import { CommonModule } from './common/common.module';
 import { ConfigModule } from '@nestjs/config';
 import { CustomersModule } from './customers/customers.module';
 import { MenuItemsModule } from './menu-items/menu-items.module';
+import { OrdersModule } from './orders/orders.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { RestaurantsModule } from './restaurants/restaurants.module';
 import { RidersModule } from './riders/riders.module';
@@ -19,6 +20,7 @@ import { RidersModule } from './riders/riders.module';
 		CommonModule,
 		CustomersModule,
 		MenuItemsModule,
+		OrdersModule,
 		PrismaModule,
 		RestaurantsModule,
 		RidersModule,

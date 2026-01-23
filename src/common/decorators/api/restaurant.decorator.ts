@@ -10,8 +10,6 @@ import {
 	RestaurantResponse,
 } from 'src/restaurants/dto/restaurant-response.dto';
 import { ApiUserResponses } from './user.decorator';
-import { MyMenuItemResponse } from 'src/menu-items/dto/menu-item-response.dto';
-import { ApiMenuItemResponses } from './menu-item.decorator';
 
 export const ApiCreateRestaurantResponses = () => {
 	return applyDecorators(
@@ -61,15 +59,5 @@ export const ApiDeleteRestaurantResponses = () => {
 			},
 		}),
 		ApiUserResponses(),
-	);
-};
-
-export const ApiGetMyMenuItemsResponses = () =>
-	ApiOkResponse({ type: [MyMenuItemResponse] });
-
-export const ApiGetMyMenuItemByIDResponses = () => {
-	return applyDecorators(
-		ApiMenuItemResponses(),
-		ApiOkResponse({ type: MyMenuItemResponse }),
 	);
 };

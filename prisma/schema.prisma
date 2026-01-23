@@ -56,8 +56,8 @@ model Order {
     created_at  DateTime  @default(now())
     customer_id String?   @db.Text
     rider_id    String?   @db.Text
-    type        OrderType
     total_price Float     @db.DoublePrecision
+    type        OrderType
 
     // Mutable fields
     status     OrderStatus @default(PENDING)
@@ -127,5 +127,5 @@ enum OrderStatus {
     RETURNED // rider
     IN_TRANSIT // rider
     FAILED
-    DELIVERED // rider
+    DELIVERED // restaurant if type is PICKUP | rider if type is DELIVERY
 }
