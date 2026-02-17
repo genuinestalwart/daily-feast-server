@@ -53,7 +53,7 @@
 - Customize the `.prettierrc` file and run this to apply changes:
 
     ```bash
-    npx prettier . --write
+    npm run format
     ```
 
 - Run this after every schema changes:

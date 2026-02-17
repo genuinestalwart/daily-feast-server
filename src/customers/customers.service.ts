@@ -14,7 +14,7 @@ export class CustomersService {
 	) {}
 
 	async getCustomer(id: string) {
-		return this.usersService.getUser(id, ROLES.CUSTOMER);
+		return this.usersService.getUser(id, ROLES.CUSTOMER, true);
 	}
 
 	async updateCustomer(id: string, dto: UpdateCustomerBody) {

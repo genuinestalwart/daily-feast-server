@@ -14,7 +14,7 @@ export class RidersService {
 	) {}
 
 	async getRider(id: string) {
-		return this.usersService.getUser(id, ROLES.RIDER);
+		return this.usersService.getUser(id, ROLES.RIDER, true);
 	}
 
 	async updateRider(id: string, dto: UpdateRiderBody) {

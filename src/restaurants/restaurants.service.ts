@@ -60,11 +60,11 @@ export class RestaurantsService {
 	}
 
 	async getMyRestaurant(id: string) {
-		return this.usersService.getUser(id, ROLES.RESTAURANT, { byID: false });
+		return this.usersService.getUser(id, ROLES.RESTAURANT, true);
 	}
 
 	async getRestaurantByID(id: string) {
-		return this.usersService.getUser(id, ROLES.RESTAURANT, { byID: true });
+		return this.usersService.getUser(id, ROLES.RESTAURANT, false);
 	}
 
 	async updateRestaurant(id: string, dto: UpdateRestaurantBody) {

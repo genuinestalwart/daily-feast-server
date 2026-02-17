@@ -6,6 +6,7 @@ import {
 import { OrderStatus, Prisma } from 'prisma/generated/client';
 import { Auth0Service } from 'src/auth0/auth0.service';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { ROLES } from '../constants/roles';
 
 interface Restaurant {
 	byID: boolean;
@@ -27,34 +28,40 @@ export class UsersService {
 	) {}
 
 	// get 'CUSTOMER' | 'RESTAURANT' | 'RIDER'
-	async getUser(id: string, roleName: string, restaurant?: Restaurant) {
-		// This makes sure whether it's a public request for restaurant or not
-		const byID = restaurant && restaurant.byID;
+	async getUser(id: string, roleName: string, isOwner: boolean) {
+		const isRestaurant = roleName === ROLES.RESTAURANT;
 		const user = await this.auth0Service.users.get(id);
-		const { data } = await this.auth0Service.users.roles.list(id);
+		const { data: userRoles } =
+			await this.auth0Service.users.roles.list(id);
 
-		const tags = restaurant
+		const tags = isRestaurant
 			? await this.prismaService.restaurant.findUniqueOrThrow({
 					select: { tags: true },
 					where: { id },
 				})
 			: undefined;
 
-		if (!data.map((role) => role.name).includes(roleName)) {
+		if (!userRoles.map((role) => role.name).includes(roleName)) {
 			throw new NotFoundException();
 		}
 
+		const ownerData = isOwner
+			? {
+					email: user.email,
+					email_verified: user.email_verified,
+					identities: user.identities,
+					updated_at: user.updated_at,
+				}
+			: {};
+
 		return {
 			created_at: user.created_at,
-			email: byID ? undefined : user.email,
-			email_verified: byID ? undefined : user.email_verified,
 			id: user.user_id,
-			identities: restaurant ? undefined : user.identities,
 			name: user.name,
 			picture: user.picture,
 			role: roleName.slice(3),
+			...ownerData,
 			...tags,
-			updated_at: byID ? undefined : user.updated_at,
 		};
 	}
 
