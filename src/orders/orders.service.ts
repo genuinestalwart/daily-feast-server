@@ -5,10 +5,11 @@ import {
 } from '@nestjs/common';
 import { CreateOrderBody } from './dto/create-order-body.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { Prisma } from 'prisma/generated/client';
+import { OrderType, Prisma } from 'prisma/generated/client';
 import { GetOrdersQuery } from './dto/get-orders-query.dto';
 import { UpdateStatusBody } from './dto/update-status-body.dto';
 import { ROLES } from 'src/common/constants/roles';
+import type { AuthUser } from 'src/common/types/auth-user.type';
 
 const order_include = {
 	ordered_items: {
@@ -22,16 +23,14 @@ const order_include = {
 export class OrdersService {
 	constructor(private readonly prismaService: PrismaService) {}
 
-	private determineRoleOfUser(userID: string, roles: string[]) {
-		if (roles.includes(ROLES.CUSTOMER)) {
-			return { customer_id: userID };
-		} else if (roles.includes(ROLES.RESTAURANT)) {
-			return { restaurant_id: userID };
-		} else if (roles.includes(ROLES.RIDER)) {
-			return { rider_id: userID };
-		} else {
-			return {};
-		}
+	private getIdByRole(currentUser: AuthUser) {
+		const idByRole = {
+			[ROLES.CUSTOMER]: { customer_id: currentUser.id },
+			[ROLES.RESTAURANT]: { restaurant_id: currentUser.id },
+			[ROLES.RIDER]: { rider_id: currentUser.id },
+		};
+
+		return idByRole[currentUser.role];
 	}
 
 	async createOrder(customer_id: string, dto: CreateOrderBody) {
@@ -46,6 +45,7 @@ export class OrdersService {
 			throw new BadRequestException();
 		}
 
+		// group cartItems based on restaurant_id
 		const itemsByRestaurant = cartItems.reduce<
 			Record<string, typeof cartItems>
 		>((accumulator, item) => {
@@ -98,73 +98,65 @@ export class OrdersService {
 		});
 	}
 
-	async getOrderByID(id: string, userID: string, roles: string[]) {
+	async getOrderById(currentUser: AuthUser, id: string) {
 		return this.prismaService.order.findUniqueOrThrow({
 			include: order_include,
 			omit: { restaurant_id: true },
-			where: { id, ...this.determineRoleOfUser(userID, roles) },
+			where: { id, ...this.getIdByRole(currentUser) },
 		});
 	}
 
-	async getOrders(dto: GetOrdersQuery, userID: string, roles: string[]) {
+	async getOrders(currentUser: AuthUser, dto: GetOrdersQuery) {
 		return this.prismaService.order.findMany({
 			include: order_include,
 			omit: { restaurant_id: true },
-			where: { ...dto, ...this.determineRoleOfUser(userID, roles) },
+			where: { ...dto, ...this.getIdByRole(currentUser) },
 		});
 	}
 
 	async updateStatus(
-		id: string,
+		currentUser: AuthUser,
 		dto: UpdateStatusBody,
-		userID: string,
-		roles: string[],
+		id: string,
 	) {
 		const { status, type: orderType } =
 			await this.prismaService.order.findUniqueOrThrow({
 				select: { status: true, type: true },
-				where: { id, ...this.determineRoleOfUser(userID, roles) },
+				where: { id, ...this.getIdByRole(currentUser) },
 			});
 
-		const isCustomer = roles.includes(ROLES.CUSTOMER),
-			isRestaurant = roles.includes(ROLES.RESTAURANT),
-			isRider = roles.includes(ROLES.RIDER);
-
-		const customerTransitions = {
-			PENDING: ['CANCELLED'],
-			ACCEPTED: ['CANCELLED'],
+		// currentStatus => nextValidStatuses
+		const transitionsByRole = {
+			[ROLES.CUSTOMER]: {
+				PENDING: ['CANCELLED'],
+				ACCEPTED: ['CANCELLED'],
+			},
+			[ROLES.RESTAURANT]: {
+				PENDING: ['ACCEPTED', 'REJECTED'],
+				ACCEPTED: ['PREPARING'],
+				PREPARING: ['READY_FOR_PICKUP'],
+				READY_FOR_PICKUP: (orderType: OrderType) =>
+					orderType === 'PICKUP' ? ['DELIVERED'] : [],
+			},
+			[ROLES.RIDER]: {
+				READY_FOR_PICKUP: ['PICKED_UP'],
+				PICKED_UP: ['RETURNED', 'IN_TRANSIT'],
+				IN_TRANSIT: (orderType: OrderType) =>
+					orderType === 'DELIVERY' ? ['DELIVERED'] : [],
+			},
 		};
 
-		const restaurantTransitions = {
-			PENDING: ['ACCEPTED', 'REJECTED'],
-			ACCEPTED: ['PREPARING'],
-			PREPARING: ['READY_FOR_PICKUP'],
-		};
+		const roleTransitions = transitionsByRole[currentUser.role];
+		const rule = roleTransitions?.[status];
+		const allowedNext = typeof rule === 'function' ? rule(orderType) : rule;
 
-		const riderTransitions = {
-			READY_FOR_PICKUP: ['PICKED_UP'],
-			PICKED_UP: ['RETURNED', 'IN_TRANSIT'],
-		};
-
-		const isValidTransition =
-			(isCustomer && customerTransitions[status]?.includes(dto.status)) ||
-			(isRestaurant &&
-				(restaurantTransitions[status]?.includes(dto.status) ||
-					(orderType === 'PICKUP' &&
-						status === 'READY_FOR_PICKUP' &&
-						dto.status === 'DELIVERED'))) ||
-			(isRider &&
-				(riderTransitions[status]?.includes(dto.status) ||
-					(orderType === 'DELIVERY' &&
-						status === 'IN_TRANSIT' &&
-						dto.status === 'DELIVERED')));
-
-		if (isValidTransition) {
+		// if the requested status is valid for transition
+		if (allowedNext?.includes(dto.status) ?? false) {
 			return this.prismaService.order.update({
 				data: { status: dto.status },
 				include: order_include,
 				omit: { restaurant_id: true },
-				where: { id, ...this.determineRoleOfUser(userID, roles) },
+				where: { id, ...this.getIdByRole(currentUser) },
 			});
 		} else {
 			throw new ConflictException();

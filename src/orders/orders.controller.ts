@@ -9,61 +9,61 @@ import {
 } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { CreateOrderBody } from './dto/create-order-body.dto';
-import { CheckRoles } from 'src/common/decorators/check-roles.decorator';
+import { HasRoles } from 'src/common/decorators/has-roles.decorator';
 import { ROLES } from 'src/common/constants/roles';
-import { UserID } from 'src/common/decorators/user-id.decorator';
 import { GetOrdersQuery } from './dto/get-orders-query.dto';
-import { GetRoles } from 'src/common/decorators/get-roles.decorator';
 import { UpdateStatusBody } from './dto/update-status-body.dto';
 import {
 	ApiCreateOrderResponses,
-	ApiGetOrderByIDResponses,
+	ApiGetOrderByIdResponses,
 	ApiGetOrdersResponses,
 	ApiUpdateStatusResponses,
 } from 'src/common/decorators/api/order.decorator';
+import { CurrentUser } from 'src/common/decorators/current-user.decorator';
+import type { AuthUser } from 'src/common/types/auth-user.type';
 
 @Controller('orders')
 export class OrdersController {
 	constructor(private readonly ordersService: OrdersService) {}
 
 	@ApiCreateOrderResponses()
-	@CheckRoles(ROLES.CUSTOMER)
+	@HasRoles(ROLES.CUSTOMER)
 	@Post()
-	async createOrder(@Body() dto: CreateOrderBody, @UserID() userID: string) {
-		return this.ordersService.createOrder(userID, dto);
+	async createOrder(
+		@CurrentUser() currentUser: AuthUser,
+		@Body() dto: CreateOrderBody,
+	) {
+		return this.ordersService.createOrder(currentUser.id, dto);
 	}
 
-	@ApiGetOrderByIDResponses()
-	@CheckRoles(ROLES.CUSTOMER, ROLES.RESTAURANT, ROLES.RIDER)
+	@ApiGetOrderByIdResponses()
+	@HasRoles(ROLES.CUSTOMER, ROLES.RESTAURANT, ROLES.RIDER)
 	@Get(':id')
-	async getOrderByID(
+	async getOrderById(
+		@CurrentUser() currentUser: AuthUser,
 		@Param('id', new ParseUUIDPipe()) id: string,
-		@UserID() userID: string,
-		@GetRoles() roles: string[],
 	) {
-		return this.ordersService.getOrderByID(id, userID, roles);
+		return this.ordersService.getOrderById(currentUser, id);
 	}
 
 	@ApiGetOrdersResponses()
-	@CheckRoles(ROLES.CUSTOMER, ROLES.RESTAURANT, ROLES.RIDER)
+	@HasRoles(ROLES.CUSTOMER, ROLES.RESTAURANT, ROLES.RIDER)
 	@Get()
 	async getOrders(
+		@CurrentUser() currentUser: AuthUser,
 		@Body() dto: GetOrdersQuery,
-		@UserID() userID: string,
-		@GetRoles() roles: string[],
 	) {
-		return this.ordersService.getOrders(dto, userID, roles);
+		return this.ordersService.getOrders(currentUser, dto);
 	}
 
 	@ApiUpdateStatusResponses()
-	@CheckRoles(ROLES.CUSTOMER, ROLES.RESTAURANT, ROLES.RIDER)
+	@HasRoles(ROLES.CUSTOMER, ROLES.RESTAURANT, ROLES.RIDER)
 	@Patch(':id')
 	async updateStatus(
-		@Param('id', new ParseUUIDPipe()) id: string,
+		@CurrentUser() currentUser: AuthUser,
 		@Body() dto: UpdateStatusBody,
-		@UserID() userID: string,
-		@GetRoles() roles: string[],
+		@Param('id', new ParseUUIDPipe()) id: string,
 	) {
-		return this.ordersService.updateStatus(id, dto, userID, roles);
+		return this.ordersService.updateStatus(currentUser, dto, id);
 	}
 }

@@ -4,9 +4,11 @@ import {
 	IsBoolean,
 	IsEnum,
 	IsInt,
+	IsNumber,
 	IsOptional,
 	IsPositive,
 	IsString,
+	Min,
 } from 'class-validator';
 import { Category, MenuItemStatus } from 'prisma/generated/enums';
 
@@ -21,12 +23,7 @@ enum SortOrder {
 	desc = 'desc',
 }
 
-export class GetMyMenuItemsQuery {
-	@IsBoolean()
-	@IsOptional()
-	@Type(() => Boolean)
-	available?: boolean;
-
+class MenuItemsQuery {
 	@ApiProperty({ description: 'case-sensitive', enum: Category })
 	@IsEnum(Category)
 	@IsOptional()
@@ -56,15 +53,53 @@ export class GetMyMenuItemsQuery {
 	@Transform(({ value }) => value ?? SortOrder.desc)
 	sort_order?: SortOrder;
 
-	@ApiProperty({ enum: MenuItemStatus })
-	@IsEnum(MenuItemStatus)
-	@IsOptional()
-	status?: MenuItemStatus;
-
 	@ApiProperty({ description: 'number of items to take after skipping' })
 	@IsInt()
 	@IsOptional()
 	@IsPositive()
 	@Type(() => Number)
 	take?: number;
+}
+
+export class GetMyMenuItemsQuery extends MenuItemsQuery {
+	@IsBoolean()
+	@IsOptional()
+	@Type(() => Boolean)
+	available?: boolean;
+
+	@ApiProperty({ enum: MenuItemStatus })
+	@IsEnum(MenuItemStatus)
+	@IsOptional()
+	status?: MenuItemStatus;
+}
+
+export class GetMenuItemsQuery extends MenuItemsQuery {
+	@ApiProperty({ description: 'minimum 6 and in minutes' })
+	@IsInt()
+	@IsOptional()
+	@Min(6)
+	@Type(() => Number)
+	maxPrepTime?: number;
+
+	@ApiProperty({ description: 'minimum 2' })
+	@IsOptional()
+	@IsNumber()
+	@Min(2)
+	@Type(() => Number)
+	maxPrice?: number;
+
+	@ApiProperty({ description: 'minimum 5 and in minutes' })
+	@IsInt()
+	@IsOptional()
+	@Min(5)
+	@Type(() => Number)
+	minPrepTime?: number;
+
+	@ApiProperty({ description: 'minimum 1' })
+	@IsInt()
+	@IsOptional()
+	@IsNumber()
+	@IsPositive()
+	@Type(() => Number)
+	minPrice?: number;
 }

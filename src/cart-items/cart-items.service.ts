@@ -58,7 +58,7 @@ export class CartItemsService {
 		});
 	}
 
-	async updateAmount(customer_id: string, id: string, dto: UpdateAmountBody) {
+	async updateAmount(customer_id: string, dto: UpdateAmountBody, id: string) {
 		const cartItem = await this.ensureOwnership(customer_id, id);
 
 		return this.prismaService.$transaction(async (tx) => {

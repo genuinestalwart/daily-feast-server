@@ -22,7 +22,7 @@ export const ApiCreateOrderResponses = () => {
 	);
 };
 
-export const ApiGetOrderByIDResponses = () => {
+export const ApiGetOrderByIdResponses = () => {
 	return applyDecorators(
 		ApiCommonResponses(),
 		ApiOkResponse({ type: OrderResponse }),

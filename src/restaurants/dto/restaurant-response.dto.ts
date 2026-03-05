@@ -1,4 +1,3 @@
-import { IntersectionType } from '@nestjs/swagger';
 import {
 	ArrayMaxSize,
 	IsArray,
@@ -8,7 +7,7 @@ import {
 	IsUrl,
 	MaxLength,
 } from 'class-validator';
-import { UserResponse } from 'src/common/dto/user-response.dto';
+import { ROLES } from 'src/common/constants/roles';
 
 export class RestaurantResponse {
 	@IsDate()
@@ -23,7 +22,7 @@ export class RestaurantResponse {
 	@IsUrl()
 	picture: string;
 
-	@IsIn(['RESTAURANT'])
+	@IsIn([ROLES.RESTAURANT.slice(3)])
 	role: string;
 
 	@ArrayMaxSize(10)
@@ -32,8 +31,3 @@ export class RestaurantResponse {
 	@MaxLength(15, { each: true })
 	tags: string[];
 }
-
-export class MyRestaurantResponse extends IntersectionType(
-	UserResponse,
-	RestaurantResponse,
-) {}

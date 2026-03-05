@@ -12,8 +12,7 @@ import {
 import { CartItemsService } from './cart-items.service';
 import { AddToCartBody } from './dto/add-to-cart-body.dto';
 import { UpdateAmountBody } from './dto/update-amount-body.dto';
-import { UserID } from 'src/common/decorators/user-id.decorator';
-import { CheckRoles } from 'src/common/decorators/check-roles.decorator';
+import { HasRoles } from 'src/common/decorators/has-roles.decorator';
 import { ROLES } from 'src/common/constants/roles';
 import {
 	ApiAddToCartResponses,
@@ -22,48 +21,53 @@ import {
 	ApiRemoveFromCartResponses,
 	ApiUpdateAmountResponses,
 } from 'src/common/decorators/api/cart-item.decorator';
+import { CurrentUser } from 'src/common/decorators/current-user.decorator';
+import type { AuthUser } from 'src/common/types/auth-user.type';
 
-@CheckRoles(ROLES.CUSTOMER)
+@HasRoles(ROLES.CUSTOMER)
 @Controller('cart')
 export class CartItemsController {
 	constructor(private readonly cartItemsService: CartItemsService) {}
 
 	@ApiAddToCartResponses()
 	@Post()
-	async addToCart(@Body() dto: AddToCartBody, @UserID() userID: string) {
-		return this.cartItemsService.addToCart(userID, dto);
+	async addToCart(
+		@CurrentUser() currentUser: AuthUser,
+		@Body() dto: AddToCartBody,
+	) {
+		return this.cartItemsService.addToCart(currentUser.id, dto);
 	}
 
 	@ApiGetCartItemsResponses()
 	@Get()
-	async getCartItems(@UserID() userID: string) {
-		return this.cartItemsService.getCartItems(userID);
+	async getCartItems(@CurrentUser() currentUser: AuthUser) {
+		return this.cartItemsService.getCartItems(currentUser.id);
 	}
 
 	@ApiUpdateAmountResponses()
 	@Patch(':id')
 	async updateAmount(
-		@Param('id', new ParseUUIDPipe()) id: string,
+		@CurrentUser() currentUser: AuthUser,
 		@Body() dto: UpdateAmountBody,
-		@UserID() userID: string,
+		@Param('id', new ParseUUIDPipe()) id: string,
 	) {
-		return this.cartItemsService.updateAmount(userID, id, dto);
+		return this.cartItemsService.updateAmount(currentUser.id, dto, id);
 	}
 
 	@ApiRemoveFromCartResponses()
 	@Delete(':id')
 	@HttpCode(204)
 	async removeFromCart(
+		@CurrentUser() currentUser: AuthUser,
 		@Param('id', new ParseUUIDPipe()) id: string,
-		@UserID() userID: string,
 	) {
-		return this.cartItemsService.removeFromCart(userID, id);
+		return this.cartItemsService.removeFromCart(currentUser.id, id);
 	}
 
 	@ApiClearCartResponses()
 	@Delete()
 	@HttpCode(204)
-	async clearCart(@UserID() userID: string) {
-		return this.cartItemsService.clearCart(userID);
+	async clearCart(@CurrentUser() currentUser: AuthUser) {
+		return this.cartItemsService.clearCart(currentUser.id);
 	}
 }

@@ -12,33 +12,33 @@ import {
 } from '@nestjs/common';
 import { MenuItemsService } from './menu-items.service';
 import { CreateMenuItemBody } from './dto/create-menu-item-body.dto';
-import { CheckRoles } from 'src/common/decorators/check-roles.decorator';
+import { HasRoles } from 'src/common/decorators/has-roles.decorator';
 import { ROLES } from 'src/common/constants/roles';
-import { GetMenuItemsQuery } from './dto/get-menu-items-query.dto';
+import { GetMenuItemsQuery } from './dto/menu-items-query.dto';
 import { UpdateMenuItemBody } from './dto/update-menu-item-body.dto';
-import { UserID } from 'src/common/decorators/user-id.decorator';
-import { GetRoles } from 'src/common/decorators/get-roles.decorator';
 import {
 	ApiCreateMenuItemResponses,
 	ApiDeleteMenuItemResponses,
-	ApiGetMenuItemByIDResponses,
+	ApiGetMenuItemByIdResponses,
 	ApiGetMenuItemsResponses,
 	ApiSubmitForApprovalResponses,
 	ApiUpdateMenuItemResponses,
 } from 'src/common/decorators/api/menu-item.decorator';
+import { CurrentUser } from 'src/common/decorators/current-user.decorator';
+import type { AuthUser } from 'src/common/types/auth-user.type';
 
 @Controller('menu')
 export class MenuItemsController {
 	constructor(private readonly menuItemsService: MenuItemsService) {}
 
 	@ApiCreateMenuItemResponses()
-	@CheckRoles(ROLES.RESTAURANT)
+	@HasRoles(ROLES.RESTAURANT)
 	@Post()
 	async createMenuItem(
+		@CurrentUser() currentUser: AuthUser,
 		@Body() dto: CreateMenuItemBody,
-		@UserID() userID: string,
 	) {
-		return this.menuItemsService.createMenuItem(userID, dto);
+		return this.menuItemsService.createMenuItem(currentUser.id, dto);
 	}
 
 	@ApiGetMenuItemsResponses()
@@ -47,47 +47,41 @@ export class MenuItemsController {
 		return this.menuItemsService.getMenuItems(query);
 	}
 
-	@ApiGetMenuItemByIDResponses()
+	@ApiGetMenuItemByIdResponses()
 	@Get(':id')
-	async getMenuItemByID(@Param('id', new ParseUUIDPipe()) id: string) {
-		return this.menuItemsService.getMenuItemByID(id);
+	async getMenuItemById(@Param('id', new ParseUUIDPipe()) id: string) {
+		return this.menuItemsService.getMenuItemById(id);
 	}
 
 	@ApiUpdateMenuItemResponses()
-	@CheckRoles(ROLES.RESTAURANT)
+	@HasRoles(ROLES.RESTAURANT)
 	@Patch(':id')
 	async updateMenuItem(
-		@Param('id', new ParseUUIDPipe()) id: string,
+		@CurrentUser() currentUser: AuthUser,
 		@Body() dto: UpdateMenuItemBody,
-		@UserID() userID: string,
-		@GetRoles() roles: string[],
+		@Param('id', new ParseUUIDPipe()) id: string,
 	) {
-		const user = { userID, isRestaurant: roles.includes(ROLES.RESTAURANT) };
-		return this.menuItemsService.updateMenuItem(id, dto, user);
+		return this.menuItemsService.updateMenuItem(currentUser.id, dto, id);
 	}
 
 	@ApiSubmitForApprovalResponses()
-	@CheckRoles(ROLES.RESTAURANT)
+	@HasRoles(ROLES.RESTAURANT)
 	@Patch(':id/submit')
 	async submitForApproval(
+		@CurrentUser() currentUser: AuthUser,
 		@Param('id', new ParseUUIDPipe()) id: string,
-		@UserID() userID: string,
-		@GetRoles() roles: string[],
 	) {
-		const user = { userID, isRestaurant: roles.includes(ROLES.RESTAURANT) };
-		return this.menuItemsService.submitForApproval(id, user);
+		return this.menuItemsService.submitForApproval(currentUser.id, id);
 	}
 
 	@ApiDeleteMenuItemResponses()
-	@CheckRoles(ROLES.RESTAURANT)
+	@HasRoles(ROLES.RESTAURANT)
 	@Delete(':id')
 	@HttpCode(204)
 	async deleteMenuItem(
+		@CurrentUser() currentUser: AuthUser,
 		@Param('id', new ParseUUIDPipe()) id: string,
-		@UserID() userID: string,
-		@GetRoles() roles: string[],
 	) {
-		const user = { userID, isRestaurant: roles.includes(ROLES.RESTAURANT) };
-		return this.menuItemsService.deleteMenuItem(id, user);
+		return this.menuItemsService.deleteMenuItem(currentUser.id, id);
 	}
 }

@@ -5,20 +5,17 @@ import {
 } from '@nestjs/common';
 import { Prisma } from 'prisma/generated/client';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { GetMenuItemsQuery } from './dto/get-menu-items-query.dto';
 import { CreateMenuItemBody } from './dto/create-menu-item-body.dto';
-import { GetMyMenuItemsQuery } from './dto/get-my-menu-items-query.dto';
-import { IntersectionType, OmitType } from '@nestjs/swagger';
+import { IntersectionType } from '@nestjs/swagger';
 import { UpdateMenuItemBody } from './dto/update-menu-item-body.dto';
-
-interface User {
-	isRestaurant: boolean;
-	userID: string;
-}
+import {
+	GetMenuItemsQuery,
+	GetMyMenuItemsQuery,
+} from './dto/menu-items-query.dto';
 
 // Combined DTO for internal use in `findMenuItems()`
 class FindMenuItemsQuery extends IntersectionType(
-	OmitType(GetMenuItemsQuery, ['sort_by'] as const),
+	GetMenuItemsQuery,
 	GetMyMenuItemsQuery,
 ) {}
 
@@ -54,24 +51,24 @@ export class MenuItemsService {
 		});
 	}
 
-	private async ensureOwnership(id: string, user: User) {
-		const { restaurant_id, status } =
-			await this.prismaService.menuItem.findUniqueOrThrow({
-				where: { id },
-			});
+	private async ensureOwnership(restaurant_id: string, id: string) {
+		const menuItem = await this.prismaService.menuItem.findUniqueOrThrow({
+			select: { available: true, restaurant_id: true, status: true },
+			where: { id },
+		});
 
-		if (user.isRestaurant && user.userID !== restaurant_id) {
+		if (restaurant_id !== menuItem.restaurant_id) {
 			throw new ForbiddenException();
 		}
 
-		return status;
+		return menuItem;
 	}
 
-	private async ensureNoActiveOrders(id: string, user: User) {
+	private async ensureNoActiveOrders(restaurant_id: string, id: string) {
 		const activeOrders = await this.prismaService.order.count({
 			where: {
 				ordered_items: { some: { menu_item_id: id } },
-				restaurant_id: user.userID,
+				restaurant_id,
 				status: {
 					notIn: [
 						'CANCELLED',
@@ -99,7 +96,7 @@ export class MenuItemsService {
 		return this.findMenuItems(query);
 	}
 
-	async getMenuItemByID(id: string) {
+	async getMenuItemById(id: string) {
 		return this.prismaService.menuItem.findUniqueOrThrow({
 			omit: { available: true, status: true },
 			where: { available: true, id, status: 'APPROVED' },
@@ -110,30 +107,34 @@ export class MenuItemsService {
 		return this.findMenuItems(query, restaurant_id);
 	}
 
-	async getMyMenuItemByID(restaurant_id: string, id: string) {
+	async getMyMenuItemById(restaurant_id: string, id: string) {
 		return this.prismaService.menuItem.findUniqueOrThrow({
 			where: { id, restaurant_id },
 		});
 	}
 
-	async updateMenuItem(id: string, dto: UpdateMenuItemBody, user: User) {
-		const status = await this.ensureOwnership(id, user);
-		const denied = status === 'DENIED';
+	async updateMenuItem(
+		restaurant_id: string,
+		dto: UpdateMenuItemBody,
+		id: string,
+	) {
+		const menuItem = await this.ensureOwnership(restaurant_id, id);
+		const isDenied = menuItem.status === 'DENIED';
 
 		if (dto.available || dto.available === false || dto.price) {
-			await this.ensureNoActiveOrders(id, user);
+			await this.ensureNoActiveOrders(restaurant_id, id);
 		}
 
 		return this.prismaService.menuItem.update({
-			data: { ...dto, status: denied ? 'KEPT_AS_DRAFT' : undefined },
+			data: { ...dto, status: isDenied ? 'KEPT_AS_DRAFT' : undefined },
 			where: { id },
 		});
 	}
 
-	async submitForApproval(id: string, user: User) {
-		const status = await this.ensureOwnership(id, user);
+	async submitForApproval(restaurant_id: string, id: string) {
+		const menuItem = await this.ensureOwnership(restaurant_id, id);
 
-		if (status !== 'KEPT_AS_DRAFT') {
+		if (menuItem.status !== 'KEPT_AS_DRAFT') {
 			throw new ConflictException();
 		}
 
@@ -143,9 +144,13 @@ export class MenuItemsService {
 		});
 	}
 
-	async deleteMenuItem(id: string, user: User) {
-		await this.ensureOwnership(id, user);
-		await this.ensureNoActiveOrders(id, user);
+	async deleteMenuItem(restaurant_id: string, id: string) {
+		const menuItem = await this.ensureOwnership(restaurant_id, id);
+
+		if (menuItem.status === 'APPROVED' && menuItem.available) {
+			await this.ensureNoActiveOrders(restaurant_id, id);
+		}
+
 		await this.prismaService.menuItem.delete({ where: { id } });
 	}
 }

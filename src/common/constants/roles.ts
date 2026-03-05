@@ -5,4 +5,4 @@ export const ROLES = {
 	RESTAURANT: 'DF_RESTAURANT',
 	RIDER: 'DF_RIDER',
 	STAFF: 'DF_STAFF',
-};
+} as const;

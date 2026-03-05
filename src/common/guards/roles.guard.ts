@@ -8,35 +8,32 @@ import {
 import { Observable } from 'rxjs';
 import { Reflector } from '@nestjs/core';
 import type { Request } from 'express';
+import type { AuthRole } from '../types/auth-role.type';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
 	constructor(private reflector: Reflector) {}
 
 	canActivate(
-		context: ExecutionContext,
+		ctx: ExecutionContext,
 	): boolean | Promise<boolean> | Observable<boolean> {
-		const requiredRoles = this.reflector.getAllAndOverride<string[]>(
+		const requiredRoles = this.reflector.getAllAndOverride<AuthRole[]>(
 			'roles',
-			[context.getHandler(), context.getClass()],
+			[ctx.getHandler(), ctx.getClass()],
 		);
 
-		const request: Request = context.switchToHttp().getRequest();
+		const request: Request = ctx.switchToHttp().getRequest();
 		const payload = request.auth?.payload;
 
-		if (!payload) {
+		const role = payload?.[`${process.env.AUTH0_IDENTIFIER}/roles`]?.[0] as
+			| AuthRole
+			| undefined;
+
+		if (!role) {
 			throw new UnauthorizedException();
 		}
 
-		const userRoles = payload[
-			`${process.env.AUTH0_IDENTIFIER}/roles`
-		] as string[];
-
-		if (!userRoles || !userRoles.length) {
-			throw new UnauthorizedException();
-		}
-
-		if (!requiredRoles.some((role) => userRoles.includes(role))) {
+		if (!requiredRoles.includes(role)) {
 			throw new ForbiddenException();
 		}
 

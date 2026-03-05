@@ -28,7 +28,7 @@ export const ApiCreateMenuItemResponses = () =>
 export const ApiGetMenuItemsResponses = () =>
 	ApiOkResponse({ type: [MenuItemResponse] });
 
-export const ApiGetMenuItemByIDResponses = () => {
+export const ApiGetMenuItemByIdResponses = () => {
 	return applyDecorators(
 		ApiCommonResponses(),
 		ApiOkResponse({ type: MenuItemResponse }),
@@ -37,29 +37,29 @@ export const ApiGetMenuItemByIDResponses = () => {
 
 export const ApiUpdateMenuItemResponses = () => {
 	return applyDecorators(
+		ApiCommonResponses(),
 		ApiConflictResponse({ description: 'active orders ongoing' }),
 		ApiForbiddenResponse({ description: 'not owned by this restaurant' }),
-		ApiCommonResponses(),
 		ApiOkResponse({ type: UpdateMenuItemResponse }),
 	);
 };
 
 export const ApiSubmitForApprovalResponses = () => {
 	return applyDecorators(
+		ApiCommonResponses(),
 		ApiConflictResponse({
 			description: 'status cannot be "KEPT_AS_DRAFT"',
 		}),
 		ApiForbiddenResponse({ description: 'not owned by this restaurant' }),
-		ApiCommonResponses(),
 		ApiOkResponse({ type: SubmitMenuItemResponse }),
 	);
 };
 
 export const ApiDeleteMenuItemResponses = () => {
 	return applyDecorators(
+		ApiCommonResponses(),
 		ApiConflictResponse({ description: 'active orders ongoing' }),
 		ApiForbiddenResponse({ description: 'not owned by this restaurant' }),
-		ApiCommonResponses(),
 		ApiResponse({ status: 204, description: 'deleted successfully' }),
 	);
 };
@@ -67,7 +67,7 @@ export const ApiDeleteMenuItemResponses = () => {
 export const ApiGetMyMenuItemsResponses = () =>
 	ApiOkResponse({ type: [MyMenuItemResponse] });
 
-export const ApiGetMyMenuItemByIDResponses = () => {
+export const ApiGetMyMenuItemByIdResponses = () => {
 	return applyDecorators(
 		ApiCommonResponses(),
 		ApiOkResponse({ type: MyMenuItemResponse }),

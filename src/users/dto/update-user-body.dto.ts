@@ -9,7 +9,7 @@ import {
 import { TrimString } from 'src/common/decorators/trim-string.decorator';
 import { Transform } from 'class-transformer';
 
-export class UpdateRestaurantBody {
+export class UpdateUserBody {
 	@IsNotEmpty()
 	@IsString()
 	@MaxLength(30)
