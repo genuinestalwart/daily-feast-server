@@ -59,7 +59,7 @@
 - Run this after every schema changes:
 
     ```bash
-    npx prisma migrate dev --name [name_given_by_you]
+    npx prisma migrate dev --name name_given_by_you
     ```
 
 - Add dummy data to database:

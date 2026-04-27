@@ -91,8 +91,9 @@ model Restaurant {
     id String @id @db.Text
 
     // Mutable fields
-    name String   @db.Text
-    tags String[] @default([])
+    completedOrdersCount Int      @default(0) @db.Integer
+    name                 String   @db.Text
+    tags                 String[] @default([])
 
     // Front relation fields
     menuItems MenuItem[]

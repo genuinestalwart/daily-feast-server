@@ -11,6 +11,8 @@ import { UpdateMenuItemBody } from './dto/update-menu-item-body.dto';
 import {
 	GetMenuItemsQuery,
 	GetMyMenuItemsQuery,
+	MenuItemsSortBy,
+	MenuItemsSortOrder,
 } from './dto/menu-items-query.dto';
 
 // Combined DTO for internal use in `findMenuItems()`
@@ -32,6 +34,11 @@ export class MenuItemsService {
 		const prep_time = { gte: q.minPrepTime, lte: q.maxPrepTime };
 		const price = { gte: q.minPrice, lte: q.maxPrice };
 
+		const {
+			sort_by = MenuItemsSortBy.created_at,
+			sort_order = MenuItemsSortOrder.desc,
+		} = q;
+
 		const where: Prisma.MenuItemWhereInput = {
 			available: q.available ?? true,
 			category: q.category,
@@ -44,8 +51,8 @@ export class MenuItemsService {
 
 		return this.prismaService.menuItem.findMany({
 			omit: !restaurant_id ? omit : undefined,
-			orderBy: { [q.sort_by ?? 'created_at']: q.sort_order ?? 'desc' },
-			skip: q.skip ?? 0,
+			orderBy: { [sort_by]: sort_order },
+			skip: q.skip ?? undefined,
 			take: Math.min(q.take ?? 20, 100),
 			where,
 		});

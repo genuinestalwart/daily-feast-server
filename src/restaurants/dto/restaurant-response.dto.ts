@@ -3,6 +3,7 @@ import {
 	IsArray,
 	IsDate,
 	IsIn,
+	IsInt,
 	IsString,
 	IsUrl,
 	MaxLength,
@@ -10,6 +11,9 @@ import {
 import { ROLES } from 'src/common/constants/roles';
 
 export class RestaurantResponse {
+	@IsInt()
+	completedOrdersCount: number;
+
 	@IsDate()
 	created_at: Date;
 

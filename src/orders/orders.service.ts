@@ -119,11 +119,14 @@ export class OrdersService {
 		dto: UpdateStatusBody,
 		id: string,
 	) {
-		const { status, type: orderType } =
-			await this.prismaService.order.findUniqueOrThrow({
-				select: { status: true, type: true },
-				where: { id, ...this.getIdByRole(currentUser) },
-			});
+		const {
+			restaurant_id,
+			status,
+			type: orderType,
+		} = await this.prismaService.order.findUniqueOrThrow({
+			select: { restaurant_id: true, status: true, type: true },
+			where: { id, ...this.getIdByRole(currentUser) },
+		});
 
 		// currentStatus => nextValidStatuses
 		const transitionsByRole = {
@@ -139,19 +142,27 @@ export class OrdersService {
 					orderType === 'PICKUP' ? ['DELIVERED'] : [],
 			},
 			[ROLES.RIDER]: {
-				READY_FOR_PICKUP: ['PICKED_UP'],
+				READY_FOR_PICKUP: (orderType: OrderType) =>
+					orderType === 'DELIVERY' ? ['PICKED_UP'] : [],
 				PICKED_UP: ['RETURNED', 'IN_TRANSIT'],
 				IN_TRANSIT: (orderType: OrderType) =>
 					orderType === 'DELIVERY' ? ['DELIVERED'] : [],
 			},
-		};
+		} as const;
 
-		const roleTransitions = transitionsByRole[currentUser.role];
-		const rule = roleTransitions?.[status];
+		const rule = transitionsByRole[currentUser.role]?.[status];
 		const allowedNext = typeof rule === 'function' ? rule(orderType) : rule;
 
 		// if the requested status is valid for transition
 		if (allowedNext?.includes(dto.status) ?? false) {
+			// if the order is completed, increase completedOrdersCount for the restaurant
+			if (dto.status === 'DELIVERED') {
+				await this.prismaService.restaurant.update({
+					where: { id: restaurant_id as string },
+					data: { completedOrdersCount: { increment: 1 } },
+				});
+			}
+
 			return this.prismaService.order.update({
 				data: { status: dto.status },
 				include: order_include,

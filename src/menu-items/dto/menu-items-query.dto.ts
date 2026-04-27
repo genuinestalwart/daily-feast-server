@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Transform, Type } from 'class-transformer';
+import { Type } from 'class-transformer';
 import {
 	IsBoolean,
 	IsEnum,
@@ -12,13 +12,13 @@ import {
 } from 'class-validator';
 import { Category, MenuItemStatus } from 'prisma/generated/enums';
 
-enum SortBy {
+export enum MenuItemsSortBy {
 	created_at = 'created_at',
 	price = 'price',
 	updated_at = 'updated_at',
 }
 
-enum SortOrder {
+export enum MenuItemsSortOrder {
 	asc = 'asc',
 	desc = 'desc',
 }
@@ -42,16 +42,14 @@ class MenuItemsQuery {
 	skip?: number;
 
 	@ApiProperty({ description: 'case-sensitive' })
-	@IsEnum(SortBy)
+	@IsEnum(MenuItemsSortBy)
 	@IsOptional()
-	@Transform(({ value }) => value ?? SortBy.created_at)
-	sort_by?: SortBy;
+	sort_by?: MenuItemsSortBy;
 
 	@ApiProperty({ description: 'case-sensitive' })
-	@IsEnum(SortOrder)
+	@IsEnum(MenuItemsSortOrder)
 	@IsOptional()
-	@Transform(({ value }) => value ?? SortOrder.desc)
-	sort_order?: SortOrder;
+	sort_order?: MenuItemsSortOrder;
 
 	@ApiProperty({ description: 'number of items to take after skipping' })
 	@IsInt()
